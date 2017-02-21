@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 工作的bean -->
+    <bean id="syncAccountJob" class="com.cn.mis.timetask.SyncAccountTimeTask"/>
+    <!-- job的配置开始 -->
+    <bean id="syncAccountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="syncAccountJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <!-- 调度的配置开始 -->
+    <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
+    <bean id="crontestAccountJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="syncAccountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>
+        </property>
+    </bean>
+    <!-- 启动触发器的配置开始 -->
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="crontestAccountJobTrigger" />
+            </list>
+        </property>
+    </bean>
+</beans>
