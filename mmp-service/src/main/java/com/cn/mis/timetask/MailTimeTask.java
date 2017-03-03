@@ -62,6 +62,7 @@ public class MailTimeTask {
     }
 
     public void run() {
+		log.info("2");
 		sendMail();
 	}
 	private String sendMail(){
@@ -124,6 +125,19 @@ public class MailTimeTask {
 
 					@Override
 					public void messageNotDelivered(TransportEvent e) {
+						Message message = e.getMessage();
+						try {
+							String[] messageid = message.getHeader("mailid");
+							for(XCEmail mail:list){
+								if(messageid[0].equals(mail.getId()+"")){
+									mail.setProcessFlag((byte) 0);
+									xcEmailSrevice.updateByPrimaryKeySelective(mail);
+									break;
+								}
+							}
+						} catch (MessagingException e1) {
+							e1.printStackTrace();
+						}
 					}
 
 					@Override

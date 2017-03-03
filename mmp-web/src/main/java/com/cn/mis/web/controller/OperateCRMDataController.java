@@ -122,10 +122,10 @@ public class OperateCRMDataController {
                 for(Account updateid:updateids){
                     if(account.getId().equals(updateid.getId())){
                         if(!EqualsUtil.domainEquals(account, updateid)){
+                            account.setUpdateFlag(true);
                             setTmpAccount(account, userList, resourceList, departmentList);
                             updateList.add(account);
                         }
-                        account.setUpdateFlag(true);
                         break;
                     }
                 }

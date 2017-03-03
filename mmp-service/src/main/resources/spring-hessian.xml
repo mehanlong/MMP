@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Hessian 方式以Http进行传递 -->
     <bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
@@ -28,6 +29,9 @@
     </bean>
 
     <!-- 提供远程服务接口 -->
+    <!-- 业务类  -->
+    <bean id="syncOLProjectHessService" class="com.cn.mis.hessian.SyncOLProjectHessService" />
+
     <bean	name="/remote/olproject" class="com.qding.framework.common.hessian.QDHessianServiceExporter">
         <property name="service" ref="syncOLProjectHessService"/>
         <property name="serviceInterface" value="com.cn.mis.client.ISyncOLProjectApi"/>

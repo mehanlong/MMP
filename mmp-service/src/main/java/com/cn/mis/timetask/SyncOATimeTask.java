@@ -37,6 +37,7 @@ public class SyncOATimeTask {
 	private IOperateProjectService operateProjectService;
 	
 	public void run() {
+		log.info("3");
 		insertProperty();
 		insertProject();
 	}

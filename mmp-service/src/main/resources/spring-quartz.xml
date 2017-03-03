@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 工作的bean -->
     <bean id="accountJob" class="com.cn.mis.timetask.AccountTimeTask"/>
     <bean id="userJob" class="com.cn.mis.timetask.UserTimeTask"/>
@@ -103,11 +104,11 @@
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <!--<ref bean="crontestAccount8_20JobTrigger" />-->
-                <!--<ref bean="crontestAccount20_24JobTrigger" />-->
-                <!--<ref bean="crontestAccount0_8JobTrigger" />-->
-                <!--<ref bean="syncOAJobTrigger" />-->
-                <!--<ref bean="mailJobTrigger"/>-->
+                <ref bean="crontestAccount8_20JobTrigger" />
+                <ref bean="crontestAccount20_24JobTrigger" />
+                <ref bean="crontestAccount0_8JobTrigger" />
+                <ref bean="syncOAJobTrigger" />
+                <ref bean="mailJobTrigger"/>
             </list>
         </property>
     </bean>
