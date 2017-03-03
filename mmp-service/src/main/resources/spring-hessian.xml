@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Hessian 方式以Http进行传递 -->
+    <bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <!--Hessian 启动BeanNameMapping 映射功能,以httpRequest作为处理Adapter -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="defaultHandler" ref="httpRequestHandlerAdapter"/>
+    </bean>
+
+    <!-- 读取配置文件-->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:rpc.properties" />
+    </bean>
+
+    <!-- 调用远程接口-->
+    <bean id="rpcService" class="com.cn.mis.service.impl.RPCService" init-method="init">
+        <property name="propertyInfo_rpc_url" value="${propertyInfo.rpc.url}"/>
+    </bean>
+
+    <bean id="regionRemoteService" class="com.qding.framework.common.hessian.MyHessianProxyFactoryBean">
+        <property name="serviceUrl" value="${regionremote.url}" />
+        <property name="serviceInterface" value="com.qding.brick.remote.biz.RegionRemote" />
+    </bean>
+
+    <!-- 提供远程服务接口 -->
+    <bean	name="/remote/olproject" class="com.qding.framework.common.hessian.QDHessianServiceExporter">
+        <property name="service" ref="syncOLProjectHessService"/>
+        <property name="serviceInterface" value="com.cn.mis.client.ISyncOLProjectApi"/>
+    </bean>
+    <!-- END -->
+</beans>

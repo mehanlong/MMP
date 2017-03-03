@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.OperatePropertyMapper" >
+	<resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.OperateProperty" >
+		  <result column="id" property="id" jdbcType="INTEGER" />
+		  <result column="accountName" property="accountName" jdbcType="VARCHAR" />
+    	  <result column="manager_name" property="manager_name" jdbcType="VARCHAR" />
+    	  <result column="manager_phone" property="manager_phone" jdbcType="VARCHAR" />
+      	  <result column="boss_id" property="boss_id" jdbcType="BIGINT" />
+    	  <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    	  <result column="create_at" property="create_at" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  
+  <select id="selectInsertBySql" resultMap="BaseResultMap">
+  	SELECT upc.id,upc.accountName,upc.manager_name,upc.manager_phone,hr.lastname,upc.boss_id,upc.create_at
+	FROM uf_property_corp upc LEFT JOIN HrmResource hr ON upc.create_by = hr.id
+	WHERE upc.account_type = 2 AND hr.lastname IS NOT NULL AND upc.boss_id IS NULL
+  </select>
+  
+  <select id="selectBySql" resultMap="BaseResultMap">
+	  SELECT upc.id,upc.accountName,upc.manager_name,upc.manager_phone,hr.lastname,upc.boss_id,upc.isdelete
+	  FROM uf_property_corp upc LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
+	  WHERE upc.account_type = 2 AND hr.lastname IS NOT NULL AND upc.boss_id IS NULL AND upc.isdelete != 1
+  </select>
+  
+  <update id="returnWriteBossIdByAccountName" parameterType="com.cn.mis.domain.entity.OperateProperty" >
+	UPDATE uf_property_corp
+	<set>
+		<if test="boss_id != null">
+			boss_id = #{boss_id},
+		</if>
+	</set>      
+	WHERE accountName = #{accountName}
+  </update>
+</mapper>

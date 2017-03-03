@@ -11,12 +11,19 @@
     <properties>
         <!-- spring版本号 -->
         <spring.version>4.0.2.RELEASE</spring.version>
+        <!-- hessian版本号-->
+        <hessian.version>3.1.5</hessian.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.6</mybatis.version>
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <quartz.version>2.2.1</quartz.version>
+
+
+        <project.jdk.version>1.7</project.jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
         <!-- spring核心包 -->
@@ -71,6 +78,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <!-- hessian-->
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>${hessian.version}</version>
         </dependency>
         <!-- mybatis核心包 -->
         <dependency>
@@ -197,6 +210,13 @@
             <artifactId>lombok</artifactId>
             <version>1.16.8</version>
         </dependency>
+        <!-- 单元测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <modules>
         <module>mmp-utils</module>
@@ -204,6 +224,7 @@
         <module>mmp-web</module>
         <module>mmp-domain</module>
         <module>mmp-service</module>
+        <module>mmp-client</module>
     </modules>
 
     <build>

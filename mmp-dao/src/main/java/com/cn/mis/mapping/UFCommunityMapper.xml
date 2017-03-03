@@ -1,0 +1,1118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.UFCommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.UFCommunity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="requestId" property="requestid" jdbcType="INTEGER" />
+    <result column="community" property="community" jdbcType="VARCHAR" />
+    <result column="household_num" property="householdNum" jdbcType="VARCHAR" />
+    <result column="year_service_amount" property="yearServiceAmount" jdbcType="VARCHAR" />
+    <result column="unit_access_flag" property="unitAccessFlag" jdbcType="INTEGER" />
+    <result column="operation_flag" property="operationFlag" jdbcType="INTEGER" />
+    <result column="plan_online_date" property="planOnlineDate" jdbcType="CHAR" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="service_amount" property="serviceAmount" jdbcType="VARCHAR" />
+    <result column="formmodeid" property="formmodeid" jdbcType="INTEGER" />
+    <result column="modedatacreater" property="modedatacreater" jdbcType="INTEGER" />
+    <result column="modedatacreatertype" property="modedatacreatertype" jdbcType="INTEGER" />
+    <result column="modedatacreatedate" property="modedatacreatedate" jdbcType="VARCHAR" />
+    <result column="modedatacreatetime" property="modedatacreatetime" jdbcType="VARCHAR" />
+    <result column="MODEUUID" property="modeuuid" jdbcType="VARCHAR" />
+    <result column="community_add" property="communityAdd" jdbcType="VARCHAR" />
+    <result column="managment_area" property="managmentArea" jdbcType="DECIMAL" />
+    <result column="online_households" property="onlineHouseholds" jdbcType="INTEGER" />
+    <result column="property_name" property="propertyName" jdbcType="VARCHAR" />
+    <result column="contract_date" property="contractDate" jdbcType="CHAR" />
+    <result column="community_status" property="communityStatus" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="community_manager" property="communityManager" jdbcType="VARCHAR" />
+    <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR" />
+    <result column="service_phone" property="servicePhone" jdbcType="VARCHAR" />
+    <result column="total_households" property="totalHouseholds" jdbcType="INTEGER" />
+    <result column="dwelling_area" property="dwellingArea" jdbcType="DECIMAL" />
+    <result column="office_area" property="officeArea" jdbcType="DECIMAL" />
+    <result column="business_area" property="businessArea" jdbcType="DECIMAL" />
+    <result column="other_area" property="otherArea" jdbcType="DECIMAL" />
+    <result column="occupancy_rate" property="occupancyRate" jdbcType="VARCHAR" />
+    <result column="charge_rate" property="chargeRate" jdbcType="VARCHAR" />
+    <result column="call_center_area" property="callCenterArea" jdbcType="VARCHAR" />
+    <result column="property_emp_num" property="propertyEmpNum" jdbcType="INTEGER" />
+    <result column="unit_door_num" property="unitDoorNum" jdbcType="INTEGER" />
+    <result column="unit_access_status" property="unitAccessStatus" jdbcType="INTEGER" />
+    <result column="door_num" property="doorNum" jdbcType="INTEGER" />
+    <result column="door_access_status" property="doorAccessStatus" jdbcType="INTEGER" />
+    <result column="basement_door_num" property="basementDoorNum" jdbcType="INTEGER" />
+    <result column="basement_access_status" property="basementAccessStatus" jdbcType="INTEGER" />
+    <result column="qd_access_num" property="qdAccessNum" jdbcType="INTEGER" />
+    <result column="qd_access_type" property="qdAccessType" jdbcType="INTEGER" />
+    <result column="sidewalk_gate_flag" property="sidewalkGateFlag" jdbcType="CHAR" />
+    <result column="sidewalk_gate_use" property="sidewalkGateUse" jdbcType="CHAR" />
+    <result column="road_gate_flag" property="roadGateFlag" jdbcType="CHAR" />
+    <result column="road_gate_use" property="roadGateUse" jdbcType="CHAR" />
+    <result column="completed_date" property="completedDate" jdbcType="CHAR" />
+    <result column="housing_price" property="housingPrice" jdbcType="DECIMAL" />
+    <result column="rent" property="rent" jdbcType="DECIMAL" />
+    <result column="link_order" property="linkOrder" jdbcType="VARCHAR" />
+    <result column="access_control_install" property="accessControlInstall" jdbcType="INTEGER" />
+    <result column="date_of_access_control" property="dateOfAccessControl" jdbcType="CHAR" />
+    <result column="community_environment" property="communityEnvironment" jdbcType="INTEGER" />
+    <result column="boss_id" property="bossId" jdbcType="BIGINT" />
+    <result column="community_operation_status" property="communityOperationStatus" jdbcType="INTEGER" />
+    <result column="permeability_rate" property="permeabilityRate" jdbcType="VARCHAR" />
+    <result column="binding_rate" property="bindingRate" jdbcType="VARCHAR" />
+    <result column="property_type" property="propertyType" jdbcType="INTEGER" />
+    <result column="section" property="section" jdbcType="INTEGER" />
+    <result column="side_agreement" property="sideAgreement" jdbcType="INTEGER" />
+    <result column="city1" property="city1" jdbcType="INTEGER" />
+    <result column="road_num_in" property="roadNumIn" jdbcType="INTEGER" />
+    <result column="road_num_out" property="roadNumOut" jdbcType="INTEGER" />
+    <result column="sidwalk_num" property="sidwalkNum" jdbcType="INTEGER" />
+    <result column="islonghu" property="islonghu" jdbcType="INTEGER" />
+    <result column="dep_user" property="depUser" jdbcType="VARCHAR" />
+    <result column="dep_user_tel" property="depUserTel" jdbcType="VARCHAR" />
+    <result column="operation_method" property="operationMethod" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="ownerId" property="ownerid" jdbcType="VARCHAR" />
+    <result column="owner_tel" property="ownerTel" jdbcType="VARCHAR" />
+    <result column="ac_oline_date" property="acOlineDate" jdbcType="CHAR" />
+    <result column="request_date" property="requestDate" jdbcType="CHAR" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="updateflag" property="updateflag" jdbcType="INTEGER" />
+    <result column="request_ok_date" property="requestOkDate" jdbcType="CHAR" />
+    <result column="boss_face_flag" property="bossFaceFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.UFCommunityWithBLOBs" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+    <result column="address" property="address" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, requestId, community, household_num, year_service_amount, unit_access_flag, operation_flag, 
+    plan_online_date, property, service_amount, formmodeid, modedatacreater, modedatacreatertype, 
+    modedatacreatedate, modedatacreatetime, MODEUUID, community_add, managment_area, 
+    online_households, property_name, contract_date, community_status, city, community_manager, 
+    manager_phone, service_phone, total_households, dwelling_area, office_area, business_area, 
+    other_area, occupancy_rate, charge_rate, call_center_area, property_emp_num, unit_door_num, 
+    unit_access_status, door_num, door_access_status, basement_door_num, basement_access_status, 
+    qd_access_num, qd_access_type, sidewalk_gate_flag, sidewalk_gate_use, road_gate_flag, 
+    road_gate_use, completed_date, housing_price, rent, link_order, access_control_install, 
+    date_of_access_control, community_environment, boss_id, community_operation_status, 
+    permeability_rate, binding_rate, property_type, section, side_agreement, city1, road_num_in, 
+    road_num_out, sidwalk_num, islonghu, dep_user, dep_user_tel, operation_method, flag, 
+    ownerId, owner_tel, ac_oline_date, request_date, create_at, create_by, update_at, 
+    update_by, updateflag, request_ok_date, boss_face_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uf_community
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uf_community
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.UFCommunityWithBLOBs" >
+    insert into uf_community (id, requestId, community, 
+      household_num, year_service_amount, unit_access_flag, 
+      operation_flag, plan_online_date, property, 
+      service_amount, formmodeid, modedatacreater, 
+      modedatacreatertype, modedatacreatedate, 
+      modedatacreatetime, MODEUUID, community_add, 
+      managment_area, online_households, property_name, 
+      contract_date, community_status, city, 
+      community_manager, manager_phone, service_phone, 
+      total_households, dwelling_area, office_area, 
+      business_area, other_area, occupancy_rate, 
+      charge_rate, call_center_area, property_emp_num, 
+      unit_door_num, unit_access_status, door_num, 
+      door_access_status, basement_door_num, basement_access_status, 
+      qd_access_num, qd_access_type, sidewalk_gate_flag, 
+      sidewalk_gate_use, road_gate_flag, road_gate_use, 
+      completed_date, housing_price, rent, 
+      link_order, access_control_install, date_of_access_control, 
+      community_environment, boss_id, community_operation_status, 
+      permeability_rate, binding_rate, property_type, 
+      section, side_agreement, city1, 
+      road_num_in, road_num_out, sidwalk_num, 
+      islonghu, dep_user, dep_user_tel, 
+      operation_method, flag, ownerId, 
+      owner_tel, ac_oline_date, request_date, 
+      create_at, create_by, update_at, 
+      update_by, updateflag, request_ok_date, 
+      boss_face_flag, comment, address
+      )
+    values (#{id,jdbcType=INTEGER}, #{requestid,jdbcType=INTEGER}, #{community,jdbcType=VARCHAR}, 
+      #{householdNum,jdbcType=VARCHAR}, #{yearServiceAmount,jdbcType=VARCHAR}, #{unitAccessFlag,jdbcType=INTEGER}, 
+      #{operationFlag,jdbcType=INTEGER}, #{planOnlineDate,jdbcType=CHAR}, #{property,jdbcType=VARCHAR}, 
+      #{serviceAmount,jdbcType=VARCHAR}, #{formmodeid,jdbcType=INTEGER}, #{modedatacreater,jdbcType=INTEGER}, 
+      #{modedatacreatertype,jdbcType=INTEGER}, #{modedatacreatedate,jdbcType=VARCHAR}, 
+      #{modedatacreatetime,jdbcType=VARCHAR}, #{modeuuid,jdbcType=VARCHAR}, #{communityAdd,jdbcType=VARCHAR}, 
+      #{managmentArea,jdbcType=DECIMAL}, #{onlineHouseholds,jdbcType=INTEGER}, #{propertyName,jdbcType=VARCHAR}, 
+      #{contractDate,jdbcType=CHAR}, #{communityStatus,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, 
+      #{communityManager,jdbcType=VARCHAR}, #{managerPhone,jdbcType=VARCHAR}, #{servicePhone,jdbcType=VARCHAR}, 
+      #{totalHouseholds,jdbcType=INTEGER}, #{dwellingArea,jdbcType=DECIMAL}, #{officeArea,jdbcType=DECIMAL}, 
+      #{businessArea,jdbcType=DECIMAL}, #{otherArea,jdbcType=DECIMAL}, #{occupancyRate,jdbcType=VARCHAR}, 
+      #{chargeRate,jdbcType=VARCHAR}, #{callCenterArea,jdbcType=VARCHAR}, #{propertyEmpNum,jdbcType=INTEGER}, 
+      #{unitDoorNum,jdbcType=INTEGER}, #{unitAccessStatus,jdbcType=INTEGER}, #{doorNum,jdbcType=INTEGER}, 
+      #{doorAccessStatus,jdbcType=INTEGER}, #{basementDoorNum,jdbcType=INTEGER}, #{basementAccessStatus,jdbcType=INTEGER}, 
+      #{qdAccessNum,jdbcType=INTEGER}, #{qdAccessType,jdbcType=INTEGER}, #{sidewalkGateFlag,jdbcType=CHAR}, 
+      #{sidewalkGateUse,jdbcType=CHAR}, #{roadGateFlag,jdbcType=CHAR}, #{roadGateUse,jdbcType=CHAR}, 
+      #{completedDate,jdbcType=CHAR}, #{housingPrice,jdbcType=DECIMAL}, #{rent,jdbcType=DECIMAL}, 
+      #{linkOrder,jdbcType=VARCHAR}, #{accessControlInstall,jdbcType=INTEGER}, #{dateOfAccessControl,jdbcType=CHAR}, 
+      #{communityEnvironment,jdbcType=INTEGER}, #{bossId,jdbcType=BIGINT}, #{communityOperationStatus,jdbcType=INTEGER}, 
+      #{permeabilityRate,jdbcType=VARCHAR}, #{bindingRate,jdbcType=VARCHAR}, #{propertyType,jdbcType=INTEGER}, 
+      #{section,jdbcType=INTEGER}, #{sideAgreement,jdbcType=INTEGER}, #{city1,jdbcType=INTEGER}, 
+      #{roadNumIn,jdbcType=INTEGER}, #{roadNumOut,jdbcType=INTEGER}, #{sidwalkNum,jdbcType=INTEGER}, 
+      #{islonghu,jdbcType=INTEGER}, #{depUser,jdbcType=VARCHAR}, #{depUserTel,jdbcType=VARCHAR}, 
+      #{operationMethod,jdbcType=INTEGER}, #{flag,jdbcType=VARCHAR}, #{ownerid,jdbcType=VARCHAR}, 
+      #{ownerTel,jdbcType=VARCHAR}, #{acOlineDate,jdbcType=CHAR}, #{requestDate,jdbcType=CHAR}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateAt,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER}, #{updateflag,jdbcType=INTEGER}, #{requestOkDate,jdbcType=CHAR}, 
+      #{bossFaceFlag,jdbcType=INTEGER}, #{comment,jdbcType=LONGVARCHAR}, #{address,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.UFCommunityWithBLOBs" >
+    insert into uf_community
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestid != null" >
+        requestId,
+      </if>
+      <if test="community != null" >
+        community,
+      </if>
+      <if test="householdNum != null" >
+        household_num,
+      </if>
+      <if test="yearServiceAmount != null" >
+        year_service_amount,
+      </if>
+      <if test="unitAccessFlag != null" >
+        unit_access_flag,
+      </if>
+      <if test="operationFlag != null" >
+        operation_flag,
+      </if>
+      <if test="planOnlineDate != null" >
+        plan_online_date,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="serviceAmount != null" >
+        service_amount,
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid,
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater,
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype,
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate,
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime,
+      </if>
+      <if test="modeuuid != null" >
+        MODEUUID,
+      </if>
+      <if test="communityAdd != null" >
+        community_add,
+      </if>
+      <if test="managmentArea != null" >
+        managment_area,
+      </if>
+      <if test="onlineHouseholds != null" >
+        online_households,
+      </if>
+      <if test="propertyName != null" >
+        property_name,
+      </if>
+      <if test="contractDate != null" >
+        contract_date,
+      </if>
+      <if test="communityStatus != null" >
+        community_status,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="communityManager != null" >
+        community_manager,
+      </if>
+      <if test="managerPhone != null" >
+        manager_phone,
+      </if>
+      <if test="servicePhone != null" >
+        service_phone,
+      </if>
+      <if test="totalHouseholds != null" >
+        total_households,
+      </if>
+      <if test="dwellingArea != null" >
+        dwelling_area,
+      </if>
+      <if test="officeArea != null" >
+        office_area,
+      </if>
+      <if test="businessArea != null" >
+        business_area,
+      </if>
+      <if test="otherArea != null" >
+        other_area,
+      </if>
+      <if test="occupancyRate != null" >
+        occupancy_rate,
+      </if>
+      <if test="chargeRate != null" >
+        charge_rate,
+      </if>
+      <if test="callCenterArea != null" >
+        call_center_area,
+      </if>
+      <if test="propertyEmpNum != null" >
+        property_emp_num,
+      </if>
+      <if test="unitDoorNum != null" >
+        unit_door_num,
+      </if>
+      <if test="unitAccessStatus != null" >
+        unit_access_status,
+      </if>
+      <if test="doorNum != null" >
+        door_num,
+      </if>
+      <if test="doorAccessStatus != null" >
+        door_access_status,
+      </if>
+      <if test="basementDoorNum != null" >
+        basement_door_num,
+      </if>
+      <if test="basementAccessStatus != null" >
+        basement_access_status,
+      </if>
+      <if test="qdAccessNum != null" >
+        qd_access_num,
+      </if>
+      <if test="qdAccessType != null" >
+        qd_access_type,
+      </if>
+      <if test="sidewalkGateFlag != null" >
+        sidewalk_gate_flag,
+      </if>
+      <if test="sidewalkGateUse != null" >
+        sidewalk_gate_use,
+      </if>
+      <if test="roadGateFlag != null" >
+        road_gate_flag,
+      </if>
+      <if test="roadGateUse != null" >
+        road_gate_use,
+      </if>
+      <if test="completedDate != null" >
+        completed_date,
+      </if>
+      <if test="housingPrice != null" >
+        housing_price,
+      </if>
+      <if test="rent != null" >
+        rent,
+      </if>
+      <if test="linkOrder != null" >
+        link_order,
+      </if>
+      <if test="accessControlInstall != null" >
+        access_control_install,
+      </if>
+      <if test="dateOfAccessControl != null" >
+        date_of_access_control,
+      </if>
+      <if test="communityEnvironment != null" >
+        community_environment,
+      </if>
+      <if test="bossId != null" >
+        boss_id,
+      </if>
+      <if test="communityOperationStatus != null" >
+        community_operation_status,
+      </if>
+      <if test="permeabilityRate != null" >
+        permeability_rate,
+      </if>
+      <if test="bindingRate != null" >
+        binding_rate,
+      </if>
+      <if test="propertyType != null" >
+        property_type,
+      </if>
+      <if test="section != null" >
+        section,
+      </if>
+      <if test="sideAgreement != null" >
+        side_agreement,
+      </if>
+      <if test="city1 != null" >
+        city1,
+      </if>
+      <if test="roadNumIn != null" >
+        road_num_in,
+      </if>
+      <if test="roadNumOut != null" >
+        road_num_out,
+      </if>
+      <if test="sidwalkNum != null" >
+        sidwalk_num,
+      </if>
+      <if test="islonghu != null" >
+        islonghu,
+      </if>
+      <if test="depUser != null" >
+        dep_user,
+      </if>
+      <if test="depUserTel != null" >
+        dep_user_tel,
+      </if>
+      <if test="operationMethod != null" >
+        operation_method,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="ownerid != null" >
+        ownerId,
+      </if>
+      <if test="ownerTel != null" >
+        owner_tel,
+      </if>
+      <if test="acOlineDate != null" >
+        ac_oline_date,
+      </if>
+      <if test="requestDate != null" >
+        request_date,
+      </if>
+      <if test="createAt != null" >
+        create_at,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateAt != null" >
+        update_at,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateflag != null" >
+        updateflag,
+      </if>
+      <if test="requestOkDate != null" >
+        request_ok_date,
+      </if>
+      <if test="bossFaceFlag != null" >
+        boss_face_flag,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNum != null" >
+        #{householdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="yearServiceAmount != null" >
+        #{yearServiceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAccessFlag != null" >
+        #{unitAccessFlag,jdbcType=INTEGER},
+      </if>
+      <if test="operationFlag != null" >
+        #{operationFlag,jdbcType=INTEGER},
+      </if>
+      <if test="planOnlineDate != null" >
+        #{planOnlineDate,jdbcType=CHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAmount != null" >
+        #{serviceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="modeuuid != null" >
+        #{modeuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="communityAdd != null" >
+        #{communityAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="managmentArea != null" >
+        #{managmentArea,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHouseholds != null" >
+        #{onlineHouseholds,jdbcType=INTEGER},
+      </if>
+      <if test="propertyName != null" >
+        #{propertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDate != null" >
+        #{contractDate,jdbcType=CHAR},
+      </if>
+      <if test="communityStatus != null" >
+        #{communityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="communityManager != null" >
+        #{communityManager,jdbcType=VARCHAR},
+      </if>
+      <if test="managerPhone != null" >
+        #{managerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHouseholds != null" >
+        #{totalHouseholds,jdbcType=INTEGER},
+      </if>
+      <if test="dwellingArea != null" >
+        #{dwellingArea,jdbcType=DECIMAL},
+      </if>
+      <if test="officeArea != null" >
+        #{officeArea,jdbcType=DECIMAL},
+      </if>
+      <if test="businessArea != null" >
+        #{businessArea,jdbcType=DECIMAL},
+      </if>
+      <if test="otherArea != null" >
+        #{otherArea,jdbcType=DECIMAL},
+      </if>
+      <if test="occupancyRate != null" >
+        #{occupancyRate,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRate != null" >
+        #{chargeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="callCenterArea != null" >
+        #{callCenterArea,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyEmpNum != null" >
+        #{propertyEmpNum,jdbcType=INTEGER},
+      </if>
+      <if test="unitDoorNum != null" >
+        #{unitDoorNum,jdbcType=INTEGER},
+      </if>
+      <if test="unitAccessStatus != null" >
+        #{unitAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="doorNum != null" >
+        #{doorNum,jdbcType=INTEGER},
+      </if>
+      <if test="doorAccessStatus != null" >
+        #{doorAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="basementDoorNum != null" >
+        #{basementDoorNum,jdbcType=INTEGER},
+      </if>
+      <if test="basementAccessStatus != null" >
+        #{basementAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qdAccessNum != null" >
+        #{qdAccessNum,jdbcType=INTEGER},
+      </if>
+      <if test="qdAccessType != null" >
+        #{qdAccessType,jdbcType=INTEGER},
+      </if>
+      <if test="sidewalkGateFlag != null" >
+        #{sidewalkGateFlag,jdbcType=CHAR},
+      </if>
+      <if test="sidewalkGateUse != null" >
+        #{sidewalkGateUse,jdbcType=CHAR},
+      </if>
+      <if test="roadGateFlag != null" >
+        #{roadGateFlag,jdbcType=CHAR},
+      </if>
+      <if test="roadGateUse != null" >
+        #{roadGateUse,jdbcType=CHAR},
+      </if>
+      <if test="completedDate != null" >
+        #{completedDate,jdbcType=CHAR},
+      </if>
+      <if test="housingPrice != null" >
+        #{housingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rent != null" >
+        #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="linkOrder != null" >
+        #{linkOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="accessControlInstall != null" >
+        #{accessControlInstall,jdbcType=INTEGER},
+      </if>
+      <if test="dateOfAccessControl != null" >
+        #{dateOfAccessControl,jdbcType=CHAR},
+      </if>
+      <if test="communityEnvironment != null" >
+        #{communityEnvironment,jdbcType=INTEGER},
+      </if>
+      <if test="bossId != null" >
+        #{bossId,jdbcType=BIGINT},
+      </if>
+      <if test="communityOperationStatus != null" >
+        #{communityOperationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="permeabilityRate != null" >
+        #{permeabilityRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingRate != null" >
+        #{bindingRate,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null" >
+        #{propertyType,jdbcType=INTEGER},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=INTEGER},
+      </if>
+      <if test="sideAgreement != null" >
+        #{sideAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="city1 != null" >
+        #{city1,jdbcType=INTEGER},
+      </if>
+      <if test="roadNumIn != null" >
+        #{roadNumIn,jdbcType=INTEGER},
+      </if>
+      <if test="roadNumOut != null" >
+        #{roadNumOut,jdbcType=INTEGER},
+      </if>
+      <if test="sidwalkNum != null" >
+        #{sidwalkNum,jdbcType=INTEGER},
+      </if>
+      <if test="islonghu != null" >
+        #{islonghu,jdbcType=INTEGER},
+      </if>
+      <if test="depUser != null" >
+        #{depUser,jdbcType=VARCHAR},
+      </if>
+      <if test="depUserTel != null" >
+        #{depUserTel,jdbcType=VARCHAR},
+      </if>
+      <if test="operationMethod != null" >
+        #{operationMethod,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTel != null" >
+        #{ownerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="acOlineDate != null" >
+        #{acOlineDate,jdbcType=CHAR},
+      </if>
+      <if test="requestDate != null" >
+        #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateAt != null" >
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateflag != null" >
+        #{updateflag,jdbcType=INTEGER},
+      </if>
+      <if test="requestOkDate != null" >
+        #{requestOkDate,jdbcType=CHAR},
+      </if>
+      <if test="bossFaceFlag != null" >
+        #{bossFaceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.UFCommunityWithBLOBs" >
+    update uf_community
+    <set >
+      <if test="requestid != null" >
+        requestId = #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        community = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNum != null" >
+        household_num = #{householdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="yearServiceAmount != null" >
+        year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAccessFlag != null" >
+        unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      </if>
+      <if test="operationFlag != null" >
+        operation_flag = #{operationFlag,jdbcType=INTEGER},
+      </if>
+      <if test="planOnlineDate != null" >
+        plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAmount != null" >
+        service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid = #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="modeuuid != null" >
+        MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="communityAdd != null" >
+        community_add = #{communityAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="managmentArea != null" >
+        managment_area = #{managmentArea,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHouseholds != null" >
+        online_households = #{onlineHouseholds,jdbcType=INTEGER},
+      </if>
+      <if test="propertyName != null" >
+        property_name = #{propertyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDate != null" >
+        contract_date = #{contractDate,jdbcType=CHAR},
+      </if>
+      <if test="communityStatus != null" >
+        community_status = #{communityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="communityManager != null" >
+        community_manager = #{communityManager,jdbcType=VARCHAR},
+      </if>
+      <if test="managerPhone != null" >
+        manager_phone = #{managerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHouseholds != null" >
+        total_households = #{totalHouseholds,jdbcType=INTEGER},
+      </if>
+      <if test="dwellingArea != null" >
+        dwelling_area = #{dwellingArea,jdbcType=DECIMAL},
+      </if>
+      <if test="officeArea != null" >
+        office_area = #{officeArea,jdbcType=DECIMAL},
+      </if>
+      <if test="businessArea != null" >
+        business_area = #{businessArea,jdbcType=DECIMAL},
+      </if>
+      <if test="otherArea != null" >
+        other_area = #{otherArea,jdbcType=DECIMAL},
+      </if>
+      <if test="occupancyRate != null" >
+        occupancy_rate = #{occupancyRate,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRate != null" >
+        charge_rate = #{chargeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="callCenterArea != null" >
+        call_center_area = #{callCenterArea,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyEmpNum != null" >
+        property_emp_num = #{propertyEmpNum,jdbcType=INTEGER},
+      </if>
+      <if test="unitDoorNum != null" >
+        unit_door_num = #{unitDoorNum,jdbcType=INTEGER},
+      </if>
+      <if test="unitAccessStatus != null" >
+        unit_access_status = #{unitAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="doorNum != null" >
+        door_num = #{doorNum,jdbcType=INTEGER},
+      </if>
+      <if test="doorAccessStatus != null" >
+        door_access_status = #{doorAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="basementDoorNum != null" >
+        basement_door_num = #{basementDoorNum,jdbcType=INTEGER},
+      </if>
+      <if test="basementAccessStatus != null" >
+        basement_access_status = #{basementAccessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="qdAccessNum != null" >
+        qd_access_num = #{qdAccessNum,jdbcType=INTEGER},
+      </if>
+      <if test="qdAccessType != null" >
+        qd_access_type = #{qdAccessType,jdbcType=INTEGER},
+      </if>
+      <if test="sidewalkGateFlag != null" >
+        sidewalk_gate_flag = #{sidewalkGateFlag,jdbcType=CHAR},
+      </if>
+      <if test="sidewalkGateUse != null" >
+        sidewalk_gate_use = #{sidewalkGateUse,jdbcType=CHAR},
+      </if>
+      <if test="roadGateFlag != null" >
+        road_gate_flag = #{roadGateFlag,jdbcType=CHAR},
+      </if>
+      <if test="roadGateUse != null" >
+        road_gate_use = #{roadGateUse,jdbcType=CHAR},
+      </if>
+      <if test="completedDate != null" >
+        completed_date = #{completedDate,jdbcType=CHAR},
+      </if>
+      <if test="housingPrice != null" >
+        housing_price = #{housingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="rent != null" >
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="linkOrder != null" >
+        link_order = #{linkOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="accessControlInstall != null" >
+        access_control_install = #{accessControlInstall,jdbcType=INTEGER},
+      </if>
+      <if test="dateOfAccessControl != null" >
+        date_of_access_control = #{dateOfAccessControl,jdbcType=CHAR},
+      </if>
+      <if test="communityEnvironment != null" >
+        community_environment = #{communityEnvironment,jdbcType=INTEGER},
+      </if>
+      <if test="bossId != null" >
+        boss_id = #{bossId,jdbcType=BIGINT},
+      </if>
+      <if test="communityOperationStatus != null" >
+        community_operation_status = #{communityOperationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="permeabilityRate != null" >
+        permeability_rate = #{permeabilityRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bindingRate != null" >
+        binding_rate = #{bindingRate,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null" >
+        property_type = #{propertyType,jdbcType=INTEGER},
+      </if>
+      <if test="section != null" >
+        section = #{section,jdbcType=INTEGER},
+      </if>
+      <if test="sideAgreement != null" >
+        side_agreement = #{sideAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="city1 != null" >
+        city1 = #{city1,jdbcType=INTEGER},
+      </if>
+      <if test="roadNumIn != null" >
+        road_num_in = #{roadNumIn,jdbcType=INTEGER},
+      </if>
+      <if test="roadNumOut != null" >
+        road_num_out = #{roadNumOut,jdbcType=INTEGER},
+      </if>
+      <if test="sidwalkNum != null" >
+        sidwalk_num = #{sidwalkNum,jdbcType=INTEGER},
+      </if>
+      <if test="islonghu != null" >
+        islonghu = #{islonghu,jdbcType=INTEGER},
+      </if>
+      <if test="depUser != null" >
+        dep_user = #{depUser,jdbcType=VARCHAR},
+      </if>
+      <if test="depUserTel != null" >
+        dep_user_tel = #{depUserTel,jdbcType=VARCHAR},
+      </if>
+      <if test="operationMethod != null" >
+        operation_method = #{operationMethod,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        ownerId = #{ownerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerTel != null" >
+        owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="acOlineDate != null" >
+        ac_oline_date = #{acOlineDate,jdbcType=CHAR},
+      </if>
+      <if test="requestDate != null" >
+        request_date = #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateflag != null" >
+        updateflag = #{updateflag,jdbcType=INTEGER},
+      </if>
+      <if test="requestOkDate != null" >
+        request_ok_date = #{requestOkDate,jdbcType=CHAR},
+      </if>
+      <if test="bossFaceFlag != null" >
+        boss_face_flag = #{bossFaceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.UFCommunityWithBLOBs" >
+    update uf_community
+    set requestId = #{requestid,jdbcType=INTEGER},
+      community = #{community,jdbcType=VARCHAR},
+      household_num = #{householdNum,jdbcType=VARCHAR},
+      year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      operation_flag = #{operationFlag,jdbcType=INTEGER},
+      plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      property = #{property,jdbcType=VARCHAR},
+      service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      formmodeid = #{formmodeid,jdbcType=INTEGER},
+      modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      community_add = #{communityAdd,jdbcType=VARCHAR},
+      managment_area = #{managmentArea,jdbcType=DECIMAL},
+      online_households = #{onlineHouseholds,jdbcType=INTEGER},
+      property_name = #{propertyName,jdbcType=VARCHAR},
+      contract_date = #{contractDate,jdbcType=CHAR},
+      community_status = #{communityStatus,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      community_manager = #{communityManager,jdbcType=VARCHAR},
+      manager_phone = #{managerPhone,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      total_households = #{totalHouseholds,jdbcType=INTEGER},
+      dwelling_area = #{dwellingArea,jdbcType=DECIMAL},
+      office_area = #{officeArea,jdbcType=DECIMAL},
+      business_area = #{businessArea,jdbcType=DECIMAL},
+      other_area = #{otherArea,jdbcType=DECIMAL},
+      occupancy_rate = #{occupancyRate,jdbcType=VARCHAR},
+      charge_rate = #{chargeRate,jdbcType=VARCHAR},
+      call_center_area = #{callCenterArea,jdbcType=VARCHAR},
+      property_emp_num = #{propertyEmpNum,jdbcType=INTEGER},
+      unit_door_num = #{unitDoorNum,jdbcType=INTEGER},
+      unit_access_status = #{unitAccessStatus,jdbcType=INTEGER},
+      door_num = #{doorNum,jdbcType=INTEGER},
+      door_access_status = #{doorAccessStatus,jdbcType=INTEGER},
+      basement_door_num = #{basementDoorNum,jdbcType=INTEGER},
+      basement_access_status = #{basementAccessStatus,jdbcType=INTEGER},
+      qd_access_num = #{qdAccessNum,jdbcType=INTEGER},
+      qd_access_type = #{qdAccessType,jdbcType=INTEGER},
+      sidewalk_gate_flag = #{sidewalkGateFlag,jdbcType=CHAR},
+      sidewalk_gate_use = #{sidewalkGateUse,jdbcType=CHAR},
+      road_gate_flag = #{roadGateFlag,jdbcType=CHAR},
+      road_gate_use = #{roadGateUse,jdbcType=CHAR},
+      completed_date = #{completedDate,jdbcType=CHAR},
+      housing_price = #{housingPrice,jdbcType=DECIMAL},
+      rent = #{rent,jdbcType=DECIMAL},
+      link_order = #{linkOrder,jdbcType=VARCHAR},
+      access_control_install = #{accessControlInstall,jdbcType=INTEGER},
+      date_of_access_control = #{dateOfAccessControl,jdbcType=CHAR},
+      community_environment = #{communityEnvironment,jdbcType=INTEGER},
+      boss_id = #{bossId,jdbcType=BIGINT},
+      community_operation_status = #{communityOperationStatus,jdbcType=INTEGER},
+      permeability_rate = #{permeabilityRate,jdbcType=VARCHAR},
+      binding_rate = #{bindingRate,jdbcType=VARCHAR},
+      property_type = #{propertyType,jdbcType=INTEGER},
+      section = #{section,jdbcType=INTEGER},
+      side_agreement = #{sideAgreement,jdbcType=INTEGER},
+      city1 = #{city1,jdbcType=INTEGER},
+      road_num_in = #{roadNumIn,jdbcType=INTEGER},
+      road_num_out = #{roadNumOut,jdbcType=INTEGER},
+      sidwalk_num = #{sidwalkNum,jdbcType=INTEGER},
+      islonghu = #{islonghu,jdbcType=INTEGER},
+      dep_user = #{depUser,jdbcType=VARCHAR},
+      dep_user_tel = #{depUserTel,jdbcType=VARCHAR},
+      operation_method = #{operationMethod,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=VARCHAR},
+      ownerId = #{ownerid,jdbcType=VARCHAR},
+      owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      ac_oline_date = #{acOlineDate,jdbcType=CHAR},
+      request_date = #{requestDate,jdbcType=CHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      updateflag = #{updateflag,jdbcType=INTEGER},
+      request_ok_date = #{requestOkDate,jdbcType=CHAR},
+      boss_face_flag = #{bossFaceFlag,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=LONGVARCHAR},
+      address = #{address,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.UFCommunity" >
+    update uf_community
+    set requestId = #{requestid,jdbcType=INTEGER},
+      community = #{community,jdbcType=VARCHAR},
+      household_num = #{householdNum,jdbcType=VARCHAR},
+      year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      operation_flag = #{operationFlag,jdbcType=INTEGER},
+      plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      property = #{property,jdbcType=VARCHAR},
+      service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      formmodeid = #{formmodeid,jdbcType=INTEGER},
+      modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      community_add = #{communityAdd,jdbcType=VARCHAR},
+      managment_area = #{managmentArea,jdbcType=DECIMAL},
+      online_households = #{onlineHouseholds,jdbcType=INTEGER},
+      property_name = #{propertyName,jdbcType=VARCHAR},
+      contract_date = #{contractDate,jdbcType=CHAR},
+      community_status = #{communityStatus,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      community_manager = #{communityManager,jdbcType=VARCHAR},
+      manager_phone = #{managerPhone,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      total_households = #{totalHouseholds,jdbcType=INTEGER},
+      dwelling_area = #{dwellingArea,jdbcType=DECIMAL},
+      office_area = #{officeArea,jdbcType=DECIMAL},
+      business_area = #{businessArea,jdbcType=DECIMAL},
+      other_area = #{otherArea,jdbcType=DECIMAL},
+      occupancy_rate = #{occupancyRate,jdbcType=VARCHAR},
+      charge_rate = #{chargeRate,jdbcType=VARCHAR},
+      call_center_area = #{callCenterArea,jdbcType=VARCHAR},
+      property_emp_num = #{propertyEmpNum,jdbcType=INTEGER},
+      unit_door_num = #{unitDoorNum,jdbcType=INTEGER},
+      unit_access_status = #{unitAccessStatus,jdbcType=INTEGER},
+      door_num = #{doorNum,jdbcType=INTEGER},
+      door_access_status = #{doorAccessStatus,jdbcType=INTEGER},
+      basement_door_num = #{basementDoorNum,jdbcType=INTEGER},
+      basement_access_status = #{basementAccessStatus,jdbcType=INTEGER},
+      qd_access_num = #{qdAccessNum,jdbcType=INTEGER},
+      qd_access_type = #{qdAccessType,jdbcType=INTEGER},
+      sidewalk_gate_flag = #{sidewalkGateFlag,jdbcType=CHAR},
+      sidewalk_gate_use = #{sidewalkGateUse,jdbcType=CHAR},
+      road_gate_flag = #{roadGateFlag,jdbcType=CHAR},
+      road_gate_use = #{roadGateUse,jdbcType=CHAR},
+      completed_date = #{completedDate,jdbcType=CHAR},
+      housing_price = #{housingPrice,jdbcType=DECIMAL},
+      rent = #{rent,jdbcType=DECIMAL},
+      link_order = #{linkOrder,jdbcType=VARCHAR},
+      access_control_install = #{accessControlInstall,jdbcType=INTEGER},
+      date_of_access_control = #{dateOfAccessControl,jdbcType=CHAR},
+      community_environment = #{communityEnvironment,jdbcType=INTEGER},
+      boss_id = #{bossId,jdbcType=BIGINT},
+      community_operation_status = #{communityOperationStatus,jdbcType=INTEGER},
+      permeability_rate = #{permeabilityRate,jdbcType=VARCHAR},
+      binding_rate = #{bindingRate,jdbcType=VARCHAR},
+      property_type = #{propertyType,jdbcType=INTEGER},
+      section = #{section,jdbcType=INTEGER},
+      side_agreement = #{sideAgreement,jdbcType=INTEGER},
+      city1 = #{city1,jdbcType=INTEGER},
+      road_num_in = #{roadNumIn,jdbcType=INTEGER},
+      road_num_out = #{roadNumOut,jdbcType=INTEGER},
+      sidwalk_num = #{sidwalkNum,jdbcType=INTEGER},
+      islonghu = #{islonghu,jdbcType=INTEGER},
+      dep_user = #{depUser,jdbcType=VARCHAR},
+      dep_user_tel = #{depUserTel,jdbcType=VARCHAR},
+      operation_method = #{operationMethod,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=VARCHAR},
+      ownerId = #{ownerid,jdbcType=VARCHAR},
+      owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      ac_oline_date = #{acOlineDate,jdbcType=CHAR},
+      request_date = #{requestDate,jdbcType=CHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      updateflag = #{updateflag,jdbcType=INTEGER},
+      request_ok_date = #{requestOkDate,jdbcType=CHAR},
+      boss_face_flag = #{bossFaceFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByBossId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uf_community
+    where boss_id = #{bossId,jdbcType=INTEGER}
+  </select>
+</mapper>

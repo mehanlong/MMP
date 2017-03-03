@@ -9,8 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mmp-utils</artifactId>
+    <artifactId>mmp-client</artifactId>
     <packaging>jar</packaging>
-
+    <dependencies>
+        <dependency>
+            <groupId>ij.ein</groupId>
+            <artifactId>mmp-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

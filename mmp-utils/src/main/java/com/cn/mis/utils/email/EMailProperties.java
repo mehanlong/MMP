@@ -24,54 +24,60 @@ public class EMailProperties {
     private Date sendDate;          //邮件发送时间
     HashMap<String,String> header;  //头文件
 
-    public EMailProperties(String content, String company, String subject, Date sendDate, HashMap<String, String> header) {
-        try {
-            Properties prop = new Properties();
-            InputStream instream = getClass().getResourceAsStream("/mail.properties");
-            prop.load(instream);
-            account = prop.getProperty("mail.account");
-            pass = prop.getProperty("mail.password");
-            from = prop.getProperty("mail.from");
-            host = prop.getProperty("mail.host");
-            port = prop.getProperty("mail.port");
-            protocol = prop.getProperty("mail.protocol");
-            toListStr = prop.getProperty("mail.tolist");
-            this.content = content;
-            this.company = company;
-            this.subject = subject;
-            this.sendDate = sendDate;
-            this.header = header;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public String getAccount() {
         return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPass() {
         return pass;
     }
 
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     public String getFrom() {
         return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getHost() {
         return host;
     }
 
+    public void setHost(String host) {
+        this.host = host;
+    }
+
     public String getPort() {
         return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 
     public String getProtocol() {
         return protocol;
     }
 
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
     public String getToListStr() {
         return toListStr;
+    }
+
+    public void setToListStr(String toListStr) {
+        this.toListStr = toListStr;
     }
 
     public String getContent() {

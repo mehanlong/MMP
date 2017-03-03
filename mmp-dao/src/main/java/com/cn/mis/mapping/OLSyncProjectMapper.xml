@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.OLSyncProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.OLSyncProject" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="relDate" property="relDate" jdbcType="VARCHAR" />
+    <result column="relUserNum" property="relUserNum" jdbcType="INTEGER" />
+    <result column="exRoomNum" property="exRoomNum" jdbcType="INTEGER" />
+    <result column="exFullPhoneNum" property="exFullPhoneNum" jdbcType="INTEGER" />
+    <result column="exHidePhoneNum" property="exHidePhoneNum" jdbcType="INTEGER" />
+    <result column="stOneDate" property="stOneDate" jdbcType="VARCHAR" />
+    <result column="stOneRegNum" property="stOneRegNum" jdbcType="INTEGER" />
+    <result column="stOneBunNum" property="stOneBunNum" jdbcType="INTEGER" />
+    <result column="curOsmosisRate" property="curOsmosisRate" jdbcType="VARCHAR" />
+    <result column="curBundingRate" property="curBundingRate" jdbcType="VARCHAR" />
+    <result column="importStatus" property="importStatus" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, relDate, relUserNum, exRoomNum, exFullPhoneNum, exHidePhoneNum, stOneDate, stOneRegNum, 
+    stOneBunNum, curOsmosisRate, curBundingRate, importStatus
+  </sql>
+  
+  <select id="selectByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+    select 
+    <include refid="Base_Column_List" />
+    from OL_SyncProject
+    where id in    
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >    
+        #{item,jdbcType=INTEGER}    
+    </foreach>
+  </select>
+  
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into OL_SyncProject (id, relDate, relUserNum, 
+      exRoomNum, exFullPhoneNum, exHidePhoneNum, 
+      stOneDate, stOneRegNum, stOneBunNum, 
+      curOsmosisRate, curBundingRate)
+      values 
+      <foreach collection="list" item="item" index="index" separator="," > 
+    	(#{item.id,jdbcType=INTEGER}, #{item.relDate,jdbcType=TIMESTAMP}, #{item.relUserNum,jdbcType=INTEGER}, 
+      #{item.exRoomNum,jdbcType=INTEGER}, #{item.exFullPhoneNum,jdbcType=INTEGER}, #{item.exHidePhoneNum,jdbcType=INTEGER}, 
+      #{item.stOneDate,jdbcType=TIMESTAMP}, #{item.stOneRegNum,jdbcType=INTEGER}, #{item.stOneBunNum,jdbcType=INTEGER}, 
+      #{item.curOsmosisRate,jdbcType=VARCHAR}, #{item.curBundingRate,jdbcType=VARCHAR})
+  	</foreach>
+  </insert>
+  
+  <update id="updateBatch" parameterType="java.util.List">    
+    update OL_SyncProject 
+    <trim prefix="set" suffixOverrides=",">
+	    <trim prefix="relDate = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.relDate != null">
+	                 when id=#{item.id} then #{item.relDate}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="relUserNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.relUserNum != null">
+	                 when id=#{item.id} then #{item.relUserNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="exRoomNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.exRoomNum != null">
+	                 when id=#{item.id} then #{item.exRoomNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="exFullPhoneNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.exFullPhoneNum != null">
+	                 when id=#{item.id} then #{item.exFullPhoneNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="exHidePhoneNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.exHidePhoneNum != null">
+	                 when id=#{item.id} then #{item.exHidePhoneNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="stOneDate = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.stOneDate != null">
+	                 when id=#{item.id} then #{item.stOneDate}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="stOneRegNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.stOneRegNum != null">
+	                 when id=#{item.id} then #{item.stOneRegNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="stOneBunNum = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.stOneBunNum != null">
+	                 when id=#{item.id} then #{item.stOneBunNum}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="curOsmosisRate = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.curOsmosisRate != null">
+	                 when id=#{item.id} then #{item.curOsmosisRate}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="curBundingRate = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.curBundingRate != null">
+	                 when id=#{item.id} then #{item.curBundingRate}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="importStatus = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.importStatus != null">
+	                 when id=#{item.id} then #{item.importStatus}
+	                </if>
+	        </foreach>
+	    </trim>
+    </trim>
+    where 
+    <foreach collection="list" separator="or" item="item" index="index" >
+    	id=#{item.id}
+    </foreach>    
+</update>  
+
+<delete id="deleteBatch" parameterType="java.util.List">
+  	delete from OL_SyncProject where id in    
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">     
+        #{item,jdbcType=INTEGER}      
+    </foreach>  
+  </delete>
+</mapper>

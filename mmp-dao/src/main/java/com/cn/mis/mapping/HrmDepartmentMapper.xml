@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.HrmDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.HrmDepartment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="departmentmark" property="departmentmark" jdbcType="VARCHAR" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="subcompanyid1" property="subcompanyid1" jdbcType="INTEGER" />
+    <result column="supdepid" property="supdepid" jdbcType="INTEGER" />
+    <result column="allsupdepid" property="allsupdepid" jdbcType="VARCHAR" />
+    <result column="showorder" property="showorder" jdbcType="INTEGER" />
+    <result column="canceled" property="canceled" jdbcType="CHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="coadjutant" property="coadjutant" jdbcType="INTEGER" />
+    <result column="zzjgbmfzr" property="zzjgbmfzr" jdbcType="VARCHAR" />
+    <result column="zzjgbmfgld" property="zzjgbmfgld" jdbcType="VARCHAR" />
+    <result column="jzglbmfzr" property="jzglbmfzr" jdbcType="VARCHAR" />
+    <result column="jzglbmfgld" property="jzglbmfgld" jdbcType="VARCHAR" />
+    <result column="outkey" property="outkey" jdbcType="VARCHAR" />
+    <result column="budgetAtuoMoveOrder" property="budgetatuomoveorder" jdbcType="INTEGER" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+    <result column="tlevel" property="tlevel" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.HrmDepartmentWithBLOBs" extends="BaseResultMap" >
+    <result column="bmfzr" property="bmfzr" jdbcType="LONGVARCHAR" />
+    <result column="bmfgld" property="bmfgld" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, departmentmark, departmentname, subcompanyid1, supdepid, allsupdepid, showorder, 
+    canceled, departmentcode, coadjutant, zzjgbmfzr, zzjgbmfgld, jzglbmfzr, jzglbmfgld, 
+    outkey, budgetAtuoMoveOrder, ecology_pinyin_search, tlevel
+  </sql>
+  <sql id="Blob_Column_List" >
+    bmfzr, bmfgld
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HrmDepartment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HrmDepartment
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from HrmDepartment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.HrmDepartmentWithBLOBs" >
+    insert into HrmDepartment (id, departmentmark, departmentname, 
+      subcompanyid1, supdepid, allsupdepid, 
+      showorder, canceled, departmentcode, 
+      coadjutant, zzjgbmfzr, zzjgbmfgld, 
+      jzglbmfzr, jzglbmfgld, outkey, 
+      budgetAtuoMoveOrder, ecology_pinyin_search, 
+      tlevel, bmfzr, bmfgld
+      )
+    values (#{id,jdbcType=INTEGER}, #{departmentmark,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR}, 
+      #{subcompanyid1,jdbcType=INTEGER}, #{supdepid,jdbcType=INTEGER}, #{allsupdepid,jdbcType=VARCHAR}, 
+      #{showorder,jdbcType=INTEGER}, #{canceled,jdbcType=CHAR}, #{departmentcode,jdbcType=VARCHAR}, 
+      #{coadjutant,jdbcType=INTEGER}, #{zzjgbmfzr,jdbcType=VARCHAR}, #{zzjgbmfgld,jdbcType=VARCHAR}, 
+      #{jzglbmfzr,jdbcType=VARCHAR}, #{jzglbmfgld,jdbcType=VARCHAR}, #{outkey,jdbcType=VARCHAR}, 
+      #{budgetatuomoveorder,jdbcType=INTEGER}, #{ecologyPinyinSearch,jdbcType=VARCHAR}, 
+      #{tlevel,jdbcType=INTEGER}, #{bmfzr,jdbcType=LONGVARCHAR}, #{bmfgld,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.HrmDepartmentWithBLOBs" >
+    insert into HrmDepartment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="departmentmark != null" >
+        departmentmark,
+      </if>
+      <if test="departmentname != null" >
+        departmentname,
+      </if>
+      <if test="subcompanyid1 != null" >
+        subcompanyid1,
+      </if>
+      <if test="supdepid != null" >
+        supdepid,
+      </if>
+      <if test="allsupdepid != null" >
+        allsupdepid,
+      </if>
+      <if test="showorder != null" >
+        showorder,
+      </if>
+      <if test="canceled != null" >
+        canceled,
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode,
+      </if>
+      <if test="coadjutant != null" >
+        coadjutant,
+      </if>
+      <if test="zzjgbmfzr != null" >
+        zzjgbmfzr,
+      </if>
+      <if test="zzjgbmfgld != null" >
+        zzjgbmfgld,
+      </if>
+      <if test="jzglbmfzr != null" >
+        jzglbmfzr,
+      </if>
+      <if test="jzglbmfgld != null" >
+        jzglbmfgld,
+      </if>
+      <if test="outkey != null" >
+        outkey,
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        budgetAtuoMoveOrder,
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search,
+      </if>
+      <if test="tlevel != null" >
+        tlevel,
+      </if>
+      <if test="bmfzr != null" >
+        bmfzr,
+      </if>
+      <if test="bmfgld != null" >
+        bmfgld,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="departmentmark != null" >
+        #{departmentmark,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="subcompanyid1 != null" >
+        #{subcompanyid1,jdbcType=INTEGER},
+      </if>
+      <if test="supdepid != null" >
+        #{supdepid,jdbcType=INTEGER},
+      </if>
+      <if test="allsupdepid != null" >
+        #{allsupdepid,jdbcType=VARCHAR},
+      </if>
+      <if test="showorder != null" >
+        #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        #{canceled,jdbcType=CHAR},
+      </if>
+      <if test="departmentcode != null" >
+        #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="coadjutant != null" >
+        #{coadjutant,jdbcType=INTEGER},
+      </if>
+      <if test="zzjgbmfzr != null" >
+        #{zzjgbmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgbmfgld != null" >
+        #{zzjgbmfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="jzglbmfzr != null" >
+        #{jzglbmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="jzglbmfgld != null" >
+        #{jzglbmfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        #{budgetatuomoveorder,jdbcType=INTEGER},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="tlevel != null" >
+        #{tlevel,jdbcType=INTEGER},
+      </if>
+      <if test="bmfzr != null" >
+        #{bmfzr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bmfgld != null" >
+        #{bmfgld,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.HrmDepartmentWithBLOBs" >
+    update HrmDepartment
+    <set >
+      <if test="departmentmark != null" >
+        departmentmark = #{departmentmark,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null" >
+        departmentname = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="subcompanyid1 != null" >
+        subcompanyid1 = #{subcompanyid1,jdbcType=INTEGER},
+      </if>
+      <if test="supdepid != null" >
+        supdepid = #{supdepid,jdbcType=INTEGER},
+      </if>
+      <if test="allsupdepid != null" >
+        allsupdepid = #{allsupdepid,jdbcType=VARCHAR},
+      </if>
+      <if test="showorder != null" >
+        showorder = #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        canceled = #{canceled,jdbcType=CHAR},
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="coadjutant != null" >
+        coadjutant = #{coadjutant,jdbcType=INTEGER},
+      </if>
+      <if test="zzjgbmfzr != null" >
+        zzjgbmfzr = #{zzjgbmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgbmfgld != null" >
+        zzjgbmfgld = #{zzjgbmfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="jzglbmfzr != null" >
+        jzglbmfzr = #{jzglbmfzr,jdbcType=VARCHAR},
+      </if>
+      <if test="jzglbmfgld != null" >
+        jzglbmfgld = #{jzglbmfgld,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        outkey = #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        budgetAtuoMoveOrder = #{budgetatuomoveorder,jdbcType=INTEGER},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="tlevel != null" >
+        tlevel = #{tlevel,jdbcType=INTEGER},
+      </if>
+      <if test="bmfzr != null" >
+        bmfzr = #{bmfzr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bmfgld != null" >
+        bmfgld = #{bmfgld,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.HrmDepartmentWithBLOBs" >
+    update HrmDepartment
+    set departmentmark = #{departmentmark,jdbcType=VARCHAR},
+      departmentname = #{departmentname,jdbcType=VARCHAR},
+      subcompanyid1 = #{subcompanyid1,jdbcType=INTEGER},
+      supdepid = #{supdepid,jdbcType=INTEGER},
+      allsupdepid = #{allsupdepid,jdbcType=VARCHAR},
+      showorder = #{showorder,jdbcType=INTEGER},
+      canceled = #{canceled,jdbcType=CHAR},
+      departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      coadjutant = #{coadjutant,jdbcType=INTEGER},
+      zzjgbmfzr = #{zzjgbmfzr,jdbcType=VARCHAR},
+      zzjgbmfgld = #{zzjgbmfgld,jdbcType=VARCHAR},
+      jzglbmfzr = #{jzglbmfzr,jdbcType=VARCHAR},
+      jzglbmfgld = #{jzglbmfgld,jdbcType=VARCHAR},
+      outkey = #{outkey,jdbcType=VARCHAR},
+      budgetAtuoMoveOrder = #{budgetatuomoveorder,jdbcType=INTEGER},
+      ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      tlevel = #{tlevel,jdbcType=INTEGER},
+      bmfzr = #{bmfzr,jdbcType=LONGVARCHAR},
+      bmfgld = #{bmfgld,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.HrmDepartment" >
+    update HrmDepartment
+    set departmentmark = #{departmentmark,jdbcType=VARCHAR},
+      departmentname = #{departmentname,jdbcType=VARCHAR},
+      subcompanyid1 = #{subcompanyid1,jdbcType=INTEGER},
+      supdepid = #{supdepid,jdbcType=INTEGER},
+      allsupdepid = #{allsupdepid,jdbcType=VARCHAR},
+      showorder = #{showorder,jdbcType=INTEGER},
+      canceled = #{canceled,jdbcType=CHAR},
+      departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      coadjutant = #{coadjutant,jdbcType=INTEGER},
+      zzjgbmfzr = #{zzjgbmfzr,jdbcType=VARCHAR},
+      zzjgbmfgld = #{zzjgbmfgld,jdbcType=VARCHAR},
+      jzglbmfzr = #{jzglbmfzr,jdbcType=VARCHAR},
+      jzglbmfgld = #{jzglbmfgld,jdbcType=VARCHAR},
+      outkey = #{outkey,jdbcType=VARCHAR},
+      budgetAtuoMoveOrder = #{budgetatuomoveorder,jdbcType=INTEGER},
+      ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      tlevel = #{tlevel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

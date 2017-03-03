@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dbcInteger1" property="dbcInteger1" jdbcType="INTEGER" />
+    <result column="dbcInteger6" property="dbcInteger6" jdbcType="INTEGER" />
+    <result column="dbcVarchar2" property="dbcVarchar2" jdbcType="VARCHAR" />
+    <result column="dbcReal1" property="dbcReal1" jdbcType="DOUBLE" />
+    <result column="dbcSelect3" property="dbcSelect3" jdbcType="INTEGER" />
+    <result column="dbcSVarchar1" property="dbcSVarchar1" jdbcType="VARCHAR" />
+    <result column="ownerId" property="ownerId" jdbcType="INTEGER" />
+    <result column="accountName" property="accountName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="lockStatus" property="lockStatus" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="ownerPhone" property="ownerPhone" jdbcType="VARCHAR" />
+    <result column="levelExplain" property="levelExplain" jdbcType="VARCHAR" />
+    <result column="ownerName" property="ownerName" jdbcType="VARCHAR" />
+    <result column="dbcSelect3Explain" property="dbcSelect3Explain" jdbcType="VARCHAR" />
+    <result column="lockStatusExplain" property="lockStatusExplain" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="importStatus" property="importStatus" jdbcType="VARCHAR" />
+    <result column="account_type" property="account_type" jdbcType="VARCHAR" />
+    <result column="highSeaId" property="highSeaId" jdbcType="INTEGER"/>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.AccountWithBLOBs" extends="BaseResultMap" >
+    <result column="departId" property="departId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dbcInteger1, dbcInteger6, dbcVarchar2, dbcReal1, dbcSelect3, dbcSVarchar1, ownerId, 
+    accountName, level, lockStatus, state, city, region, highSeaId
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from CRM_Account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+    select 
+    <include refid="Base_Column_List" />
+    from CRM_Account
+    where id in    
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >    
+        #{item,jdbcType=INTEGER}    
+    </foreach>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from CRM_Account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.Account" >
+    insert into CRM_Account (id, dbcInteger1, dbcInteger6, 
+      dbcVarchar2, dbcReal1, dbcSelect3, 
+      dbcSVarchar1, ownerId, accountName, 
+      level, lockStatus, state, city, 
+      region, ownerPhone, 
+      levelExplain, ownerName, dbcSelect3Explain,lockStatusExplain,department,account_type,
+      highSeaId
+      )
+    values (#{id,jdbcType=INTEGER}, #{dbcInteger1,jdbcType=INTEGER}, #{dbcInteger6,jdbcType=INTEGER}, 
+      #{dbcVarchar2,jdbcType=VARCHAR}, #{dbcReal1,jdbcType=DOUBLE}, #{dbcSelect3,jdbcType=INTEGER}, 
+      #{dbcSVarchar1,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{lockStatus,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{ownerPhone,jdbcType=VARCHAR}, 
+      #{levelExplain,jdbcType=VARCHAR}, #{ownerName,jdbcType=VARCHAR}, #{dbcSelect3Explain,jdbcType=VARCHAR},
+      #{lockStatusExplain,jdbcType=VARCHAR},#{department,jdbcType=VARCHAR}, #{account_type,jdbcType=VARCHAR},
+      #{highSeaId,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into CRM_Account (id, dbcInteger1, dbcInteger6, 
+      dbcVarchar2, dbcReal1, dbcSelect3, 
+      dbcSVarchar1, ownerId, accountName, 
+      level, lockStatus, state, city, 
+      region, ownerPhone, 
+      levelExplain, ownerName, dbcSelect3Explain,lockStatusExplain,department,account_type,highSeaId
+      )
+      values 
+      <foreach collection="list" item="item" index="index" separator="," > 
+    	(#{item.id,jdbcType=INTEGER}, #{item.dbcInteger1,jdbcType=INTEGER}, #{item.dbcInteger6,jdbcType=INTEGER}, 
+      #{item.dbcVarchar2,jdbcType=VARCHAR}, #{item.dbcReal1,jdbcType=DOUBLE}, #{item.dbcSelect3,jdbcType=INTEGER}, 
+      #{item.dbcSVarchar1,jdbcType=VARCHAR}, #{item.ownerId,jdbcType=INTEGER}, #{item.accountName,jdbcType=VARCHAR}, 
+      #{item.level,jdbcType=INTEGER}, #{item.lockStatus,jdbcType=INTEGER},#{item.state,jdbcType=VARCHAR}, #{item.city,jdbcType=VARCHAR}, 
+      #{item.region,jdbcType=VARCHAR}, #{item.ownerPhone,jdbcType=VARCHAR}, 
+      #{item.levelExplain,jdbcType=VARCHAR}, #{item.ownerName,jdbcType=VARCHAR}, #{item.dbcSelect3Explain,jdbcType=VARCHAR},
+      #{item.lockStatusExplain,jdbcType=VARCHAR}, 
+      #{item.department,jdbcType=VARCHAR}, #{item.account_type,jdbcType=VARCHAR},#{item.highSeaId,jdbcType=INTEGER}
+      )
+  	</foreach>
+  </insert>
+  
+  <update id="updateBatch" parameterType="java.util.List">    
+    update CRM_Account 
+    <trim prefix="set" suffixOverrides=",">
+	    <trim prefix="dbcInteger1 = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcInteger1 != null">
+	                 when id=#{item.id} then #{item.dbcInteger1}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="dbcInteger6 = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcInteger6 != null">
+	                 when id=#{item.id} then #{item.dbcInteger6}
+	                </if>
+	        </foreach>
+	    </trim>
+	    <trim prefix="dbcVarchar2 = case" suffix="end,">
+	       <foreach collection="list" item="item" index="index">
+	               <if test="item.dbcVarchar2 != null">
+	                when id=#{item.id} then #{item.dbcVarchar2}
+	               </if>
+	       </foreach>
+	    </trim>
+	    <trim prefix="dbcReal1 = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcReal1 != null">
+	                 when id=#{item.id} then #{item.dbcReal1}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="dbcSelect3 = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcSelect3 != null">
+	                 when id=#{item.id} then #{item.dbcSelect3}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="dbcSVarchar1 = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcSVarchar1 != null">
+	                 when id=#{item.id} then #{item.dbcSVarchar1}
+	                </if>
+	        </foreach>
+	     </trim>
+	      <trim prefix="ownerId = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.ownerId != null">
+	                 when id=#{item.id} then #{item.ownerId}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="accountName = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.accountName != null">
+	                 when id=#{item.id} then #{item.accountName}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="level = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.level != null">
+	                 when id=#{item.id} then #{item.level}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="lockStatus = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.lockStatus != null">
+	                 when id=#{item.id} then #{item.lockStatus}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="state = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.state != null">
+	                 when id=#{item.id} then #{item.state}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="city = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.city != null">
+	                 when id=#{item.id} then #{item.city}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="region = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.region != null">
+	                 when id=#{item.id} then #{item.region}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="ownerPhone = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.ownerPhone != null">
+	                 when id=#{item.id} then #{item.ownerPhone}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="levelExplain = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.levelExplain != null">
+	                 when id=#{item.id} then #{item.levelExplain}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="ownerName = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.ownerName != null">
+	                 when id=#{item.id} then #{item.ownerName}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="dbcSelect3Explain = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.dbcSelect3Explain != null">
+	                 when id=#{item.id} then #{item.dbcSelect3Explain}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="lockStatusExplain = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.lockStatusExplain != null">
+	                 when id=#{item.id} then #{item.lockStatusExplain}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="department = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.department != null">
+	                 when id=#{item.id} then #{item.department}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="importStatus = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.importStatus != null">
+	                 when id=#{item.id} then #{item.importStatus}
+	                </if>
+	        </foreach>
+	     </trim>
+	     <trim prefix="highSeaId = case" suffix="end,">
+	        <foreach collection="list" item="item" index="index">
+	                <if test="item.highSeaId != null">
+	                 when id=#{item.id} then #{item.highSeaId}
+	                </if>
+	        </foreach>
+	     </trim>
+    </trim>
+    where 
+    <foreach collection="list" separator="or" item="item" index="index" >
+    	id=#{item.id}
+    </foreach>    
+</update>  
+  
+  <delete id="deleteBatch" parameterType="java.util.List">
+  	delete from CRM_Account where id in    
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">     
+        #{item,jdbcType=INTEGER}      
+    </foreach>  
+  </delete>
+  
+  <delete id="deleteAll">
+  	delete from CRM_Account
+  </delete>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.Account" >
+    update CRM_Account
+    <set >
+      <if test="dbcInteger1 != null" >
+        dbcInteger1 = #{dbcInteger1,jdbcType=INTEGER},
+      </if>
+      <if test="dbcInteger6 != null" >
+        dbcInteger6 = #{dbcInteger6,jdbcType=INTEGER},
+      </if>
+      <if test="dbcVarchar2 != null" >
+        dbcVarchar2 = #{dbcVarchar2,jdbcType=VARCHAR},
+      </if>
+      <if test="dbcReal1 != null" >
+        dbcReal1 = #{dbcReal1,jdbcType=DOUBLE},
+      </if>
+      <if test="dbcSelect3 != null" >
+        dbcSelect3 = #{dbcSelect3,jdbcType=INTEGER},
+      </if>
+      <if test="dbcSVarchar1 != null" >
+        dbcSVarchar1 = #{dbcSVarchar1,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        ownerId = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null" >
+        accountName = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="lockStatus != null" >
+        lockStatus = #{lockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerPhone != null" >
+        ownerPhone = #{ownerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="levelExplain != null" >
+        levelExplain = #{levelExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        ownerName = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbcSelect3Explain != null" >
+        dbcSelect3Explain = #{dbcSelect3Explain,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatusExplain != null" >
+        lockStatusExplain = #{lockStatusExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+      	department = #{department,jdbcType=VARCHAR},
+      </if>
+      	highSeaId = #{highSeaId,jdbcType=INTEGER}
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectBySql" resultMap="ResultMapWithBLOBs" >
+  	SELECT ca.id,ca.accountName,ca.ownerId,cu.departId
+	FROM CRM_Account ca LEFT JOIN uf_property_corp upc ON ca.accountName = upc.accountName LEFT JOIN CRM_User cu ON ca.ownerId = cu.id
+	WHERE upc.account_type = 2
+  </select>
+</mapper>

@@ -3,11 +3,44 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 工作的bean -->
-    <bean id="syncAccountJob" class="com.cn.mis.timetask.SyncAccountTimeTask"/>
+    <bean id="accountJob" class="com.cn.mis.timetask.AccountTimeTask"/>
+    <bean id="userJob" class="com.cn.mis.timetask.UserTimeTask"/>
+    <bean id="mailJob" class="com.cn.mis.timetask.MailTimeTask"/>
+    <bean id="syncOAJob" class="com.cn.mis.timetask.SyncOATimeTask"/>
     <!-- job的配置开始 -->
-    <bean id="syncAccountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <bean id="accountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
-            <ref bean="syncAccountJob" />
+            <ref bean="accountJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="userJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="userJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="mailJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="mailJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="syncOADetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="syncOAJob" />
         </property>
         <property name="targetMethod">
             <value>run</value>
@@ -17,12 +50,52 @@
     </bean>
     <!-- 调度的配置开始 -->
     <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
-    <bean id="crontestAccountJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+    <bean id="crontestUserJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
-            <ref bean="syncAccountJobDetail" />
+            <ref bean="userJobDetail" />
         </property>
         <property name="cronExpression">
-            <value>0 */1 * * * ?</value>
+            <value>0 0 1 * * ?</value>
+        </property>
+    </bean>
+    <bean id="crontestAccount8_20JobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="accountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 8-20 * * ?</value>
+        </property>
+    </bean>
+    <bean id="crontestAccount20_24JobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="accountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */2 20-0 * * ?</value>
+        </property>
+    </bean>
+    <bean id="crontestAccount0_8JobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="accountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */3  0-8 * * ?</value>
+        </property>
+    </bean>
+    <bean id="mailJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mailJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>  <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
+        </property>
+    </bean>
+    <bean id="syncOAJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="syncOADetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>  <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
         </property>
     </bean>
     <!-- 启动触发器的配置开始 -->
@@ -30,7 +103,11 @@
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="crontestAccountJobTrigger" />
+                <!--<ref bean="crontestAccount8_20JobTrigger" />-->
+                <!--<ref bean="crontestAccount20_24JobTrigger" />-->
+                <!--<ref bean="crontestAccount0_8JobTrigger" />-->
+                <!--<ref bean="syncOAJobTrigger" />-->
+                <!--<ref bean="mailJobTrigger"/>-->
             </list>
         </property>
     </bean>

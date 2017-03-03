@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.OperateProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.OperateProject" >
+  		<result column="id" property="id" jdbcType="INTEGER" />
+	  	<result column="community" property="community" jdbcType="VARCHAR" />
+	    <result column="total_households" property="total_households" jdbcType="INTEGER" />
+	  	<result column="upcBossId" property="upcBossId" jdbcType="BIGINT"/>
+	  	<result column="lastname" property="lastname" jdbcType="VARCHAR" />
+	    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+   		<result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+	    <result column="ucBossId" property="ucBossId" jdbcType="BIGINT" />
+	    
+	    <result column="city" property="city" jdbcType="VARCHAR" />
+	    <result column="online_households" property="online_households" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectInsertBySql" resultMap="BaseResultMap">
+  	SELECT uc.id,uc.community,uc.total_households,upc.boss_id AS upcBossId,hr.lastname,uc.create_at,uc.update_at,uc.boss_id AS ucBossId
+	FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON uc.create_by = hr.id
+	WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NULL
+  </select>
+  
+  <select id="selectUpadteBySql" resultMap="BaseResultMap">
+   	SELECT uc.id,uc.community,uc.total_households,upc.boss_id AS upcBossId,hr.lastname,uc.create_at,uc.update_at,uc.boss_id AS ucBossId
+	FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON uc.update_by = hr.id
+	WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NOT NULL AND uc.updateflag = 1
+  </select>
+  
+  <select id="selectBySql" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	  SELECT uc.id,uc.community,uc.total_households,uc.online_households,upc.boss_id AS upcBossId,upc.accountName,uc.city,uc.community_add, hr.lastname,uc.boss_id AS ucBossId,uc.isdelete AS ucDelete,upc.isdelete AS upcDelete
+	  FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
+	  WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NULL AND uc.city IS NOT NULL AND uc.isdelete != 1AND upc.isdelete != 1
+  </select>
+  
+  <update id="returnWriteBossIdByCommunity" parameterType="com.cn.mis.domain.entity.OperateProject" >
+	update uf_community
+	<set>
+		<if test="ucBossId != null">
+			boss_id = #{ucBossId},
+		</if>
+	</set>      
+	where community = #{community}
+	</update>
+	
+	<update id="returnWriteUpdateFlag0ByCommunity" parameterType="com.cn.mis.domain.entity.OperateProject" >
+	update uf_community
+	set	updateflag = 0
+	where community = #{community}
+	</update>
+</mapper>
