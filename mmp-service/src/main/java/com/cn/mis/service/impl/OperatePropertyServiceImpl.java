@@ -8,7 +8,10 @@ import com.cn.mis.dao.OperatePropertyMapper;
 import com.cn.mis.domain.entity.OperateProperty;
 import com.cn.mis.service.IOperatePropertyService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service("operatePropertyService")
+@Transactional
 public class OperatePropertyServiceImpl implements IOperatePropertyService {
 	@Resource
 	private OperatePropertyMapper operatePropertyMapper;

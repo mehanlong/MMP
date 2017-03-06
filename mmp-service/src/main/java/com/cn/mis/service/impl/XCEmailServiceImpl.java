@@ -8,8 +8,10 @@ import com.cn.mis.dao.XCEmailMapper;
 import com.cn.mis.domain.entity.XCEmail;
 import com.cn.mis.service.IXCEmailService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("xcEmailService")
+@Transactional
 public class XCEmailServiceImpl implements IXCEmailService {
 	
 	@Resource

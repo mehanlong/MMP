@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        ">
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.cn.mis.*" >
+    <context:component-scan base-package="com.cn.mis.web.controller" >
         <!--<context:exclude-filter type="regex" expression="org.springframework.stereotype.Service" />-->
     </context:component-scan>
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->

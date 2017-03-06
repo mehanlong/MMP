@@ -8,9 +8,11 @@ import com.cn.mis.dao.UserMapper;
 import com.cn.mis.domain.entity.User;
 import com.cn.mis.service.IUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("userService")
+@Transactional
 public class UserServiceImpl implements IUserService {
 	
 	@Resource

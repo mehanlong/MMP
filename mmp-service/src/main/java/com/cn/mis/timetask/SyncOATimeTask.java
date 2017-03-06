@@ -11,6 +11,7 @@ import com.cn.mis.domain.entity.OperateProperty;
 import com.cn.mis.service.IOperateProjectService;
 import com.cn.mis.service.IOperatePropertyService;
 import com.cn.mis.service.impl.RPCService;
+import com.qding.framework.common.util.SpringContextUtils;
 import org.springframework.stereotype.Component;
 
 import com.qding.brick.enums.BizTypeEnum;
@@ -30,14 +31,12 @@ public class SyncOATimeTask {
 	@Resource
 	private RPCService brickRPCService;
 	@Resource
-	private RegionRemote regionRemote;
-	@Resource
 	private IOperatePropertyService operatePropertyService;
 	@Resource
 	private IOperateProjectService operateProjectService;
 	
 	public void run() {
-		log.info("3");
+		System.out.println("【SyncOATimeTask】start");
 		insertProperty();
 		insertProject();
 	}
@@ -77,7 +76,7 @@ public class SyncOATimeTask {
 		List<OperateProject> list = operateProjectService.selectBySql();
 		
 		for(OperateProject proj:list){
-			RegionResponse regionResponse = regionRemote.getRegionByName(proj.getCity());
+			RegionResponse regionResponse = brickRPCService.getRegionByName(proj.getCity());
 			Region region = regionResponse.getRegion();
 			BizRemoteRequest request = new BizRemoteRequest();
 	        request.setBizType(BizTypeEnum.Project);//必填，BizTypeEnum.Property(物业公司)  BizTypeEnum.Project(社区)

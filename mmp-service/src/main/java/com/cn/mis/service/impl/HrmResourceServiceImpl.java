@@ -8,9 +8,11 @@ import com.cn.mis.dao.HrmResourceMapper;
 import com.cn.mis.domain.entity.HrmResource;
 import com.cn.mis.service.IHrmResourceService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("hrmResourceService")
+@Transactional
 public class HrmResourceServiceImpl implements IHrmResourceService {
 	
 	@Resource

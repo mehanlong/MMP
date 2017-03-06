@@ -8,9 +8,11 @@ import com.cn.mis.dao.OLSyncProjectMapper;
 import com.cn.mis.domain.entity.OLSyncProject;
 import com.cn.mis.service.IOLSyncProjectService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("oLSyncProjectService")
+@Transactional
 public class OLSyncProjectServiceImpl implements IOLSyncProjectService {
 	@Resource
 	private OLSyncProjectMapper oLSyncProjectMapper;

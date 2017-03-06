@@ -45,7 +45,7 @@ public class AccountTimeTask {
 	private IHrmDepartmentService hrmDepartmentService;
 	
 	public void run() {
-		log.info("1");
+		System.out.println("【AccountTimeTask】start");
 		sync30(0);
 	}
 	
@@ -120,8 +120,8 @@ public class AccountTimeTask {
 					for(Account accountTmp:tmp){
 						for(Account updateid:updateids){
 							if(accountTmp.getId().equals(updateid.getId())){
+								accountTmp.setUpdateFlag(true);
 								if(!accountTmp.equals(updateid)){
-									accountTmp.setUpdateFlag(true);
 									accountTmp.setImportStatus("U");
 									updateList.add(accountTmp);
 								}
@@ -169,8 +169,8 @@ public class AccountTimeTask {
 			for(Account account:first.getRecords()){
 				for(Account updateid:updateids){
 					if(account.getId().equals(updateid.getId())){
+						account.setUpdateFlag(true);
 						if(!EqualsUtil.domainEquals(account, updateid)){
-							account.setUpdateFlag(true);
 							setTmpAccount(account, userList, resourceList, departmentList);
 							updateList.add(account);
 						}

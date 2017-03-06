@@ -8,7 +8,10 @@ import com.cn.mis.dao.OperateProjectMapper;
 import com.cn.mis.domain.entity.OperateProject;
 import com.cn.mis.service.IOperateProjectService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service("operateProjectService")
+@Transactional
 public class OperateProjectServiceImpl implements IOperateProjectService {
 	@Resource
 	private OperateProjectMapper operateProjectMapper;

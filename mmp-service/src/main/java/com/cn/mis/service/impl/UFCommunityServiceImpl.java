@@ -7,8 +7,10 @@ import com.cn.mis.domain.entity.UFCommunity;
 import com.cn.mis.domain.entity.UFCommunityWithBLOBs;
 import com.cn.mis.service.IUFCommunityService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("uFCommunityService")
+@Transactional
 public class UFCommunityServiceImpl implements IUFCommunityService {
 	@Resource
 	private UFCommunityMapper ufCommunityMapper;

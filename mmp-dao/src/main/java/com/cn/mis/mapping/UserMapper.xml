@@ -34,7 +34,7 @@
     insert into CRM_User (id, name, phone, 
       email,departId)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}),#{departId,jdbcType=INTEGER}
+      #{email,jdbcType=VARCHAR},#{departId,jdbcType=INTEGER})
   </insert>
   
   <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.User" >

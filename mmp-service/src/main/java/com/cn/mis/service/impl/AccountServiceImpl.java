@@ -9,10 +9,11 @@ import com.cn.mis.domain.entity.Account;
 import com.cn.mis.domain.entity.AccountWithBLOBs;
 import com.cn.mis.service.IAccountService;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("accountService")
+@Transactional
 public class AccountServiceImpl implements IAccountService {
 	
 	@Resource

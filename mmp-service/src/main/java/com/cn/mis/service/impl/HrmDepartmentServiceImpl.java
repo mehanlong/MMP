@@ -9,7 +9,10 @@ import com.cn.mis.domain.entity.HrmDepartment;
 import com.cn.mis.domain.entity.HrmDepartmentWithBLOBs;
 import com.cn.mis.service.IHrmDepartmentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service("hrmDepartmentService")
+@Transactional
 public class HrmDepartmentServiceImpl implements IHrmDepartmentService {
 	@Resource
 	private HrmDepartmentMapper hrmDepartmentMapper;

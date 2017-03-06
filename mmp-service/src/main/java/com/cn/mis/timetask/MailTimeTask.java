@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -41,8 +42,6 @@ public class MailTimeTask {
     private String port;       	//端口
     private String protocol; 	//协议
     private String toListStr;
-    
-    private boolean init;
 	
 	@Resource
 	private IXCEmailService xcEmailSrevice;
@@ -61,33 +60,39 @@ public class MailTimeTask {
         }  
     }
 
+	@PostConstruct
+	private void init(){
+		log.info("初始化【MailTimeTask】，执行init()方法读取配置文件");
+		try {
+			Properties propFile = new Properties();
+			InputStream instream = getClass().getResourceAsStream("/mail.properties");
+			propFile.load(instream);
+			account = propFile.getProperty("mail.account");
+			pass = propFile.getProperty("mail.password");
+			from = propFile.getProperty("mail.from");
+			host = propFile.getProperty("mail.host");
+			port = propFile.getProperty("mail.port");
+			protocol = propFile.getProperty("mail.protocol");
+			toListStr = propFile.getProperty("mail.tolist");
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			log.error("加载属性文件失败");
+		} catch (IOException e) {
+			e.printStackTrace();
+			log.error("加载属性文件失败");
+		}
+
+	}
+
     public void run() {
-		log.info("2");
+		System.out.println("【MailTimeTask】start");
 		sendMail();
 	}
 	private String sendMail(){
 		final List<XCEmail> list = xcEmailSrevice.selectAll();
 		if (list.size()>0){
-			if(!init){
-				try {
-					Properties propFile = new Properties();
-					InputStream instream = getClass().getResourceAsStream("/mail.properties");
-					propFile.load(instream);
-					account = propFile.getProperty("mail.account");
-					pass = propFile.getProperty("mail.password");
-					from = propFile.getProperty("mail.from");
-					host = propFile.getProperty("mail.host");
-					port = propFile.getProperty("mail.port");
-					protocol = propFile.getProperty("mail.protocol");
-					toListStr = propFile.getProperty("mail.tolist");
-					init = true;
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
-					log.error("加载属性文件失败");
-				}catch (IOException e) {
-					e.printStackTrace();
-					log.error("加载属性文件失败");
-				}
+			if (protocol == null){
+				init();
 			}
 			Properties prop = new Properties();
 			//协议

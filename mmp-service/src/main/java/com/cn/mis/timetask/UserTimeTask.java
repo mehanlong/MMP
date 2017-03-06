@@ -72,8 +72,8 @@ public class UserTimeTask {
 					for(User tmpUser:tmp){
 						for(User updateid:updateids){
 							if(updateid.getId().equals(tmpUser.getId())){
+								tmpUser.setUpdateFlag(true);
 								if(!EqualsUtil.domainEquals(tmpUser, updateid)){
-									tmpUser.setUpdateFlag(true);
 									updateList.add(tmpUser);
 								}
 								break;
