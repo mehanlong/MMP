@@ -33,7 +33,7 @@ import com.sun.mail.util.MailSSLSocketFactory;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
-@Component("mailTimeTask") 
+@Component("mailTimeTask")
 public class MailTimeTask {
 	private String account;		//登录用户名
     private String pass;       	//登录密码

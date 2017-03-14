@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
-@Component("userTimeTask") 
+@Component("userTimeTask")
 public class UserTimeTask {
 	@Resource
 	private IUserService userService;

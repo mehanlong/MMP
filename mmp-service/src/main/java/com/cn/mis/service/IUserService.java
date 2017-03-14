@@ -1,6 +1,7 @@
 package com.cn.mis.service;
 
 import com.cn.mis.domain.entity.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface IUserService {
 	public int deleteBatch(List<Integer> list);
 	public List<User> selectAll();
 	public List<User> selectByIds(List<Integer> list);
+	public PageInfo<User> selectByPage(int pageNum, int pageSize);
 }

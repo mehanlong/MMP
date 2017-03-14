@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.UFCContractMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.UFCContract" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mainid" property="mainid" jdbcType="INTEGER" />
+    <result column="request" property="request" jdbcType="INTEGER" />
+    <result column="contract_category" property="contractCategory" jdbcType="INTEGER" />
+    <result column="add_contract_date" property="addContractDate" jdbcType="CHAR" />
+    <result column="contract_amount" property="contractAmount" jdbcType="VARCHAR" />
+    <result column="budget_account" property="budgetAccount" jdbcType="INTEGER" />
+    <result column="main_contract" property="mainContract" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="contract_status" property="contractStatus" jdbcType="INTEGER" />
+    <result column="sum_apply_amount" property="sumApplyAmount" jdbcType="DECIMAL" />
+    <result column="contract_amount1" property="contractAmount1" jdbcType="DECIMAL" />
+    <result column="agreement_number" property="agreementNumber" jdbcType="VARCHAR" />
+    <result column="supplemental_protocol_version" property="supplementalProtocolVersion" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.UFCContractWithBLOBs" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+    <result column="attachment" property="attachment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mainid, request, contract_category, add_contract_date, contract_amount, budget_account, 
+    main_contract, title, contract_status, sum_apply_amount, contract_amount1, agreement_number, 
+    supplemental_protocol_version
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment, attachment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uf_contract_b_dt1
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uf_contract_b_dt1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uf_contract_b_dt1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.UFCContractWithBLOBs" >
+    insert into uf_contract_b_dt1 (id, mainid, request, 
+      contract_category, add_contract_date, contract_amount, 
+      budget_account, main_contract, title, 
+      contract_status, sum_apply_amount, contract_amount1, 
+      agreement_number, supplemental_protocol_version, 
+      comment, attachment)
+    values (#{id,jdbcType=INTEGER}, #{mainid,jdbcType=INTEGER}, #{request,jdbcType=INTEGER}, 
+      #{contractCategory,jdbcType=INTEGER}, #{addContractDate,jdbcType=CHAR}, #{contractAmount,jdbcType=VARCHAR}, 
+      #{budgetAccount,jdbcType=INTEGER}, #{mainContract,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{contractStatus,jdbcType=INTEGER}, #{sumApplyAmount,jdbcType=DECIMAL}, #{contractAmount1,jdbcType=DECIMAL}, 
+      #{agreementNumber,jdbcType=VARCHAR}, #{supplementalProtocolVersion,jdbcType=INTEGER}, 
+      #{comment,jdbcType=LONGVARCHAR}, #{attachment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.UFCContractWithBLOBs" >
+    insert into uf_contract_b_dt1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mainid != null" >
+        mainid,
+      </if>
+      <if test="request != null" >
+        request,
+      </if>
+      <if test="contractCategory != null" >
+        contract_category,
+      </if>
+      <if test="addContractDate != null" >
+        add_contract_date,
+      </if>
+      <if test="contractAmount != null" >
+        contract_amount,
+      </if>
+      <if test="budgetAccount != null" >
+        budget_account,
+      </if>
+      <if test="mainContract != null" >
+        main_contract,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="contractStatus != null" >
+        contract_status,
+      </if>
+      <if test="sumApplyAmount != null" >
+        sum_apply_amount,
+      </if>
+      <if test="contractAmount1 != null" >
+        contract_amount1,
+      </if>
+      <if test="agreementNumber != null" >
+        agreement_number,
+      </if>
+      <if test="supplementalProtocolVersion != null" >
+        supplemental_protocol_version,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mainid != null" >
+        #{mainid,jdbcType=INTEGER},
+      </if>
+      <if test="request != null" >
+        #{request,jdbcType=INTEGER},
+      </if>
+      <if test="contractCategory != null" >
+        #{contractCategory,jdbcType=INTEGER},
+      </if>
+      <if test="addContractDate != null" >
+        #{addContractDate,jdbcType=CHAR},
+      </if>
+      <if test="contractAmount != null" >
+        #{contractAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetAccount != null" >
+        #{budgetAccount,jdbcType=INTEGER},
+      </if>
+      <if test="mainContract != null" >
+        #{mainContract,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        #{contractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sumApplyAmount != null" >
+        #{sumApplyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractAmount1 != null" >
+        #{contractAmount1,jdbcType=DECIMAL},
+      </if>
+      <if test="agreementNumber != null" >
+        #{agreementNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementalProtocolVersion != null" >
+        #{supplementalProtocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.UFCContractWithBLOBs" >
+    update uf_contract_b_dt1
+    <set >
+      <if test="mainid != null" >
+        mainid = #{mainid,jdbcType=INTEGER},
+      </if>
+      <if test="request != null" >
+        request = #{request,jdbcType=INTEGER},
+      </if>
+      <if test="contractCategory != null" >
+        contract_category = #{contractCategory,jdbcType=INTEGER},
+      </if>
+      <if test="addContractDate != null" >
+        add_contract_date = #{addContractDate,jdbcType=CHAR},
+      </if>
+      <if test="contractAmount != null" >
+        contract_amount = #{contractAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetAccount != null" >
+        budget_account = #{budgetAccount,jdbcType=INTEGER},
+      </if>
+      <if test="mainContract != null" >
+        main_contract = #{mainContract,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        contract_status = #{contractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sumApplyAmount != null" >
+        sum_apply_amount = #{sumApplyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractAmount1 != null" >
+        contract_amount1 = #{contractAmount1,jdbcType=DECIMAL},
+      </if>
+      <if test="agreementNumber != null" >
+        agreement_number = #{agreementNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementalProtocolVersion != null" >
+        supplemental_protocol_version = #{supplementalProtocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.UFCContractWithBLOBs" >
+    update uf_contract_b_dt1
+    set mainid = #{mainid,jdbcType=INTEGER},
+      request = #{request,jdbcType=INTEGER},
+      contract_category = #{contractCategory,jdbcType=INTEGER},
+      add_contract_date = #{addContractDate,jdbcType=CHAR},
+      contract_amount = #{contractAmount,jdbcType=VARCHAR},
+      budget_account = #{budgetAccount,jdbcType=INTEGER},
+      main_contract = #{mainContract,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      contract_status = #{contractStatus,jdbcType=INTEGER},
+      sum_apply_amount = #{sumApplyAmount,jdbcType=DECIMAL},
+      contract_amount1 = #{contractAmount1,jdbcType=DECIMAL},
+      agreement_number = #{agreementNumber,jdbcType=VARCHAR},
+      supplemental_protocol_version = #{supplementalProtocolVersion,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=LONGVARCHAR},
+      attachment = #{attachment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.UFCContract" >
+    update uf_contract_b_dt1
+    set mainid = #{mainid,jdbcType=INTEGER},
+      request = #{request,jdbcType=INTEGER},
+      contract_category = #{contractCategory,jdbcType=INTEGER},
+      add_contract_date = #{addContractDate,jdbcType=CHAR},
+      contract_amount = #{contractAmount,jdbcType=VARCHAR},
+      budget_account = #{budgetAccount,jdbcType=INTEGER},
+      main_contract = #{mainContract,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      contract_status = #{contractStatus,jdbcType=INTEGER},
+      sum_apply_amount = #{sumApplyAmount,jdbcType=DECIMAL},
+      contract_amount1 = #{contractAmount1,jdbcType=DECIMAL},
+      agreement_number = #{agreementNumber,jdbcType=VARCHAR},
+      supplemental_protocol_version = #{supplementalProtocolVersion,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -56,13 +56,15 @@ public class RPCService {
     }
 
     /**
-     * 新增物业社区
      * @param request
      * @return
      */
+
     public BizRemoteResponse insert(BizRemoteRequest request){
         return iBizRemoteService.insert(request);
     }
+
+    public BizRemoteResponse updateBase(BizRemoteRequest request) { return iBizRemoteService.updateProjectBaseData(request);}
 
     public RegionResponse getRegionByName(String s){
         return regionRemote.getRegionByName(s);

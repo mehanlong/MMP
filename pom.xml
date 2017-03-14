@@ -219,7 +219,7 @@
         </dependency>
     </dependencies>
     <modules>
-        <module>mmp-utils</module>
+        <module>mmp-common</module>
         <module>mmp-dao</module>
         <module>mmp-web</module>
         <module>mmp-domain</module>

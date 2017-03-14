@@ -7,6 +7,9 @@ import javax.annotation.Resource;
 import com.cn.mis.dao.UserMapper;
 import com.cn.mis.domain.entity.User;
 import com.cn.mis.service.IUserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +55,13 @@ public class UserServiceImpl implements IUserService {
 
 	public List<User> selectByIds(List<Integer> list) {
 		return userMapper.selectByIds(list);
+	}
+
+	@Override
+	public PageInfo<User> selectByPage(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum,pageSize);
+		List<User> list = userMapper.selectAll();
+		PageInfo<User> pageInfo = new PageInfo<>(list);
+		return pageInfo;
 	}
 }

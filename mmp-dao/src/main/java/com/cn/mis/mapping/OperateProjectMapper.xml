@@ -27,9 +27,9 @@
   </select>
   
   <select id="selectBySql" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-	  SELECT uc.id,uc.community,uc.total_households,uc.online_households,upc.boss_id AS upcBossId,upc.accountName,uc.city,uc.community_add, hr.lastname,uc.boss_id AS ucBossId,uc.isdelete AS ucDelete,upc.isdelete AS upcDelete
+	  SELECT uc.id,uc.community,uc.total_households,uc.online_households,upc.boss_id AS upcBossId,upc.accountName,uc.city,uc.community_add, hr.lastname,uc.boss_id AS ucBossId,uc.isdelete AS ucDelete,upc.isdelete AS upcDelete,uc.community_status
 	  FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
-	  WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NULL AND uc.city IS NOT NULL AND uc.isdelete != 1AND upc.isdelete != 1
+	  WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NULL AND uc.city IS NOT NULL AND uc.isdelete != 1 AND upc.isdelete != 1 AND uc.community_status IN (1,2,3)
   </select>
   
   <update id="returnWriteBossIdByCommunity" parameterType="com.cn.mis.domain.entity.OperateProject" >

@@ -1,0 +1,32 @@
+/* TAB */
+.content {
+    padding: 1px;
+}
+
+/* 导航 */
+.headerTop {
+     /*background: #f0f0f0; */
+    /*background: url(/resources/images/bg.gif) fixed  repeat-y rgb(240, 240, 240);*/
+    height: 36px;
+    line-height: 36px;
+    width: 100%;
+    overflow: hidden;
+    top:2px;
+    bottom: 2px;
+    position: absolute;
+    border-color: #ddd;
+    text-align: center;
+}
+
+body {
+    font-size:9pt
+}
+td {
+    font-size:9pt
+}
+ul li{
+    list-style-type:none;
+}
+.whitelink {text-decoration:none; color:#4b72a4;}
+.whitelink:visited{text-decoration:none; color:#1f637b;}
+.whitelink:hover{text-decoration:none; color:#b7d2ff;}

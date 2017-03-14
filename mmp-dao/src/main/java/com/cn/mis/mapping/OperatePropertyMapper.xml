@@ -18,9 +18,9 @@
   </select>
   
   <select id="selectBySql" resultMap="BaseResultMap">
-	  SELECT upc.id,upc.accountName,upc.manager_name,upc.manager_phone,hr.lastname,upc.boss_id,upc.isdelete
-	  FROM uf_property_corp upc LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
-	  WHERE upc.account_type = 2 AND hr.lastname IS NOT NULL AND upc.boss_id IS NULL AND upc.isdelete != 1
+	SELECT upc.id,upc.accountName,upc.manager_name,upc.manager_phone,hr.lastname,upc.boss_id,upc.isdelete
+	FROM uf_property_corp upc LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
+	WHERE upc.account_type = 2 AND hr.lastname IS NOT NULL AND upc.boss_id IS NULL AND (upc.isdelete != 1 OR upc.isdelete IS NULL )
   </select>
   
   <update id="returnWriteBossIdByAccountName" parameterType="com.cn.mis.domain.entity.OperateProperty" >

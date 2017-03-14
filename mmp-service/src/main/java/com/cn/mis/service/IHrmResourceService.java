@@ -19,4 +19,6 @@ public interface IHrmResourceService {
     int updateByPrimaryKey(HrmResource record);
     
     List<HrmResource> selectAll();
+
+    HrmResource login(HrmResource record);
 }

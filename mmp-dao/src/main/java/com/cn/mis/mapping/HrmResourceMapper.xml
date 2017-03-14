@@ -153,6 +153,13 @@
     <include refid="Base_Column_List" />
     from HrmResource
   </select>
+
+  <select id="login" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.HrmResource">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM HrmResource
+    WHERE loginid = #{loginid,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HrmResource

@@ -30,7 +30,7 @@ import com.google.gson.reflect.TypeToken;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
-@Component("accountTimeTask2") 
+@Component("accountTimeTask")
 public class AccountTimeTask {
 	@Resource
 	private IAccountService accountService;

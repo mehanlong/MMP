@@ -26,7 +26,7 @@ import com.qding.framework.common.constants.HttpStatus;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
-@Component("syncOATimeTask")  
+@Component("syncOATimeTask")
 public class SyncOATimeTask {
 	@Resource
 	private RPCService brickRPCService;
@@ -39,6 +39,7 @@ public class SyncOATimeTask {
 		System.out.println("【SyncOATimeTask】start");
 		insertProperty();
 		insertProject();
+		//updatePoject();
 	}
 	
 	
@@ -71,7 +72,7 @@ public class SyncOATimeTask {
 		}
 		return "success";
 	}
-	
+
 	private String insertProject(){
 		List<OperateProject> list = operateProjectService.selectBySql();
 		
@@ -84,11 +85,7 @@ public class SyncOATimeTask {
 	        project.setName(proj.getCommunity());//必填，社区名
 	        project.setPropInfoId(proj.getUpcBossId());//必填，社区所属物业公司
 	        if(proj.getTotal_households()!= null){
-		        project.setPersonNumber(proj.getTotal_households());//personNumber
-				project.setLiveNumber(proj.getTotal_households());//入驻总户数
-	        }
-	        if(proj.getOnline_households()!= null){
-	        	project.setManageNumber(proj.getOnline_households());//可运营户数
+				project.setPersonNumber(proj.getTotal_households());
 	        }
 	        if(region != null){
 	        	project.setRegionId(region.getId());//必填，社区所属城市
@@ -113,5 +110,33 @@ public class SyncOATimeTask {
 	        }
 		}
 		return "success";
-	} 
+	}
+
+	private String updatePoject(){
+		List<OperateProject> list = operateProjectService.selectUpadteBySql();
+		for(OperateProject proj:list){
+			BizRemoteRequest request = new BizRemoteRequest();
+			request.setBizType(BizTypeEnum.Project);//必填，BizTypeEnum.Property(物业公司)  BizTypeEnum.Project(社区)
+			Project project = new Project();
+			project.setId(proj.getUcBossId());//社区BossId
+			project.setPropInfoId(proj.getUpcBossId());//必填，社区所属物业公司ID
+			if(proj.getTotal_households()!= null){
+				project.setPersonNumber(proj.getTotal_households());
+			}
+			if (proj.getUpdateAt() != null){
+				project.setUpdateAt(proj.getUpdateAt().getTime());//操作时间
+			}
+			project.setUpdateBy(proj.getLastname());//必填，操作人
+			request.setCreateUser(proj.getLastname());//必填，操作人
+			//操作时间
+			request.setProject(project);
+			BizRemoteResponse response = brickRPCService.updateBase(request);
+			log.info("更新社区:"+proj.getCommunity()+" ,response=" + response);
+			if (response.getReturnInfo().getCode() == HttpStatus.OK
+					.getStatusCode()) {
+				operateProjectService.returnWriteUpdateFlag0ByCommunity(proj);
+			}
+		}
+		return "success";
+	}
 }

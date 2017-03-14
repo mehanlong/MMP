@@ -46,4 +46,9 @@ public class HrmResourceServiceImpl implements IHrmResourceService {
 		return hrmResourceMapper.selectAll();
 	}
 
+	@Override
+	public HrmResource login(HrmResource record) {
+		return hrmResourceMapper.login(record);
+	}
+
 }

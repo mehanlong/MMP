@@ -18,4 +18,6 @@ public interface HrmResourceMapper {
     int updateByPrimaryKey(HrmResource record);
     
     List<HrmResource> selectAll();
+
+    HrmResource login(HrmResource record);
 }

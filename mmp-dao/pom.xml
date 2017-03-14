@@ -8,6 +8,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <mapper.version>3.3.6</mapper.version>
+    </properties>
 
     <artifactId>mmp-dao</artifactId>
     <dependencies>
@@ -18,8 +21,24 @@
         </dependency>
         <dependency>
             <groupId>ij.ein</groupId>
-            <artifactId>mmp-utils</artifactId>
+            <artifactId>mmp-common</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <!--通用Mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
         </dependency>
     </dependencies>
     <build>
