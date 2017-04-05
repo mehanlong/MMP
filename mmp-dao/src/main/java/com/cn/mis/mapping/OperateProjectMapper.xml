@@ -9,7 +9,7 @@
 	  	<result column="lastname" property="lastname" jdbcType="VARCHAR" />
 	    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
    		<result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
-	    <result column="ucBossId" property="ucBossId" jdbcType="BIGINT" />
+	    <result column="ucBossId" property="ucBossId" jdbcType="VARCHAR" />
 	    
 	    <result column="city" property="city" jdbcType="VARCHAR" />
 	    <result column="online_households" property="online_households" jdbcType="INTEGER" />
@@ -23,13 +23,13 @@
   <select id="selectUpadteBySql" resultMap="BaseResultMap">
    	SELECT uc.id,uc.community,uc.total_households,upc.boss_id AS upcBossId,hr.lastname,uc.create_at,uc.update_at,uc.boss_id AS ucBossId
 	FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON uc.update_by = hr.id
-	WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NOT NULL AND uc.updateflag = 1
+	WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NOT NULL AND uc.boss_id != '' AND uc.updateflag = 1
   </select>
   
   <select id="selectBySql" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-	  SELECT uc.id,uc.community,uc.total_households,uc.online_households,upc.boss_id AS upcBossId,upc.accountName,uc.city,uc.community_add, hr.lastname,uc.boss_id AS ucBossId,uc.isdelete AS ucDelete,upc.isdelete AS upcDelete,uc.community_status
-	  FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
-	  WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND uc.boss_id IS NULL AND uc.city IS NOT NULL AND uc.isdelete != 1 AND upc.isdelete != 1 AND uc.community_status IN (1,2,3)
+  	SELECT uc.id,uc.community,uc.total_households,uc.online_households,upc.boss_id AS upcBossId,upc.accountName,uc.city,uc.community_add, hr.lastname,uc.boss_id AS ucBossId,uc.isdelete AS ucDelete,upc.isdelete AS upcDelete,uc.community_status
+	FROM uf_community uc LEFT JOIN uf_property_corp upc ON uc.property_name = upc.id LEFT JOIN HrmResource hr ON upc.ownerId = hr.id
+	WHERE upc.boss_id IS NOT NULL AND hr.lastname IS NOT NULL AND (uc.boss_id IS NULL OR uc.boss_id = '') AND uc.city IS NOT NULL AND (uc.isdelete != 1 OR uc.isdelete IS NULL ) AND (upc.isdelete != 1 OR upc.isdelete IS NULL ) AND uc.community_status IN (1,2,3)
   </select>
   
   <update id="returnWriteBossIdByCommunity" parameterType="com.cn.mis.domain.entity.OperateProject" >

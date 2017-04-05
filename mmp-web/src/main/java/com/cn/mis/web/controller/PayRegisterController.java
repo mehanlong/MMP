@@ -68,7 +68,7 @@ public class PayRegisterController {
     }
     @RequestMapping("/queryContract/{type}/{date}")
     @ResponseBody
-    private Object queryDailyContract(@PathVariable int type,HttpServletRequest req, @RequestParam("page")int page, @RequestParam("rows")int rows) {
+    private Object queryContract(@PathVariable int type,HttpServletRequest req, @RequestParam("page")int page, @RequestParam("rows")int rows) {
         PayRegisterReq registerReq = new PayRegisterReq();
         String status = req.getParameter("status");
         if (type == 0){
@@ -88,6 +88,7 @@ public class PayRegisterController {
         String departmentname = req.getParameter("departmentname");
         String startdate = req.getParameter("startdate");
         String enddate = req.getParameter("enddate");
+        String vendor = req.getParameter("vendor");
 
         if (StringUtil.isNotEmpty(status)) {
             registerReq.setStatus(Integer.valueOf(status));
@@ -107,6 +108,9 @@ public class PayRegisterController {
         }
         if (StringUtil.isNotEmpty(enddate)) {
             registerReq.setEnddate(enddate);
+        }
+        if (StringUtil.isNotEmpty(vendor)){
+            registerReq.setVendor(vendor);
         }
         PageInfo<PayRegister> payRegisterPageInfo = null;
         switch (type){
@@ -138,6 +142,7 @@ public class PayRegisterController {
         String departmentname = req.getParameter("departmentname");
         String startdate = req.getParameter("startdate");
         String enddate = req.getParameter("enddate");
+        String vendor = req.getParameter("vendor");
 
         if (StringUtil.isNotEmpty(status)){
             registerReq.setStatus(Integer.valueOf(status));
@@ -159,6 +164,9 @@ public class PayRegisterController {
         }
         if (StringUtil.isNotEmpty(enddate)){
             registerReq.setEnddate(enddate);
+        }
+        if (StringUtil.isNotEmpty(vendor)){
+            registerReq.setVendor(vendor);
         }
         PageInfo<PayRegister> payRegisterPageInfo = iPayRegisterService.selectDailySubmitByPage(registerReq,page,rows);
 
@@ -181,6 +189,7 @@ public class PayRegisterController {
         String departmentname = req.getParameter("departmentname");
         String startdate = req.getParameter("startdate");
         String enddate = req.getParameter("enddate");
+        String vendor = req.getParameter("vendor");
 
         if (StringUtil.isNotEmpty(status)){
             registerReq.setStatus(Integer.valueOf(status));
@@ -202,6 +211,9 @@ public class PayRegisterController {
         }
         if (StringUtil.isNotEmpty(enddate)){
             registerReq.setEnddate(enddate);
+        }
+        if (StringUtil.isNotEmpty(vendor)){
+            registerReq.setVendor(vendor);
         }
         PageInfo<PayRegister> payRegisterPageInfo = iPayRegisterService.selectReceiveLoanByPage(registerReq,page,rows);
 
@@ -243,16 +255,16 @@ public class PayRegisterController {
         }
         switch (type){
             case 0:
-                iPayRegisterService.updateDCPayerAccountBatch(bank,account, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),list);
+                iPayRegisterService.updateDCPayerAccountBatch(bank,bank_id, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),account,list);
                 break;
             case 1:
-                iPayRegisterService.updatePCPayerAccountBatch(bank,account, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),list);
+                iPayRegisterService.updatePCPayerAccountBatch(bank,bank_id, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),account,list);
                 break;
             case 2:
-                iPayRegisterService.updateDSPayerAccountBatch(bank,account, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),list);
+                iPayRegisterService.updateDSPayerAccountBatch(bank,bank_id, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),account,list);
                 break;
             case 3:
-                iPayRegisterService.updateRLPayerAccountBatch(bank,account, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),list);
+                iPayRegisterService.updateRLPayerAccountBatch(bank,bank_id, DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD),account,list);
                 break;
         }
         return BaseResult.ok("更新成功");

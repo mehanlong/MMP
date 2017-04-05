@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.FORefundInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.FORefundInfo" >
+    <id column="Sequence" property="Sequence" jdbcType="INTEGER" />
+    <result column="PassengerName" property="PassengerName" jdbcType="VARCHAR" />
+    <result column="RefundTime" property="RefundTime" jdbcType="VARCHAR" />
+    <result column="Flight" property="Flight" jdbcType="VARCHAR" />
+    <result column="TicketNo" property="TicketNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sequence, PassengerName, RefundTime, Flight, TicketNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qd_FlightOrderRefundInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qd_FlightOrderRefundInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.FORefundInfo" >
+    insert into qd_FlightOrderRefundInfo (Sequence, PassengerName, RefundTime, 
+      Flight, TicketNo)
+    values (#{Sequence,jdbcType=INTEGER}, #{PassengerName,jdbcType=VARCHAR}, #{RefundTime,jdbcType=VARCHAR}, 
+      #{Flight,jdbcType=VARCHAR}, #{TicketNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.FORefundInfo" >
+    insert into qd_FlightOrderRefundInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        Sequence,
+      </if>
+      <if test="PassengerName != null" >
+        PassengerName,
+      </if>
+      <if test="RefundTime != null" >
+        RefundTime,
+      </if>
+      <if test="Flight != null" >
+        Flight,
+      </if>
+      <if test="TicketNo != null" >
+        TicketNo,
+      </if>
+      <if test="RecordID != null">
+        RecordID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        #{Sequence,jdbcType=INTEGER},
+      </if>
+      <if test="PassengerName != null" >
+        #{PassengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="RefundTime != null" >
+        #{RefundTime,jdbcType=VARCHAR},
+      </if>
+      <if test="Flight != null" >
+        #{Flight,jdbcType=VARCHAR},
+      </if>
+      <if test="TicketNo != null" >
+        #{TicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="RecordID != null">
+        #{RecordID}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.FORefundInfo" >
+    update qd_FlightOrderRefundInfo
+    <set >
+      <if test="PassengerName != null" >
+        PassengerName = #{PassengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="RefundTime != null" >
+        RefundTime = #{RefundTime,jdbcType=VARCHAR},
+      </if>
+      <if test="Flight != null" >
+        Flight = #{Flight,jdbcType=VARCHAR},
+      </if>
+      <if test="TicketNo != null" >
+        TicketNo = #{TicketNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.FORefundInfo" >
+    update qd_FlightOrderRefundInfo
+    set PassengerName = #{PassengerName,jdbcType=VARCHAR},
+      RefundTime = #{RefundTime,jdbcType=VARCHAR},
+      Flight = #{Flight,jdbcType=VARCHAR},
+      TicketNo = #{TicketNo,jdbcType=VARCHAR}
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+</mapper>

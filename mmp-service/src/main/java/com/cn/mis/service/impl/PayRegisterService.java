@@ -61,23 +61,23 @@ public class PayRegisterService implements IPayRegisterService {
     }
 
     @Override
-    public int updateDCPayerAccountBatch(String payer_bank, String payer_account, String pay_date, List<Integer> list) {
-        return payRegisterMapper.updateDCPayerAccountBatch(payer_bank,payer_account,pay_date,list);
+    public int updateDCPayerAccountBatch(String payer_bank, String payer_account, String pay_date,String payer_bank_account, List<Integer> list) {
+        return payRegisterMapper.updateDCPayerAccountBatch(payer_bank,payer_account,pay_date,payer_bank_account,list);
     }
 
     @Override
-    public int updatePCPayerAccountBatch(String payer_bank, String payer_account, String pay_date, List<Integer> list) {
-        return payRegisterMapper.updatePCPayerAccountBatch(payer_bank,payer_account,pay_date,list);
+    public int updatePCPayerAccountBatch(String payer_bank, String payer_account, String pay_date,String payer_bank_account, List<Integer> list) {
+        return payRegisterMapper.updatePCPayerAccountBatch(payer_bank,payer_account,pay_date,payer_bank_account,list);
     }
 
     @Override
-    public int updateDSPayerAccountBatch(String payer_bank, String payer_account, String pay_date, List<Integer> list) {
-        return payRegisterMapper.updateDSPayerAccountBatch(payer_bank,payer_account,pay_date,list);
+    public int updateDSPayerAccountBatch(String payer_bank, String payer_account, String pay_date,String payer_bank_account, List<Integer> list) {
+        return payRegisterMapper.updateDSPayerAccountBatch(payer_bank,payer_account,pay_date,payer_bank_account,list);
     }
 
     @Override
-    public int updateRLPayerAccountBatch(String payer_bank, String payer_account, String pay_date, List<Integer> list) {
-        return payRegisterMapper.updateRLPayerAccountBatch(payer_bank,payer_account,pay_date,list);
+    public int updateRLPayerAccountBatch(String payer_bank, String payer_account, String pay_date,String payer_bank_account, List<Integer> list) {
+        return payRegisterMapper.updateRLPayerAccountBatch(payer_bank,payer_account,pay_date,payer_bank_account,list);
     }
 
     @Override

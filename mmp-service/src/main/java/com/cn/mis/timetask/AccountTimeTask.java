@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.cn.mis.domain.bean.TokenInfo;
 import com.cn.mis.domain.bean.pojo.AccountList;
 import com.cn.mis.domain.entity.Account;
 import com.cn.mis.domain.entity.HrmDepartmentWithBLOBs;
@@ -242,10 +243,8 @@ public class AccountTimeTask {
 				+ "region,"						//区
 				+ "dbcInteger1,"				//预估社区数量
 				+ "dbcInteger6,"				//预估总户数
-				+ "dbcVarchar2,"				//联系人姓名
 				+ "dbcReal1,"					//预估管理总面积
 				+ "dbcSelect3,"					//物业类型
-				+ "dbcSVarchar1,"				//联系人电话
 				+ "lockStatus,"					//状态
 				+ "createdat,"					//创建日期
 				+ "highSeaId"					//所属公海
@@ -257,6 +256,9 @@ public class AccountTimeTask {
 				TokenThread.tonkenInfo.getToken_type()+" "+TokenThread.tonkenInfo.getAccess_token(), 
 				"UTF-8", 
 				"UTF-8");
+		if (res.equals("{\"error_code\":20000002, \"message\":\"invalid access token\"}")){
+			TokenThread.resetToken();
+		}
 		
 		
 		AccountList accountList = (AccountList) JsonUtil.fromJson(new TypeToken<AccountList>(){}.getType(), res);

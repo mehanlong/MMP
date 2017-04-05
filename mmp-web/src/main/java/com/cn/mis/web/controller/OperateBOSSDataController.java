@@ -38,7 +38,7 @@ public class OperateBOSSDataController {
             BizRemoteRequest request = new BizRemoteRequest();
             request.setBizType(BizTypeEnum.Project);//必填，BizTypeEnum.Property(物业公司)  BizTypeEnum.Project(社区)
             Project project = new Project();
-            project.setId(proj.getUcBossId());//社区BossId
+            project.setId(Long.valueOf(proj.getUcBossId()));//社区BossId
             project.setPropInfoId(proj.getUpcBossId());//必填，社区所属物业公司ID
             if(proj.getTotal_households()!= null){
                 project.setLiveNumber(proj.getTotal_households());//入驻总户数

@@ -15,10 +15,14 @@
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="payer_a" property="payer_a" jdbcType="VARCHAR" />
         <result column="vendor" property="vendor" jdbcType="VARCHAR" />
+        <result column="revendor" property="revendor" jdbcType="VARCHAR" />
         <result column="bank" property="bank" jdbcType="VARCHAR" />
         <result column="payer_bank" property="payer_bank" jdbcType="VARCHAR" />
         <result column="payer_account" property="payer_account" jdbcType="VARCHAR" />
+        <result column="payer_bank_account" property="payer_bank_account" jdbcType="VARCHAR" />
         <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="reaccount" property="reaccount" jdbcType="VARCHAR" />
+        <result column="bank_account" property="bank_account" jdbcType="VARCHAR" />
         <result column="pay_date" property="pay_date" jdbcType="VARCHAR" />
         <result column="pay_amount" property="pay_amount" jdbcType="DECIMAL" />
         <result column="loan_amount" property="loan_amount" jdbcType="DECIMAL" />
@@ -45,17 +49,20 @@
             m.payer,
             v.vendor,
             m.payer_bank,
-            dt.bank,
+            m.payer_bank_account,
             m.payer_account,
-            dt.account ,
             m.pay_date,
             m.amount,
             hr.lastname ,
-            hd.departmentname
+            hd.departmentname,
+            v1.vendor AS revendor,
+            case when isnull(m.account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.account) else null end AS reaccount,
+            case when isnull(m.payer_account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS account,
+            case when isnull(m.payer_account,'')!='' then (select dt.bank from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS bank
         FROM formtable_main_35 m
             LEFT JOIN uf_vendor v ON m.payer = v.id
-            LEFT JOIN uf_vendor_dt1 dt ON dt.mainid = v.id
-            LEFT JOIN workflow_requestbase q ON m.requestId = q.requestid
+            LEFT JOIN uf_vendor v1 ON m.payee = v1.id
+            INNER JOIN workflow_requestbase q ON m.requestId = q.requestid
             LEFT JOIN HrmResource hr ON m.employee = hr.id
             LEFT JOIN HrmDepartment hd ON m.department = hd.id
         WHERE 1 = 1
@@ -80,6 +87,10 @@
         <if test="enddate != null">
             AND #{enddate} >= m.pay_date
         </if>
+        <if test="vendor != null">
+            AND v.vendor LIKE '%${vendor}%'
+        </if>
+        ORDER BY m.id
     </select>
     
     <select id="selectPropertyContractByPage" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.bean.req.PayRegisterReq">
@@ -91,17 +102,20 @@
             m.payer,
             v.vendor,
             m.payer_bank,
-            dt.bank,
+            m.payer_bank_account,
             m.payer_account,
-            dt.account ,
             m.pay_date,
             m.amount,
             hr.lastname ,
-            hd.departmentname
+            hd.departmentname,
+            v1.vendor AS revendor,
+            case when isnull(m.account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.account) else null end AS reaccount,
+            case when isnull(m.payer_account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS account,
+            case when isnull(m.payer_account,'')!='' then (select dt.bank from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS bank
         FROM formtable_main_56 m
         LEFT JOIN uf_vendor v ON m.payer = v.id
-        LEFT JOIN uf_vendor_dt1 dt ON dt.mainid = v.id
-        LEFT JOIN workflow_requestbase q ON m.requestId = q.requestid
+        LEFT JOIN uf_vendor v1 ON m.payee = v1.id
+        INNER JOIN workflow_requestbase q ON m.requestId = q.requestid
         LEFT JOIN HrmResource hr ON m.employee = hr.id
         LEFT JOIN HrmDepartment hd ON m.department = hd.id
         WHERE 1 = 1
@@ -126,35 +140,43 @@
         <if test="enddate != null">
             AND #{enddate} >= m.pay_date
         </if>
+        <if test="vendor != null">
+            AND v.vendor LIKE '%${vendor}%'
+        </if>
+        ORDER BY m.id
     </select>
 
     <select id="selectDailySubmitByPage" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.bean.req.PayRegisterReq">
-      select
-      q.requestname ,
-      m.code ,
-      m.id,
-      m.requestId,
-      m.status ,
-      m.payer_a,
-      v.vendor,
-      m.payer_bank,
-      dt.bank,
-      m.payer_account,
-      dt.account ,
-      m.pay_date,
-      m.pay_amount,
-      m.employee,
-      m.department,
-      m.request_date,
-      hr.lastname ,
-      hd.departmentname
-      from formtable_main_4 m
-	  LEFT JOIN uf_vendor v ON m.payer_a = v.id
-	  LEFT JOIN uf_vendor_dt1 dt ON dt.mainid = v.id
-	  LEFT JOIN HrmResource hr ON m.employee = hr.id
-	  LEFT JOIN HrmDepartment hd ON m.department = hd.id
-	  LEFT JOIN workflow_requestbase q ON m.requestId = q.requestid
-      where  1 = 1
+        select
+        q.requestname ,
+        m.code ,
+        m.id,
+        m.requestId,
+        m.status ,
+        m.payer_a,
+        v.vendor,
+        m.payer_bank,
+        m.payer_bank_account,
+        m.payer_account,
+        m.pay_date,
+        m.pay_amount,
+        m.employee,
+        m.department,
+        m.request_date,
+        hr.lastname ,
+        hd.departmentname,
+        v1.vendor AS revendor,
+        m.bank_account,
+        case when isnull(m.outer_payee,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.outer_payee) else null end AS reaccount,
+        case when isnull(m.payer_account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS account,
+        case when isnull(m.payer_account,'')!='' then (select dt.bank from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS bank
+        from formtable_main_4 m
+        LEFT JOIN uf_vendor v ON m.payer_a = v.id
+        LEFT JOIN uf_vendor v1 ON m.outer_payee  = v1.id
+        LEFT JOIN HrmResource hr ON m.inner_payee = hr.id
+        LEFT JOIN HrmDepartment hd ON m.department = hd.id
+        INNER JOIN workflow_requestbase q ON m.requestId = q.requestid
+        where  1 = 1
         <if test="status != null">
            AND m.status = #{status}
         </if>
@@ -176,6 +198,10 @@
         <if test="enddate != null">
             AND #{enddate} >= m.pay_date
         </if>
+        <if test="vendor != null">
+            AND v.vendor LIKE '%${vendor}%'
+        </if>
+        ORDER BY m.id
     </select>
 
     <select id="selectReceiveLoanByPage" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.bean.req.PayRegisterReq">
@@ -187,19 +213,22 @@
             m.payer_a,
             v.vendor,
             m.payer_bank,
-            dt.bank,
+            m.payer_bank_account,
             m.payer_account,
-            dt.account ,
             m.pay_date,
             m.loan_amount,
             hr.lastname ,
-            hd.departmentname
+            hd.departmentname,
+            m.bank_account,
+        case when isnull(m.outer_payee,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.outer_payee) else null end AS reaccount,
+        case when isnull(m.payer_account,'')!='' then (select dt.account from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS account,
+        case when isnull(m.payer_account,'')!='' then (select dt.bank from uf_vendor_dt1 dt where cast(dt.id as varchar) = m.payer_account) else null end AS bank
         FROM formtable_main_3 m
         LEFT JOIN uf_vendor v ON m.payer_a = v.id
-        LEFT JOIN uf_vendor_dt1 dt ON dt.mainid = v.id
-        LEFT JOIN workflow_requestbase q ON m.requestId = q.requestid
-        LEFT JOIN HrmResource hr ON m.employee = hr.id
-	    LEFT JOIN HrmDepartment hd ON m.department = hd.id
+        LEFT JOIN uf_vendor v1 ON m.outer_payee  = v1.id
+        LEFT JOIN HrmResource hr ON m.inner_payee = hr.id
+        LEFT JOIN HrmDepartment hd ON m.department = hd.id
+        INNER JOIN workflow_requestbase q ON m.requestId = q.requestid
         WHERE 1=1
         <if test="status != null">
             AND m.status = #{status}
@@ -222,6 +251,10 @@
         <if test="enddate != null">
             AND #{enddate} >= m.pay_date
         </if>
+        <if test="vendor != null">
+            AND v.vendor LIKE '%${vendor}%'
+        </if>
+        ORDER BY m.id
     </select>
 
     <select id="selectAllBank" resultMap="BankResultMap" parameterType="com.cn.mis.domain.bean.req.PayRegisterReq">
@@ -244,7 +277,8 @@
         update formtable_main_4
         SET payer_bank = #{payer_bank},
           payer_account = #{payer_account},
-          pay_date = #{pay_date}
+          pay_date = #{pay_date},
+          payer_bank_account = #{payer_bank_account}
         where
         <foreach collection="list" separator="or" item="item" index="index" >
             id=#{item}
@@ -255,7 +289,8 @@
         update formtable_main_56
         SET payer_bank = #{payer_bank},
           payer_account = #{payer_account},
-          pay_date = #{pay_date}
+          pay_date = #{pay_date},
+          payer_bank_account = #{payer_bank_account}
         where
         <foreach collection="list" separator="or" item="item" index="index" >
             id=#{item}
@@ -266,7 +301,8 @@
         update formtable_main_35
         SET payer_bank = #{payer_bank},
         payer_account = #{payer_account},
-        pay_date = #{pay_date}
+        pay_date = #{pay_date},
+        payer_bank_account = #{payer_bank_account}
         where
         <foreach collection="list" separator="or" item="item" index="index" >
             id=#{item}
@@ -277,7 +313,8 @@
         update formtable_main_3
         SET payer_bank = #{payer_bank},
         payer_account = #{payer_account},
-        pay_date = #{pay_date}
+        pay_date = #{pay_date},
+        payer_bank_account = #{payer_bank_account}
         where
         <foreach collection="list" separator="or" item="item" index="index" >
             id=#{item}

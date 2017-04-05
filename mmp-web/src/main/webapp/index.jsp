@@ -13,6 +13,7 @@
                 url: "/test/getTopMenu",
                 success: function (data) {
                     if (data.code == 200) {
+                        $("#ddd").append("<img src=\"/images/BacoError_wev8.gif\" align=\"absmiddle\">");
                         var menulist = "";
                         //动态添加1级菜单按钮
                         for (var i = 0; i < data.data.length; i++) {
@@ -114,17 +115,17 @@
     </script>
 </head>
 <body class="easyui-layout">
-<div data-options="region:'north',title:''" style="height: 40px;">
-    <div class="headerTop">
-        <!-- 一级菜单 -->
-        <div id="topMenu" style="float: left; margin-top: 5px;"></div>
+<%--<div data-options="region:'north',title:''" style="height: 40px;">--%>
+    <%--<div class="headerTop">--%>
+        <%--<!-- 一级菜单 -->--%>
+        <%--<div id="topMenu" style="float: left; margin-top: 5px;"></div>--%>
 
-        <!-- 用户信息 -->
-        <%--<span style="float: right;margin-right: 10px;text-align: center">--%>
-            <%--<a href="#" id="logout" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">退出系统</a>--%>
-        <%--</span>--%>
-    </div>
-</div>
+        <%--<!-- 用户信息 -->--%>
+        <%--&lt;%&ndash;<span style="float: right;margin-right: 10px;text-align: center">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="#" id="logout" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">退出系统</a>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</span>&ndash;%&gt;--%>
+    <%--</div>--%>
+<%--</div>--%>
 <div data-options="region:'west',title:'菜单',split:false" style="width:180px;">
     <div id="mainmenu" class="easyui-accordion" fit="true" border="false">
 

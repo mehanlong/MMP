@@ -1,5 +1,6 @@
 package com.cn.mis.timetask;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +40,7 @@ public class SyncOATimeTask {
 		System.out.println("【SyncOATimeTask】start");
 		insertProperty();
 		insertProject();
-		//updatePoject();
+		updatePoject();
 	}
 	
 	
@@ -84,9 +85,9 @@ public class SyncOATimeTask {
 	        Project project = new Project();
 	        project.setName(proj.getCommunity());//必填，社区名
 	        project.setPropInfoId(proj.getUpcBossId());//必填，社区所属物业公司
-	        if(proj.getTotal_households()!= null){
-				project.setPersonNumber(proj.getTotal_households());
-	        }
+//	        if(proj.getTotal_households()!= null){
+//				project.setPersonNumber(proj.getTotal_households());
+//	        }
 	        if(region != null){
 	        	project.setRegionId(region.getId());//必填，社区所属城市
 	        	request.setCreateUser(proj.getLastname());//必填，操作人
@@ -96,12 +97,12 @@ public class SyncOATimeTask {
 	 			if (response.getReturnInfo().getCode() == HttpStatus.OK
 	 					.getStatusCode()) {
 	 				if(response.getProject()!=null){
-	 					proj.setUcBossId(response.getProject().getId());
+	 					proj.setUcBossId(response.getProject().getId()+"");
 	 					operateProjectService.returnWriteBossIdByCommunity(proj);
 	 				}
 	 			} else if(response.getReturnInfo().getCode() == HttpStatus.BAD_REQUEST.getStatusCode()){
 	 				if(response.getProject()!=null){
-	 					proj.setUcBossId(response.getProject().getId());
+	 					proj.setUcBossId(response.getProject().getId()+"");
 	 					operateProjectService.returnWriteBossIdByCommunity(proj);
 	 				}
 	 			}
@@ -118,11 +119,11 @@ public class SyncOATimeTask {
 			BizRemoteRequest request = new BizRemoteRequest();
 			request.setBizType(BizTypeEnum.Project);//必填，BizTypeEnum.Property(物业公司)  BizTypeEnum.Project(社区)
 			Project project = new Project();
-			project.setId(proj.getUcBossId());//社区BossId
+			project.setId(Long.valueOf(proj.getUcBossId()));//社区BossId
 			project.setPropInfoId(proj.getUpcBossId());//必填，社区所属物业公司ID
-			if(proj.getTotal_households()!= null){
-				project.setPersonNumber(proj.getTotal_households());
-			}
+//			if(proj.getTotal_households()!= null){
+//				project.setPersonNumber(proj.getTotal_households());
+//			}
 			if (proj.getUpdateAt() != null){
 				project.setUpdateAt(proj.getUpdateAt().getTime());//操作时间
 			}

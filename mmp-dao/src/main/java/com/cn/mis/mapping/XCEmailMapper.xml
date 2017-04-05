@@ -18,11 +18,12 @@
     <result column="process_flag" jdbcType="TINYINT" property="processFlag" />
     <result column="am_or_pm" jdbcType="VARCHAR" property="amOrPm" />
     <result column="pm_ro_am" jdbcType="NCHAR" property="pmRoAm" />
+    <result column="process_code" jdbcType="VARCHAR" property="processCode" />
   </resultMap>
   <sql id="Base_Column_List">
     id, corp_name, primary_department, affiliation_department, booking_agent, booking_type, 
     name, dparture_city, destination_city, departure_date, destination_date, email_time, 
-    process_time, process_flag, am_or_pm, pm_ro_am
+    process_time, process_flag, am_or_pm, pm_ro_am ,process_code
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -33,132 +34,16 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from qd_inface_xcemail
-    where process_flag != 1
+    from qd_inface_xc
+    --     where process_flag != 1 OR process_flag IS NULL
+    WHERE id = 88
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from qd_inface_xcemail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cn.mis.domain.entity.XCEmail">
-    insert into qd_inface_xcemail (id, corp_name, primary_department, 
-      affiliation_department, booking_agent, booking_type, 
-      name, dparture_city, destination_city, 
-      departure_date, destination_date, email_time, 
-      process_time, process_flag, am_or_pm, 
-      pm_ro_am)
-    values (#{id,jdbcType=INTEGER}, #{corpName,jdbcType=VARCHAR}, #{primaryDepartment,jdbcType=VARCHAR}, 
-      #{affiliationDepartment,jdbcType=VARCHAR}, #{bookingAgent,jdbcType=VARCHAR}, #{bookingType,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{dpartureCity,jdbcType=VARCHAR}, #{destinationCity,jdbcType=VARCHAR}, 
-      #{departureDate,jdbcType=TIMESTAMP}, #{destinationDate,jdbcType=TIMESTAMP}, #{emailTime,jdbcType=TIMESTAMP}, 
-      #{processTime,jdbcType=TIMESTAMP}, #{processFlag,jdbcType=TINYINT}, #{amOrPm,jdbcType=VARCHAR}, 
-      #{pmRoAm,jdbcType=NCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.XCEmail">
-    insert into qd_inface_xcemail
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="corpName != null">
-        corp_name,
-      </if>
-      <if test="primaryDepartment != null">
-        primary_department,
-      </if>
-      <if test="affiliationDepartment != null">
-        affiliation_department,
-      </if>
-      <if test="bookingAgent != null">
-        booking_agent,
-      </if>
-      <if test="bookingType != null">
-        booking_type,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="dpartureCity != null">
-        dparture_city,
-      </if>
-      <if test="destinationCity != null">
-        destination_city,
-      </if>
-      <if test="departureDate != null">
-        departure_date,
-      </if>
-      <if test="destinationDate != null">
-        destination_date,
-      </if>
-      <if test="emailTime != null">
-        email_time,
-      </if>
-      <if test="processTime != null">
-        process_time,
-      </if>
-      <if test="processFlag != null">
-        process_flag,
-      </if>
-      <if test="amOrPm != null">
-        am_or_pm,
-      </if>
-      <if test="pmRoAm != null">
-        pm_ro_am,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="corpName != null">
-        #{corpName,jdbcType=VARCHAR},
-      </if>
-      <if test="primaryDepartment != null">
-        #{primaryDepartment,jdbcType=VARCHAR},
-      </if>
-      <if test="affiliationDepartment != null">
-        #{affiliationDepartment,jdbcType=VARCHAR},
-      </if>
-      <if test="bookingAgent != null">
-        #{bookingAgent,jdbcType=VARCHAR},
-      </if>
-      <if test="bookingType != null">
-        #{bookingType,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="dpartureCity != null">
-        #{dpartureCity,jdbcType=VARCHAR},
-      </if>
-      <if test="destinationCity != null">
-        #{destinationCity,jdbcType=VARCHAR},
-      </if>
-      <if test="departureDate != null">
-        #{departureDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="destinationDate != null">
-        #{destinationDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="emailTime != null">
-        #{emailTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="processTime != null">
-        #{processTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="processFlag != null">
-        #{processFlag,jdbcType=TINYINT},
-      </if>
-      <if test="amOrPm != null">
-        #{amOrPm,jdbcType=VARCHAR},
-      </if>
-      <if test="pmRoAm != null">
-        #{pmRoAm,jdbcType=NCHAR},
-      </if>
-    </trim>
-  </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.XCEmail">
-    update qd_inface_xcemail
+    update qd_inface_xc
     <set>
       <if test="corpName != null">
         corp_name = #{corpName,jdbcType=VARCHAR},
@@ -205,26 +90,10 @@
       <if test="pmRoAm != null">
         pm_ro_am = #{pmRoAm,jdbcType=NCHAR},
       </if>
+      <if test="processCode != null">
+        process_code = #{processCode,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.XCEmail">
-    update qd_inface_xcemail
-    set corp_name = #{corpName,jdbcType=VARCHAR},
-      primary_department = #{primaryDepartment,jdbcType=VARCHAR},
-      affiliation_department = #{affiliationDepartment,jdbcType=VARCHAR},
-      booking_agent = #{bookingAgent,jdbcType=VARCHAR},
-      booking_type = #{bookingType,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      dparture_city = #{dpartureCity,jdbcType=VARCHAR},
-      destination_city = #{destinationCity,jdbcType=VARCHAR},
-      departure_date = #{departureDate,jdbcType=TIMESTAMP},
-      destination_date = #{destinationDate,jdbcType=TIMESTAMP},
-      email_time = #{emailTime,jdbcType=TIMESTAMP},
-      process_time = #{processTime,jdbcType=TIMESTAMP},
-      process_flag = #{processFlag,jdbcType=TINYINT},
-      am_or_pm = #{amOrPm,jdbcType=VARCHAR},
-      pm_ro_am = #{pmRoAm,jdbcType=NCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

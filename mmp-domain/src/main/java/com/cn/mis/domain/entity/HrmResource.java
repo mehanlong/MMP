@@ -241,6 +241,18 @@ public class HrmResource {
 
     private String isnewuser;
 
+    private String ctripcardno;
+
+    private String SubAccountName;
+
+    public String getSubAccountName() {
+        return SubAccountName;
+    }
+
+    public void setSubAccountName(String subAccountName) {
+        SubAccountName = subAccountName;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -1199,5 +1211,13 @@ public class HrmResource {
 
     public void setIsnewuser(String isnewuser) {
         this.isnewuser = isnewuser == null ? null : isnewuser.trim();
+    }
+
+    public String getCtripcardno() {
+        return ctripcardno;
+    }
+
+    public void setCtripcardno(String ctripcardno) {
+        this.ctripcardno = ctripcardno == null ? null : ctripcardno.trim();
     }
 }

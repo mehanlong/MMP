@@ -1,6 +1,7 @@
 package com.cn.mis.service;
 
 import com.cn.mis.domain.entity.HrmResource;
+import com.cn.mis.domain.entity.HrmResourceWithDepartment;
 
 import java.util.List;
 
@@ -20,5 +21,9 @@ public interface IHrmResourceService {
     
     List<HrmResource> selectAll();
 
+    List<HrmResourceWithDepartment> selectAllWithDepartment();
+
     HrmResource login(HrmResource record);
+
+    int updateBath(List<Integer> list);
 }

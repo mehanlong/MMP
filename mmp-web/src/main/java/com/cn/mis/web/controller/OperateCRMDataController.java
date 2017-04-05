@@ -1,6 +1,8 @@
 package com.cn.mis.web.controller;
 
 import com.cn.mis.domain.bean.pojo.AccountList;
+import com.cn.mis.domain.bean.pojo.UserList;
+import com.cn.mis.domain.bean.pojo.UserListDetail;
 import com.cn.mis.domain.entity.Account;
 import com.cn.mis.domain.entity.HrmDepartmentWithBLOBs;
 import com.cn.mis.domain.entity.HrmResource;
@@ -68,6 +70,7 @@ public class OperateCRMDataController {
         return res;
     }
 
+
     private AccountList queryAccountList(int start){
         HashMap<String,String> params = new HashMap<String,String>();
         params.put("q",
@@ -80,10 +83,8 @@ public class OperateCRMDataController {
                         + "region,"						//区
                         + "dbcInteger1,"				//预估社区数量
                         + "dbcInteger6,"				//预估总户数
-                        + "dbcVarchar2,"				//联系人姓名
                         + "dbcReal1,"					//预估管理总面积
                         + "dbcSelect3,"					//物业类型
-                        + "dbcSVarchar1,"				//联系人电话
                         + "lockStatus,"					//状态
                         + "createdat,"					//创建日期
                         + "highSeaId"					//所属公海
@@ -121,8 +122,8 @@ public class OperateCRMDataController {
             for(Account account:first.getRecords()){
                 for(Account updateid:updateids){
                     if(account.getId().equals(updateid.getId())){
+                        account.setUpdateFlag(true);
                         if(!EqualsUtil.domainEquals(account, updateid)){
-                            account.setUpdateFlag(true);
                             setTmpAccount(account, userList, resourceList, departmentList);
                             updateList.add(account);
                         }
@@ -140,7 +141,9 @@ public class OperateCRMDataController {
             if(insertList.size()>0){
                 accountService.insertBatch(insertList);
             }
-            log.info("新增Account数据:"+insertList.size()+"  更新Account数据:"+updateList.size());
+            if (updateList.size()>0||insertList.size()>0){
+                log.info("【物业CRM->MIS】新增数据:"+insertList.size()+",更新数据:"+updateList.size());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
@@ -195,10 +198,8 @@ public class OperateCRMDataController {
                 + "region,"						//区
                 + "dbcInteger1,"				//预估社区数量
                 + "dbcInteger6,"				//预估总户数
-                + "dbcVarchar2,"				//联系人姓名
                 + "dbcReal1,"					//预估管理总面积
                 + "dbcSelect3,"					//物业类型
-                + "dbcSVarchar1,"				//联系人电话
                 + "lockStatus,"					//状态
                 + "createdat,"					//创建日期
                 + "highSeaId,"					//所属公海
@@ -290,4 +291,81 @@ public class OperateCRMDataController {
         return "success";
     }
 
+    private List<UserListDetail> getUserList(){
+        int start = 0;
+        ArrayList<UserListDetail> list = new ArrayList<UserListDetail>();
+        String res = HttpClientUtil.sendCrmSSLGetReqset("https://api.xiaoshouyi.com/data/v1/objects/user/list?start="+start+"&count=100", null,TokenThread.tonkenInfo.getToken_type()+" "+TokenThread.tonkenInfo.getAccess_token());
+        UserList first = (UserList)JsonUtil.fromJson(new TypeToken<UserList>(){}.getType(), res);
+        list.addAll(first.getRecords());
+        while(start<first.getTotleSize()){
+            start =start+100;
+            UserList tmp = getUserList(start);
+            list.addAll(tmp.getRecords());
+        }
+
+        return list;
+    }
+
+
+    private UserList getUserList(int start){
+
+        String res = HttpClientUtil.sendCrmSSLGetReqset("https://api.xiaoshouyi.com/data/v1/objects/user/list?start="+start+"&count=100", null,TokenThread.tonkenInfo.getToken_type()+" "+TokenThread.tonkenInfo.getAccess_token());
+        UserList userList = (UserList) JsonUtil.fromJson(new TypeToken<UserList>(){}.getType(), res);
+
+        return userList;
+    }
+    @RequestMapping("/syncuserdata")
+    @ResponseBody
+    public String syncUser(){
+
+        try {
+            //批量插入一次性不能超过2000个参数
+            List<UserListDetail> userList = getUserList();
+            ArrayList<User> tmp = new ArrayList<User>();
+            ArrayList<Integer> tmpids = new ArrayList<Integer>();
+            for(int i=0;i<userList.size();i++){
+                String res = HttpClientUtil.sendCrmSSLGetReqset("https://api.xiaoshouyi.com/data/v1/objects/user/info?id="+userList.get(i).getId(), null,TokenThread.tonkenInfo.getToken_type()+" "+TokenThread.tonkenInfo.getAccess_token());
+                User user = (User)JsonUtil.fromJson(new TypeToken<User>(){}.getType(), res);
+                if(user != null){
+                    tmpids.add(Integer.valueOf(user.getId()+""));
+                    tmp.add(user);
+                }
+                //每100条或最后不足100条时执行一次批量插入
+                if ((i+1)%100 == 0 || userList.size()-(i+1) == 0){
+                    List<User> updateids = userService.selectByIds(tmpids);
+                    ArrayList<User> updateList = new ArrayList<User>();
+                    ArrayList<User> insertList = new ArrayList<User>();
+                    for(User tmpUser:tmp){
+                        for(User updateid:updateids){
+                            if(updateid.getId().equals(tmpUser.getId())){
+                                tmpUser.setUpdateFlag(true);
+                                if(!EqualsUtil.domainEquals(tmpUser, updateid)){
+                                    updateList.add(tmpUser);
+                                }
+                                break;
+                            }
+                        }
+                        if(!tmpUser.isUpdateFlag()){
+                            insertList.add(tmpUser);
+                        }
+                    }
+                    if(updateList.size()>0){
+                        userService.updateBatch(updateList);
+                    }
+                    if(insertList.size()>0){
+                        userService.insertBatch(insertList);
+                    }
+                    if (updateList.size()>0||insertList.size()>0){
+                        log.info("【用户CRM->MIS】新增数据："+insertList.size()+"，更新数据："+updateList.size() );
+                    }
+                    tmpids.clear();
+                    tmp.clear();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return "success";
+    }
 }

@@ -23,16 +23,6 @@ public class XCEmailServiceImpl implements IXCEmailService {
 	}
 
 	@Override
-	public int insert(XCEmail record) {
-		return xcEmailMapper.insert(record);
-	}
-
-	@Override
-	public int insertSelective(XCEmail record) {
-		return xcEmailMapper.insertSelective(record);
-	}
-
-	@Override
 	public XCEmail selectByPrimaryKey(Integer id) {
 		return xcEmailMapper.selectByPrimaryKey(id);
 	}
@@ -45,11 +35,6 @@ public class XCEmailServiceImpl implements IXCEmailService {
 	@Override
 	public int updateByPrimaryKeySelective(XCEmail record) {
 		return xcEmailMapper.updateByPrimaryKeySelective(record);
-	}
-
-	@Override
-	public int updateByPrimaryKey(XCEmail record) {
-		return xcEmailMapper.updateByPrimaryKey(record);
 	}
 
 }

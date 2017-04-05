@@ -8,6 +8,5 @@ public class InitServlet extends HttpServlet{
   
     public void init() throws ServletException {
         new Thread(new TokenThread()).start();
-//        new Thread(new XCTicketThread()).start();
     }  
 }

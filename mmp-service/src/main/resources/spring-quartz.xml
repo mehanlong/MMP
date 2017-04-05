@@ -8,6 +8,12 @@
     <bean id="userJob" class="com.cn.mis.timetask.UserTimeTask"/>
     <bean id="mailJob" class="com.cn.mis.timetask.MailTimeTask"/>
     <bean id="syncOAJob" class="com.cn.mis.timetask.SyncOATimeTask"/>
+    <bean id="allAccountJob" class="com.cn.mis.timetask.AllAccountTimeTask"/>
+    <bean id="xcAccountJob" class="com.cn.mis.timetask.XCAccountTimeTask"/>
+    <bean id="xcApprovalJob" class="com.cn.mis.timetask.XCApprovalTimeTask"/>
+    <bean id="xcFOSettlementsJob" class="com.cn.mis.timetask.XCFlightOrderSettlementsTimeTask"/>
+    <bean id="paymentJob" class="com.cn.mis.timetask.PaymentTimeTask"/>
+
     <!-- job的配置开始 -->
     <bean id="accountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
@@ -49,6 +55,58 @@
         <!--false表示等上一个任务执行完后再开启新的任务 -->
         <property name="concurrent" value="false" />
     </bean>
+
+    <bean id="allAccountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="allAccountJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="xcAccountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="xcAccountJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="xcApprovalJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="xcApprovalJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="paymentJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="paymentJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="xcFOSettlementsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="xcFOSettlementsJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+
     <!-- 调度的配置开始 -->
     <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
     <bean id="crontestUserJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -64,7 +122,7 @@
             <ref bean="accountJobDetail" />
         </property>
         <property name="cronExpression">
-            <value>0 */1 8-20 * * ?</value>
+            <value>*/10 * 8-20 * * ?</value>
         </property>
     </bean>
     <bean id="crontestAccount20_24JobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -72,7 +130,7 @@
             <ref bean="accountJobDetail" />
         </property>
         <property name="cronExpression">
-            <value>0 */2 20-0 * * ?</value>
+            <value>0 */1 20-0 * * ?</value>
         </property>
     </bean>
     <bean id="crontestAccount0_8JobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -88,7 +146,7 @@
             <ref bean="mailJobDetail" />
         </property>
         <property name="cronExpression">
-            <value>0 */1 * * * ?</value>  <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
+            <value>0 */1 * * * ?</value>
         </property>
     </bean>
     <bean id="syncOAJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -96,9 +154,59 @@
             <ref bean="syncOADetail" />
         </property>
         <property name="cronExpression">
-            <value>0 */1 * * * ?</value>  <!-- Cron表达式“10 */1 * * * ?”意为：从10秒开始，每1分钟执行一次。  -->
+            <value>0 */1 * * * ?</value>
         </property>
     </bean>
+    <bean id="allAccountJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="allAccountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 */1 * ?</value>
+            <!--<value>10 * * * * ?</value>-->
+        </property>
+    </bean>
+    <bean id="xcAccountJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="xcAccountJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 */1 * ?</value>
+        </property>
+    </bean>
+    <bean id="xcApprovalJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="xcApprovalJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>
+        </property>
+    </bean>
+    <bean id="userJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="userJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 */1 * ?</value>
+        </property>
+    </bean>
+    <bean id="xcFOSettlementsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="xcFOSettlementsJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 1 * ?</value>
+        </property>
+    </bean>
+    <bean id="paymentJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="paymentJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>
+        </property>
+    </bean>
+
     <!-- 启动触发器的配置开始 -->
     <bean name="startQuertz" lazy-init="false" autowire="no"
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -107,8 +215,13 @@
                 <ref bean="crontestAccount8_20JobTrigger" />
                 <ref bean="crontestAccount20_24JobTrigger" />
                 <ref bean="crontestAccount0_8JobTrigger" />
+                <ref bean="userJobTrigger" />
                 <ref bean="syncOAJobTrigger" />
-                <ref bean="mailJobTrigger"/>
+                <ref bean="allAccountJobTrigger"/>
+                <ref bean="xcAccountJobTrigger"/>
+                <ref bean="xcApprovalJobTrigger"/>
+                <ref bean="xcFOSettlementsJobTrigger"/>
+                <ref bean="paymentJobTrigger"/>
             </list>
         </property>
     </bean>

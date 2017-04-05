@@ -23,10 +23,10 @@ public interface IPayRegisterService {
 
     PageInfo<PayRegister> selectAllBank(PayRegisterReq req,int pageNum,int pageSize);
 
-    int updateDCPayerAccountBatch(String payer_bank,String payer_account, String pay_date, List<Integer> list);
-    int updatePCPayerAccountBatch(String payer_bank,String payer_account, String pay_date, List<Integer> list);
-    int updateDSPayerAccountBatch(String payer_bank,String payer_account, String pay_date, List<Integer> list);
-    int updateRLPayerAccountBatch(String payer_bank,String payer_account, String pay_date, List<Integer> list);
+    int updateDCPayerAccountBatch(String payer_bank,String payer_account, String pay_date,String payer_bank_account, List<Integer> list);
+    int updatePCPayerAccountBatch(String payer_bank,String payer_account, String pay_date,String payer_bank_account, List<Integer> list);
+    int updateDSPayerAccountBatch(String payer_bank,String payer_account, String pay_date,String payer_bank_account, List<Integer> list);
+    int updateRLPayerAccountBatch(String payer_bank,String payer_account, String pay_date,String payer_bank_account, List<Integer> list);
 
     List<SubmitStatus> selectSubmitStatus();
 }

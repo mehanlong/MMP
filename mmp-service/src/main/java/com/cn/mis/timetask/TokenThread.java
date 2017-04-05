@@ -18,12 +18,12 @@ import javax.annotation.PostConstruct;
 @Log4j
 public class TokenThread implements Runnable {
 
-	private String grant_type;
-	private String username;
-	private String password;
-	private String client_id;
-	private String client_secret;
-	private String redirect_uri;
+	private static String grant_type;
+	private static String username;
+	private static String password;
+	private static String client_id;
+	private static String client_secret;
+	private static String redirect_uri;
 
 	public static TokenInfo tonkenInfo = null;
 
@@ -73,8 +73,12 @@ public class TokenThread implements Runnable {
 		}
 		
 	}
+
+	public static void resetToken(){
+		tonkenInfo = getToken();
+	}
 	
-	public TokenInfo getToken(){
+	public static TokenInfo getToken(){
 		HashMap<String,String> tokenParams = new HashMap<String,String>();
 		tokenParams.put("grant_type", grant_type);
 		tokenParams.put("client_id", client_id);

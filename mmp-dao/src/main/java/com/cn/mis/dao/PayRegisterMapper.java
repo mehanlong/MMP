@@ -22,10 +22,10 @@ public interface PayRegisterMapper {
 
     List<PayRegister> selectAllBank(PayRegisterReq req);
 
-    int updateDCPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("list") List<Integer> list);
-    int updatePCPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("list") List<Integer> list);
-    int updateDSPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("list") List<Integer> list);
-    int updateRLPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("list") List<Integer> list);
+    int updateDCPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("payer_bank_account") String payer_bank_account,@Param("list") List<Integer> list);
+    int updatePCPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("payer_bank_account") String payer_bank_account,@Param("list") List<Integer> list);
+    int updateDSPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("payer_bank_account") String payer_bank_account,@Param("list") List<Integer> list);
+    int updateRLPayerAccountBatch(@Param("payer_bank") String payer_bank,@Param("payer_account") String payer_account,@Param("pay_date") String pay_date,@Param("payer_bank_account") String payer_bank_account,@Param("list") List<Integer> list);
 
     List<SubmitStatus> selectSubmitStatus();
 }

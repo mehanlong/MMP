@@ -30,3 +30,8 @@ ul li{
 .whitelink {text-decoration:none; color:#4b72a4;}
 .whitelink:visited{text-decoration:none; color:#1f637b;}
 .whitelink:hover{text-decoration:none; color:#b7d2ff;}
+
+.tabclass{
+    margin-left: 10px;
+    margin-top: 10px;
+}

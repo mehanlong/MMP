@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import com.cn.mis.dao.HrmResourceMapper;
 import com.cn.mis.domain.entity.HrmResource;
+import com.cn.mis.domain.entity.HrmResourceWithDepartment;
 import com.cn.mis.service.IHrmResourceService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,8 +48,18 @@ public class HrmResourceServiceImpl implements IHrmResourceService {
 	}
 
 	@Override
+	public List<HrmResourceWithDepartment> selectAllWithDepartment() {
+		return hrmResourceMapper.selectAllWithDepartment();
+	}
+
+	@Override
 	public HrmResource login(HrmResource record) {
 		return hrmResourceMapper.login(record);
+	}
+
+	@Override
+	public int updateBath(List<Integer> list) {
+		return hrmResourceMapper.updateBath(list);
 	}
 
 }

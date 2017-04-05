@@ -122,6 +122,13 @@
     <result column="beforefrozen" property="beforefrozen" jdbcType="INTEGER" />
     <result column="resourcefrom" property="resourcefrom" jdbcType="VARCHAR" />
     <result column="isnewuser" property="isnewuser" jdbcType="VARCHAR" />
+    <result column="ctripcardno" property="ctripcardno" jdbcType="VARCHAR" />
+    <result column="SubAccountName" property="SubAccountName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithDepartment" type="com.cn.mis.domain.entity.HrmResourceWithDepartment" extends="BaseResultMap" >
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="locationname" property="locationname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, loginid, password, lastname, sex, birthday, nationality, systemlanguage, maritalstatus, 
@@ -140,19 +147,30 @@
     dactylogram, assistantdactylogram, passwordlock, sumpasswordwrong, oldpassword1, 
     oldpassword2, msgStyle, messagerurl, pinyinlastname, tokenkey, userUsbType, outkey, 
     adsjgs, adgs, adbm, mobileshowtype, usbstate, totalSpace, occupySpace, ecology_pinyin_search, 
-    isADAccount, accountname, notallot, beforefrozen, resourcefrom, isnewuser
+    isADAccount, accountname, notallot, beforefrozen, resourcefrom, isnewuser, ctripcardno, SubAccountName
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from HrmResource
-    where id = #{id,jdbcType=INTEGER}
-  </select>
   <select id="selectAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
     from HrmResource
   </select>
+  <select id="selectAllWithDepartment" resultMap="ResultMapWithDepartment">
+    SELECT hr.id,hr.lastname,hr.sex,hr.mobile,hr.email,hr.departmentid,hd.departmentname,hr.status,hr.SubAccountName,hl.locationname,c.name
+    FROM HrmResource hr
+    LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    LEFT JOIN HrmLocations hl ON hr.locationid = hl.id
+    INNER JOIN FnaCostCenterDtl cd ON cd.objId =hr.departmentid
+    INNER JOIN FnaCostCenter c ON c.id =cd.fccId
+    WHERE hr.id = 685
+  </select>
+  <update id="updateBath" parameterType="java.util.List">
+    UPDATE HrmResource
+    SET updateflag = 0
+    WHERE
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item}
+    </foreach>
+  </update>
 
   <select id="login" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.HrmResource">
     SELECT
@@ -160,7 +178,12 @@
     FROM HrmResource
     WHERE loginid = #{loginid,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}
   </select>
-  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from HrmResource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from HrmResource
     where id = #{id,jdbcType=INTEGER}
@@ -205,8 +228,8 @@
       adbm, mobileshowtype, usbstate, 
       totalSpace, occupySpace, ecology_pinyin_search, 
       isADAccount, accountname, notallot, 
-      beforefrozen, resourcefrom, isnewuser
-      )
+      beforefrozen, resourcefrom, isnewuser, 
+      ctripcardno)
     values (#{id,jdbcType=INTEGER}, #{loginid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{lastname,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=CHAR}, 
       #{nationality,jdbcType=INTEGER}, #{systemlanguage,jdbcType=INTEGER}, #{maritalstatus,jdbcType=CHAR}, 
@@ -246,8 +269,8 @@
       #{adbm,jdbcType=VARCHAR}, #{mobileshowtype,jdbcType=INTEGER}, #{usbstate,jdbcType=INTEGER}, 
       #{totalspace,jdbcType=DOUBLE}, #{occupyspace,jdbcType=DOUBLE}, #{ecologyPinyinSearch,jdbcType=VARCHAR}, 
       #{isadaccount,jdbcType=CHAR}, #{accountname,jdbcType=VARCHAR}, #{notallot,jdbcType=INTEGER}, 
-      #{beforefrozen,jdbcType=INTEGER}, #{resourcefrom,jdbcType=VARCHAR}, #{isnewuser,jdbcType=VARCHAR}
-      )
+      #{beforefrozen,jdbcType=INTEGER}, #{resourcefrom,jdbcType=VARCHAR}, #{isnewuser,jdbcType=VARCHAR}, 
+      #{ctripcardno,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.HrmResource" >
     insert into HrmResource
@@ -612,6 +635,9 @@
       <if test="isnewuser != null" >
         isnewuser,
       </if>
+      <if test="ctripcardno != null" >
+        ctripcardno,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -973,6 +999,9 @@
       </if>
       <if test="isnewuser != null" >
         #{isnewuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ctripcardno != null" >
+        #{ctripcardno,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -1336,6 +1365,9 @@
       <if test="isnewuser != null" >
         isnewuser = #{isnewuser,jdbcType=VARCHAR},
       </if>
+      <if test="ctripcardno != null" >
+        ctripcardno = #{ctripcardno,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -1459,7 +1491,8 @@
       notallot = #{notallot,jdbcType=INTEGER},
       beforefrozen = #{beforefrozen,jdbcType=INTEGER},
       resourcefrom = #{resourcefrom,jdbcType=VARCHAR},
-      isnewuser = #{isnewuser,jdbcType=VARCHAR}
+      isnewuser = #{isnewuser,jdbcType=VARCHAR},
+      ctripcardno = #{ctripcardno,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

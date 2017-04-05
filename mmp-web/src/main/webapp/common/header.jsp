@@ -9,7 +9,7 @@
 <!--<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
 
 <!-- easyui -->
-<link rel="stylesheet" type="text/css" href="${ctx}/css/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="${ctx}/css/themes/material/easyui.css"/>
 <link rel="stylesheet" type="text/css" href="${ctx}/css/themes/icon.css"/>
 <script type="text/javascript" src="${ctx}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/jquery.easyui.min.js"></script>

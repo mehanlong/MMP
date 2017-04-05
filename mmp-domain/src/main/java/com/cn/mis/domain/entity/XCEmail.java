@@ -35,6 +35,16 @@ public class XCEmail {
 
     private String pmRoAm;
 
+    private String processCode;
+
+    public String getProcessCode() {
+        return processCode;
+    }
+
+    public void setProcessCode(String processCode) {
+        this.processCode = processCode;
+    }
+
     public Integer getId() {
         return id;
     }

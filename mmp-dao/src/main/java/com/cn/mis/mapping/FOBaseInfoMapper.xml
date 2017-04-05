@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.FOBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.FOBaseInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Uid" property="Uid" jdbcType="VARCHAR" />
+    <result column="Rank" property="Rank" jdbcType="VARCHAR" />
+    <result column="ConfirmType" property="ConfirmType" jdbcType="VARCHAR" />
+    <result column="ConfirmType2" property="ConfirmType2" jdbcType="VARCHAR" />
+    <result column="ConfirmPerson" property="ConfirmPerson" jdbcType="VARCHAR" />
+    <result column="ConfirmPerson2" property="ConfirmPerson2" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonCC" property="ConfirmPersonCC" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonCC2" property="ConfirmPersonCC2" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonName" property="ConfirmPersonName" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonName2" property="ConfirmPersonName2" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonCCName" property="ConfirmPersonCCName" jdbcType="VARCHAR" />
+    <result column="ConfirmPersonCCName2" property="ConfirmPersonCCName2" jdbcType="VARCHAR" />
+    <result column="CostCenter" property="CostCenter" jdbcType="VARCHAR" />
+    <result column="CostCenter2" property="CostCenter2" jdbcType="VARCHAR" />
+    <result column="CostCenter3" property="CostCenter3" jdbcType="VARCHAR" />
+    <result column="DefineFlag" property="DefineFlag" jdbcType="VARCHAR" />
+    <result column="DefineFlag2" property="DefineFlag2" jdbcType="VARCHAR" />
+    <result column="EmployeeID" property="EmployeeID" jdbcType="VARCHAR" />
+    <result column="WorkCity" property="WorkCity" jdbcType="VARCHAR" />
+    <result column="Dept1" property="Dept1" jdbcType="VARCHAR" />
+    <result column="Dept2" property="Dept2" jdbcType="VARCHAR" />
+    <result column="Dept3" property="Dept3" jdbcType="VARCHAR" />
+    <result column="Dept4" property="Dept4" jdbcType="VARCHAR" />
+    <result column="Dept5" property="Dept5" jdbcType="VARCHAR" />
+    <result column="Dept6" property="Dept6" jdbcType="VARCHAR" />
+    <result column="CtripCardNo" property="CtripCardNo" jdbcType="VARCHAR" />
+    <result column="Name" property="Name" jdbcType="VARCHAR" />
+    <result column="FlightClass" property="FlightClass" jdbcType="VARCHAR" />
+    <result column="IsOnline" property="IsOnline" jdbcType="VARCHAR" />
+    <result column="NickName" property="NickName" jdbcType="VARCHAR" />
+    <result column="JourneyID" property="JourneyID" jdbcType="VARCHAR" />
+    <result column="OrderStatus" property="OrderStatus" jdbcType="VARCHAR" />
+    <result column="PrintTicketTime" property="PrintTicketTime" jdbcType="VARCHAR" />
+    <result column="OrderDate" property="OrderDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, Uid, Rank, ConfirmType, ConfirmType2, ConfirmPerson, ConfirmPerson2, ConfirmPersonCC, 
+    ConfirmPersonCC2, ConfirmPersonName, ConfirmPersonName2, ConfirmPersonCCName, ConfirmPersonCCName2, 
+    CostCenter, CostCenter2, CostCenter3, DefineFlag, DefineFlag2, EmployeeID, WorkCity, 
+    Dept1, Dept2, Dept3, Dept4, Dept5, Dept6, CtripCardNo, Name, FlightClass, IsOnline, 
+    NickName, JourneyID, OrderStatus, PrintTicketTime, OrderDate
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qd_FlightOrderBaseInfo
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into qd_FlightOrderBaseInfo (id, Uid, Rank,
+    ConfirmType, ConfirmType2, ConfirmPerson,
+    ConfirmPerson2, ConfirmPersonCC, ConfirmPersonCC2,
+    ConfirmPersonName, ConfirmPersonName2,
+    ConfirmPersonCCName, ConfirmPersonCCName2,
+    CostCenter, CostCenter2, CostCenter3,
+    DefineFlag, DefineFlag2, EmployeeID,
+    WorkCity, Dept1, Dept2,
+    Dept3, Dept4, Dept5,
+    Dept6, CtripCardNo, Name,
+    FlightClass, IsOnline, NickName,
+    JourneyID, OrderStatus, PrintTicketTime,
+    OrderDate)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.id,jdbcType=INTEGER}, #{item.Uid,jdbcType=VARCHAR}, #{item.Rank,jdbcType=VARCHAR},
+      #{item.ConfirmType,jdbcType=VARCHAR}, #{item.ConfirmType2,jdbcType=VARCHAR}, #{item.ConfirmPerson,jdbcType=VARCHAR},
+      #{item.ConfirmPerson2,jdbcType=VARCHAR}, #{item.ConfirmPersonCC,jdbcType=VARCHAR}, #{item.ConfirmPersonCC2,jdbcType=VARCHAR},
+      #{item.ConfirmPersonName,jdbcType=VARCHAR}, #{item.ConfirmPersonName2,jdbcType=VARCHAR},
+      #{item.ConfirmPersonCCName,jdbcType=VARCHAR}, #{item.ConfirmPersonCCName2,jdbcType=VARCHAR},
+      #{item.CostCenter,jdbcType=VARCHAR}, #{item.CostCenter2,jdbcType=VARCHAR}, #{item.CostCenter3,jdbcType=VARCHAR},
+      #{item.DefineFlag,jdbcType=VARCHAR}, #{item.DefineFlag2,jdbcType=VARCHAR}, #{item.EmployeeID,jdbcType=VARCHAR},
+      #{item.WorkCity,jdbcType=VARCHAR}, #{item.Dept1,jdbcType=VARCHAR}, #{item.Dept2,jdbcType=VARCHAR},
+      #{item.Dept3,jdbcType=VARCHAR}, #{item.Dept4,jdbcType=VARCHAR}, #{item.Dept5,jdbcType=VARCHAR},
+      #{item.Dept6,jdbcType=VARCHAR}, #{item.CtripCardNo,jdbcType=VARCHAR}, #{item.Name,jdbcType=VARCHAR},
+      #{item.FlightClass,jdbcType=VARCHAR}, #{item.IsOnline,jdbcType=VARCHAR}, #{item.NickName,jdbcType=VARCHAR},
+      #{item.JourneyID,jdbcType=VARCHAR}, #{item.OrderStatus,jdbcType=VARCHAR}, #{item.PrintTicketTime,jdbcType=VARCHAR},
+      #{item.OrderDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <update id="updateBatch" parameterType="java.util.List" >
+    update qd_FlightOrderBaseInfo
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="Uid = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Uid != null" >
+            Uid = #{Uid},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Rank = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Rank != null" >
+            Rank = #{Rank},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmType = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmType != null" >
+            ConfirmType = #{ConfirmType},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmType2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmType2 != null" >
+            ConfirmType2 = #{ConfirmType2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPerson = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPerson != null" >
+            ConfirmPerson = #{ConfirmPerson},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPerson2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPerson2 != null" >
+            ConfirmPerson2 = #{ConfirmPerson2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonCC = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonCC != null" >
+            ConfirmPersonCC = #{ConfirmPersonCC},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonCC2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonCC2 != null" >
+            ConfirmPersonCC2 = #{ConfirmPersonCC2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonName = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonName != null" >
+            ConfirmPersonName = #{ConfirmPersonName},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonName2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonName2 != null" >
+            ConfirmPersonName2 = #{ConfirmPersonName2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonCCName = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonCCName != null" >
+            ConfirmPersonCCName = #{ConfirmPersonCCName},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ConfirmPersonCCName2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="ConfirmPersonCCName2 != null" >
+            ConfirmPersonCCName2 = #{ConfirmPersonCCName2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="CostCenter = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="CostCenter != null" >
+            CostCenter = #{CostCenter},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="CostCenter2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="CostCenter2 != null" >
+            CostCenter2 = #{CostCenter2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="CostCenter3 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="CostCenter3 != null" >
+            CostCenter3 = #{CostCenter3},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="DefineFlag = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="DefineFlag != null" >
+            DefineFlag = #{DefineFlag},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="DefineFlag2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="DefineFlag2 != null" >
+            DefineFlag2 = #{DefineFlag2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="EmployeeID = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="EmployeeID != null" >
+            EmployeeID = #{EmployeeID},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="WorkCity = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="WorkCity != null" >
+            WorkCity = #{WorkCity},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept1 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept1 != null" >
+            Dept1 = #{Dept1},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept2 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept2 != null" >
+            Dept2 = #{Dept2},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept3 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept3 != null" >
+            Dept3 = #{Dept3},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept4 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept4 != null" >
+            Dept4 = #{Dept4},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept5 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept5 != null" >
+            Dept5 = #{Dept5},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Dept6 = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Dept6 != null" >
+            Dept6 = #{Dept6},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="CtripCardNo = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="CtripCardNo != null" >
+            CtripCardNo = #{CtripCardNo},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="Name = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="Name != null" >
+            Name = #{Name},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="FlightClass = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="FlightClass != null" >
+            FlightClass = #{FlightClass},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="IsOnline = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="IsOnline != null" >
+            IsOnline = #{IsOnline},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="NickName = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="NickName != null" >
+            NickName = #{NickName},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="JourneyID = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="JourneyID != null" >
+            JourneyID = #{JourneyID},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="OrderStatus = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="OrderStatus != null" >
+            OrderStatus = #{OrderStatus},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="PrintTicketTime = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="PrintTicketTime != null" >
+            PrintTicketTime = #{PrintTicketTime},
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="OrderDate = case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="OrderDate != null" >
+            OrderDate = #{OrderDate},
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item.id}
+    </foreach>
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qd_FlightOrderBaseInfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qd_FlightOrderBaseInfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.FOBaseInfo" >
+    insert into qd_FlightOrderBaseInfo (id, Uid, Rank, 
+      ConfirmType, ConfirmType2, ConfirmPerson, 
+      ConfirmPerson2, ConfirmPersonCC, ConfirmPersonCC2, 
+      ConfirmPersonName, ConfirmPersonName2, 
+      ConfirmPersonCCName, ConfirmPersonCCName2, 
+      CostCenter, CostCenter2, CostCenter3, 
+      DefineFlag, DefineFlag2, EmployeeID, 
+      WorkCity, Dept1, Dept2, 
+      Dept3, Dept4, Dept5, 
+      Dept6, CtripCardNo, Name, 
+      FlightClass, IsOnline, NickName, 
+      JourneyID, OrderStatus, PrintTicketTime, 
+      OrderDate)
+    values (#{id,jdbcType=INTEGER}, #{Uid,jdbcType=VARCHAR}, #{Rank,jdbcType=VARCHAR}, 
+      #{ConfirmType,jdbcType=VARCHAR}, #{ConfirmType2,jdbcType=VARCHAR}, #{ConfirmPerson,jdbcType=VARCHAR}, 
+      #{ConfirmPerson2,jdbcType=VARCHAR}, #{ConfirmPersonCC,jdbcType=VARCHAR}, #{ConfirmPersonCC2,jdbcType=VARCHAR}, 
+      #{ConfirmPersonName,jdbcType=VARCHAR}, #{ConfirmPersonName2,jdbcType=VARCHAR}, 
+      #{ConfirmPersonCCName,jdbcType=VARCHAR}, #{ConfirmPersonCCName2,jdbcType=VARCHAR}, 
+      #{CostCenter,jdbcType=VARCHAR}, #{CostCenter2,jdbcType=VARCHAR}, #{CostCenter3,jdbcType=VARCHAR}, 
+      #{DefineFlag,jdbcType=VARCHAR}, #{DefineFlag2,jdbcType=VARCHAR}, #{EmployeeID,jdbcType=VARCHAR}, 
+      #{WorkCity,jdbcType=VARCHAR}, #{Dept1,jdbcType=VARCHAR}, #{Dept2,jdbcType=VARCHAR}, 
+      #{Dept3,jdbcType=VARCHAR}, #{Dept4,jdbcType=VARCHAR}, #{Dept5,jdbcType=VARCHAR}, 
+      #{Dept6,jdbcType=VARCHAR}, #{CtripCardNo,jdbcType=VARCHAR}, #{Name,jdbcType=VARCHAR}, 
+      #{FlightClass,jdbcType=VARCHAR}, #{IsOnline,jdbcType=VARCHAR}, #{NickName,jdbcType=VARCHAR}, 
+      #{JourneyID,jdbcType=VARCHAR}, #{OrderStatus,jdbcType=VARCHAR}, #{PrintTicketTime,jdbcType=VARCHAR}, 
+      #{OrderDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.FOBaseInfo" >
+    insert into qd_FlightOrderBaseInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="Uid != null" >
+        Uid,
+      </if>
+      <if test="Rank != null" >
+        Rank,
+      </if>
+      <if test="ConfirmType != null" >
+        ConfirmType,
+      </if>
+      <if test="ConfirmType2 != null" >
+        ConfirmType2,
+      </if>
+      <if test="ConfirmPerson != null" >
+        ConfirmPerson,
+      </if>
+      <if test="ConfirmPerson2 != null" >
+        ConfirmPerson2,
+      </if>
+      <if test="ConfirmPersonCC != null" >
+        ConfirmPersonCC,
+      </if>
+      <if test="ConfirmPersonCC2 != null" >
+        ConfirmPersonCC2,
+      </if>
+      <if test="ConfirmPersonName != null" >
+        ConfirmPersonName,
+      </if>
+      <if test="ConfirmPersonName2 != null" >
+        ConfirmPersonName2,
+      </if>
+      <if test="ConfirmPersonCCName != null" >
+        ConfirmPersonCCName,
+      </if>
+      <if test="ConfirmPersonCCName2 != null" >
+        ConfirmPersonCCName2,
+      </if>
+      <if test="CostCenter != null" >
+        CostCenter,
+      </if>
+      <if test="CostCenter2 != null" >
+        CostCenter2,
+      </if>
+      <if test="CostCenter3 != null" >
+        CostCenter3,
+      </if>
+      <if test="DefineFlag != null" >
+        DefineFlag,
+      </if>
+      <if test="DefineFlag2 != null" >
+        DefineFlag2,
+      </if>
+      <if test="EmployeeID != null" >
+        EmployeeID,
+      </if>
+      <if test="WorkCity != null" >
+        WorkCity,
+      </if>
+      <if test="Dept1 != null" >
+        Dept1,
+      </if>
+      <if test="Dept2 != null" >
+        Dept2,
+      </if>
+      <if test="Dept3 != null" >
+        Dept3,
+      </if>
+      <if test="Dept4 != null" >
+        Dept4,
+      </if>
+      <if test="Dept5 != null" >
+        Dept5,
+      </if>
+      <if test="Dept6 != null" >
+        Dept6,
+      </if>
+      <if test="CtripCardNo != null" >
+        CtripCardNo,
+      </if>
+      <if test="Name != null" >
+        Name,
+      </if>
+      <if test="FlightClass != null" >
+        FlightClass,
+      </if>
+      <if test="IsOnline != null" >
+        IsOnline,
+      </if>
+      <if test="NickName != null" >
+        NickName,
+      </if>
+      <if test="JourneyID != null" >
+        JourneyID,
+      </if>
+      <if test="OrderStatus != null" >
+        OrderStatus,
+      </if>
+      <if test="PrintTicketTime != null" >
+        PrintTicketTime,
+      </if>
+      <if test="OrderDate != null" >
+        OrderDate,
+      </if>
+      <if test="RecordID != null">
+        RecordID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="Uid != null" >
+        #{Uid,jdbcType=VARCHAR},
+      </if>
+      <if test="Rank != null" >
+        #{Rank,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmType != null" >
+        #{ConfirmType,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmType2 != null" >
+        #{ConfirmType2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPerson != null" >
+        #{ConfirmPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPerson2 != null" >
+        #{ConfirmPerson2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCC != null" >
+        #{ConfirmPersonCC,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCC2 != null" >
+        #{ConfirmPersonCC2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonName != null" >
+        #{ConfirmPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonName2 != null" >
+        #{ConfirmPersonName2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCCName != null" >
+        #{ConfirmPersonCCName,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCCName2 != null" >
+        #{ConfirmPersonCCName2,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter != null" >
+        #{CostCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter2 != null" >
+        #{CostCenter2,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter3 != null" >
+        #{CostCenter3,jdbcType=VARCHAR},
+      </if>
+      <if test="DefineFlag != null" >
+        #{DefineFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="DefineFlag2 != null" >
+        #{DefineFlag2,jdbcType=VARCHAR},
+      </if>
+      <if test="EmployeeID != null" >
+        #{EmployeeID,jdbcType=VARCHAR},
+      </if>
+      <if test="WorkCity != null" >
+        #{WorkCity,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept1 != null" >
+        #{Dept1,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept2 != null" >
+        #{Dept2,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept3 != null" >
+        #{Dept3,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept4 != null" >
+        #{Dept4,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept5 != null" >
+        #{Dept5,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept6 != null" >
+        #{Dept6,jdbcType=VARCHAR},
+      </if>
+      <if test="CtripCardNo != null" >
+        #{CtripCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="Name != null" >
+        #{Name,jdbcType=VARCHAR},
+      </if>
+      <if test="FlightClass != null" >
+        #{FlightClass,jdbcType=VARCHAR},
+      </if>
+      <if test="IsOnline != null" >
+        #{IsOnline,jdbcType=VARCHAR},
+      </if>
+      <if test="NickName != null" >
+        #{NickName,jdbcType=VARCHAR},
+      </if>
+      <if test="JourneyID != null" >
+        #{JourneyID,jdbcType=VARCHAR},
+      </if>
+      <if test="OrderStatus != null" >
+        #{OrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="PrintTicketTime != null" >
+        #{PrintTicketTime,jdbcType=VARCHAR},
+      </if>
+      <if test="OrderDate != null" >
+        #{OrderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="RecordID != null">
+        #{RecordID}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.FOBaseInfo" >
+    update qd_FlightOrderBaseInfo
+    <set >
+      <if test="Uid != null" >
+        Uid = #{Uid,jdbcType=VARCHAR},
+      </if>
+      <if test="Rank != null" >
+        Rank = #{Rank,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmType != null" >
+        ConfirmType = #{ConfirmType,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmType2 != null" >
+        ConfirmType2 = #{ConfirmType2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPerson != null" >
+        ConfirmPerson = #{ConfirmPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPerson2 != null" >
+        ConfirmPerson2 = #{ConfirmPerson2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCC != null" >
+        ConfirmPersonCC = #{ConfirmPersonCC,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCC2 != null" >
+        ConfirmPersonCC2 = #{ConfirmPersonCC2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonName != null" >
+        ConfirmPersonName = #{ConfirmPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonName2 != null" >
+        ConfirmPersonName2 = #{ConfirmPersonName2,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCCName != null" >
+        ConfirmPersonCCName = #{ConfirmPersonCCName,jdbcType=VARCHAR},
+      </if>
+      <if test="ConfirmPersonCCName2 != null" >
+        ConfirmPersonCCName2 = #{ConfirmPersonCCName2,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter != null" >
+        CostCenter = #{CostCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter2 != null" >
+        CostCenter2 = #{CostCenter2,jdbcType=VARCHAR},
+      </if>
+      <if test="CostCenter3 != null" >
+        CostCenter3 = #{CostCenter3,jdbcType=VARCHAR},
+      </if>
+      <if test="DefineFlag != null" >
+        DefineFlag = #{DefineFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="DefineFlag2 != null" >
+        DefineFlag2 = #{DefineFlag2,jdbcType=VARCHAR},
+      </if>
+      <if test="EmployeeID != null" >
+        EmployeeID = #{EmployeeID,jdbcType=VARCHAR},
+      </if>
+      <if test="WorkCity != null" >
+        WorkCity = #{WorkCity,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept1 != null" >
+        Dept1 = #{Dept1,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept2 != null" >
+        Dept2 = #{Dept2,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept3 != null" >
+        Dept3 = #{Dept3,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept4 != null" >
+        Dept4 = #{Dept4,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept5 != null" >
+        Dept5 = #{Dept5,jdbcType=VARCHAR},
+      </if>
+      <if test="Dept6 != null" >
+        Dept6 = #{Dept6,jdbcType=VARCHAR},
+      </if>
+      <if test="CtripCardNo != null" >
+        CtripCardNo = #{CtripCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="Name != null" >
+        Name = #{Name,jdbcType=VARCHAR},
+      </if>
+      <if test="FlightClass != null" >
+        FlightClass = #{FlightClass,jdbcType=VARCHAR},
+      </if>
+      <if test="IsOnline != null" >
+        IsOnline = #{IsOnline,jdbcType=VARCHAR},
+      </if>
+      <if test="NickName != null" >
+        NickName = #{NickName,jdbcType=VARCHAR},
+      </if>
+      <if test="JourneyID != null" >
+        JourneyID = #{JourneyID,jdbcType=VARCHAR},
+      </if>
+      <if test="OrderStatus != null" >
+        OrderStatus = #{OrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="PrintTicketTime != null" >
+        PrintTicketTime = #{PrintTicketTime,jdbcType=VARCHAR},
+      </if>
+      <if test="OrderDate != null" >
+        OrderDate = #{OrderDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.FOBaseInfo" >
+    update qd_FlightOrderBaseInfo
+    set Uid = #{Uid,jdbcType=VARCHAR},
+      Rank = #{Rank,jdbcType=VARCHAR},
+      ConfirmType = #{ConfirmType,jdbcType=VARCHAR},
+      ConfirmType2 = #{ConfirmType2,jdbcType=VARCHAR},
+      ConfirmPerson = #{ConfirmPerson,jdbcType=VARCHAR},
+      ConfirmPerson2 = #{ConfirmPerson2,jdbcType=VARCHAR},
+      ConfirmPersonCC = #{ConfirmPersonCC,jdbcType=VARCHAR},
+      ConfirmPersonCC2 = #{ConfirmPersonCC2,jdbcType=VARCHAR},
+      ConfirmPersonName = #{ConfirmPersonName,jdbcType=VARCHAR},
+      ConfirmPersonName2 = #{ConfirmPersonName2,jdbcType=VARCHAR},
+      ConfirmPersonCCName = #{ConfirmPersonCCName,jdbcType=VARCHAR},
+      ConfirmPersonCCName2 = #{ConfirmPersonCCName2,jdbcType=VARCHAR},
+      CostCenter = #{CostCenter,jdbcType=VARCHAR},
+      CostCenter2 = #{CostCenter2,jdbcType=VARCHAR},
+      CostCenter3 = #{CostCenter3,jdbcType=VARCHAR},
+      DefineFlag = #{DefineFlag,jdbcType=VARCHAR},
+      DefineFlag2 = #{DefineFlag2,jdbcType=VARCHAR},
+      EmployeeID = #{EmployeeID,jdbcType=VARCHAR},
+      WorkCity = #{WorkCity,jdbcType=VARCHAR},
+      Dept1 = #{Dept1,jdbcType=VARCHAR},
+      Dept2 = #{Dept2,jdbcType=VARCHAR},
+      Dept3 = #{Dept3,jdbcType=VARCHAR},
+      Dept4 = #{Dept4,jdbcType=VARCHAR},
+      Dept5 = #{Dept5,jdbcType=VARCHAR},
+      Dept6 = #{Dept6,jdbcType=VARCHAR},
+      CtripCardNo = #{CtripCardNo,jdbcType=VARCHAR},
+      Name = #{Name,jdbcType=VARCHAR},
+      FlightClass = #{FlightClass,jdbcType=VARCHAR},
+      IsOnline = #{IsOnline,jdbcType=VARCHAR},
+      NickName = #{NickName,jdbcType=VARCHAR},
+      JourneyID = #{JourneyID,jdbcType=VARCHAR},
+      OrderStatus = #{OrderStatus,jdbcType=VARCHAR},
+      PrintTicketTime = #{PrintTicketTime,jdbcType=VARCHAR},
+      OrderDate = #{OrderDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

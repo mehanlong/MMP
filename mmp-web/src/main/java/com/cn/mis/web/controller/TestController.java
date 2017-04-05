@@ -58,7 +58,11 @@ public class TestController {
     private Object login(HrmResource hrmResource){
         hrmResource.setPassword(MD5Util.md5(hrmResource.getPassword()));
         HrmResource hrmResource1 = iHrmResourceService.login(hrmResource);
-        return BaseResult.ok("登陆成功",hrmResource1);
+        if (hrmResource1 != null){
+            return BaseResult.ok("登陆成功",hrmResource1);
+        } else {
+            return BaseResult.fail("用户名或密码错误");
+        }
     }
 
     @RequestMapping("/getTopMenu")

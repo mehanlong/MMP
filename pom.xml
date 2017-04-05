@@ -217,6 +217,11 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>xiecheng.openapicalls</groupId>
+            <artifactId>webapi</artifactId>
+            <version>1.3</version>
+        </dependency>
     </dependencies>
     <modules>
         <module>mmp-common</module>

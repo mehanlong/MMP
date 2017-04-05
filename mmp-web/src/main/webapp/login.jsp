@@ -23,6 +23,8 @@
                 success: function (data) {
                     if (data.code == 200) {
                         window.location.href = "${ctx}/index.jsp";
+                    } else {
+                        alert(data.msg);
                     }
                 }
             });
@@ -31,7 +33,7 @@
 </head>
 <body>
 <div style="width:600px;margin:150px auto;">
-    <div class="easyui-panel" title="欢迎登录"
+    <div class="easyui-panel" title="财务管理"
          style="width:500px;height:300px;padding:10px;text-align:center; overflow:hidden;"
          data-options="closable:false,collapsible:false,minimizable:false,maximizable:false">
         <form id="loginForm" method="post">
@@ -41,14 +43,14 @@
                     <td></td>
                     <td><label>登录名:</label></td>
                     <td><input class="easyui-textbox" type="text" id="loginid" name="loginid"
-                               data-options="required:true,value:'admin'"/></td>
+                               data-options="required:true,value:''"/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td><label>密&nbsp;码:</label></td>
                     <td><input class="easyui-passwordbox" type="text" id="password" name="password"
-                               data-options="required:true,value:'123456'"/></td>
+                               data-options="required:true,value:''"/></td>
                     <td></td>
                 </tr>
                 <tr style="height: 20px;"></tr>

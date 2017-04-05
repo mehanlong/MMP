@@ -28,12 +28,17 @@ public class PayRegister {
     private String account;
     private String pay_date;
     private BigDecimal pay_amount;
-    //日常合同
+    private String payer_bank_account;
+    //合同
     private BigDecimal amount;
     private String payment_code;
     //领借款
     private BigDecimal loan_amount;
 
+    //新增
+    private String revendor;
+    private String reaccount;
+    private String bank_account;
 
     //选择银行
     private Integer bank_id;

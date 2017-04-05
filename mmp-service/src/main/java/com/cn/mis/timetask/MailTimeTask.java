@@ -33,6 +33,7 @@ import com.sun.mail.util.MailSSLSocketFactory;
 
 import lombok.extern.log4j.Log4j;
 @Log4j
+//@Deprecated
 @Component("mailTimeTask")
 public class MailTimeTask {
 	private String account;		//登录用户名
@@ -117,7 +118,7 @@ public class MailTimeTask {
 			prop.put("mail.smtp.ssl.socketFactory", sf);
 			//
 			Session session = Session.getDefaultInstance(prop, new MyAuthenricator(account, pass));
-			session.setDebug(true);
+			session.setDebug(false);
 			String[] toList = toListStr.split(",");
 			try {
 				Transport transport = session.getTransport();

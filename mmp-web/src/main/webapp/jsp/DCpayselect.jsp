@@ -2,7 +2,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="dcbankselect" fit="true">
-    <table id="dctbsbank" style="width: auto; height: auto; " cellspacing="0" border="0">
+    <table id="dctbsbank" class="tabclass" style="width: auto; height: auto; " cellspacing="0" border="0">
         <tr>
             <td>账号：</td><td><input  id="dcbkaccount" name="account"  value=""  style="width: 100px;"></td>
             <td>银行名称：</td><td><input  id="dcbkbank" name="bank"  value=""  style="width: 100px;"></td>
@@ -10,6 +10,7 @@
         </tr>
         <tr>
             <td><button id="dcbkbuts" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="dcbksearch()">查询</button></td>
+            <td><button id="dcbksel" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" onclick="dcbksel()">确定</button></td>
         </tr>
     </table>
     <br>
@@ -18,11 +19,43 @@
 </div>
 <script type="text/javascript" charset="utf-8">
     function dcbksearch(){
-        $('#dcbkdgbank').datagrid({url:'/payregister/queryBankOption/'+new Date()});
+//        $('#dcbkdgbank').datagrid({url:'/payregister/queryBankOption/'+new Date()});
+        $('#dcbkdgbank').datagrid('clearSelections');
         $('#dcbkdgbank').datagrid('load',{
             "account": $("#dcbkaccount").val(),
             "bank": $("#dcbkbank").val(),
             "vendor": dcbankvendor
+        });
+    }
+
+    function dcbksel(){
+        var dcbkids = [];
+        var dcbkrows = $('#dcdg').datagrid('getSelections');
+        for(var i=0; i<dcbkrows.length; i++){
+            var dcbkrow = dcbkrows[i];
+            dcbkids.push(dcbkrow.id);
+        }
+        var dcbkbanks = $('#dcbkdgbank').datagrid('getSelected');
+        $.ajax({
+            url:"/payregister/changebank/0/"+new Date(),
+            type:"POST",
+            dateType:"JSON",
+            data:{"ids":dcbkids.toString(),
+                "bankid":dcbkbanks.bank_id,
+                "account":dcbkbanks.account,
+                "bank":dcbkbanks.bank
+            },
+            async:false,
+            success:function(data){
+                if (data.code == 200){
+                    $('#dcdg').datagrid('clearSelections');
+                    $('#dcdia').dialog('close');
+                    $('#dcdg').datagrid('reload');
+                } else {
+                    $.messager.alert('提示',data.msg);
+                }
+
+            }
         });
     }
 
@@ -47,40 +80,40 @@
                 {field:"vendor",title:'付款单位',width:150,align:'center'}
 
             ]],
-            toolbar: [{
-                text:'选择',
-                iconCls: 'icon-edit',
-                handler: function(){
-                    var dcbkids = [];
-                    var dcbkrows = $('#dcdg').datagrid('getSelections');
-                    for(var i=0; i<dcbkrows.length; i++){
-                        var dcbkrow = dcbkrows[i];
-                        dcbkids.push(dcbkrow.id);
-                    }
-                    var dcbkbanks = $('#dcbkdgbank').datagrid('getSelected');
-                    $.ajax({
-                        url:"/payregister/changebank/0/"+new Date(),
-                        type:"POST",
-                        dateType:"JSON",
-                        data:{"ids":dcbkids.toString(),
-                            "bankid":dcbkbanks.bank_id,
-                            "account":dcbkbanks.account,
-                            "bank":dcbkbanks.bank
-                        },
-                        async:false,
-                        success:function(data){
-                            if (data.code == 200){
-                                $('#dcdia').dialog('close');
-                                $('#dcdg').datagrid('reload');
-                            } else {
-                                alert(data.msg);
-                            }
-
-                        }
-                    });
-
-                }
-            }],
+//            toolbar: [{
+//                text:'选择',
+//                iconCls: 'icon-edit',
+//                handler: function(){
+//                    var dcbkids = [];
+//                    var dcbkrows = $('#dcdg').datagrid('getSelections');
+//                    for(var i=0; i<dcbkrows.length; i++){
+//                        var dcbkrow = dcbkrows[i];
+//                        dcbkids.push(dcbkrow.id);
+//                    }
+//                    var dcbkbanks = $('#dcbkdgbank').datagrid('getSelected');
+//                    $.ajax({
+//                        url:"/payregister/changebank/0/"+new Date(),
+//                        type:"POST",
+//                        dateType:"JSON",
+//                        data:{"ids":dcbkids.toString(),
+//                            "bankid":dcbkbanks.bank_id,
+//                            "account":dcbkbanks.account,
+//                            "bank":dcbkbanks.bank
+//                        },
+//                        async:false,
+//                        success:function(data){
+//                            if (data.code == 200){
+//                                $('#dcdia').dialog('close');
+//                                $('#dcdg').datagrid('reload');
+//                            } else {
+//                                alert(data.msg);
+//                            }
+//
+//                        }
+//                    });
+//
+//                }
+//            }],
         });
     });
 </script>
