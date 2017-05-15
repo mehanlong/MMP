@@ -1,0 +1,1517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.HrmResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.HrmResource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginid" property="loginid" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="CHAR" />
+    <result column="nationality" property="nationality" jdbcType="INTEGER" />
+    <result column="systemlanguage" property="systemlanguage" jdbcType="INTEGER" />
+    <result column="maritalstatus" property="maritalstatus" jdbcType="CHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="mobilecall" property="mobilecall" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="locationid" property="locationid" jdbcType="INTEGER" />
+    <result column="workroom" property="workroom" jdbcType="VARCHAR" />
+    <result column="homeaddress" property="homeaddress" jdbcType="VARCHAR" />
+    <result column="resourcetype" property="resourcetype" jdbcType="CHAR" />
+    <result column="startdate" property="startdate" jdbcType="CHAR" />
+    <result column="enddate" property="enddate" jdbcType="CHAR" />
+    <result column="jobtitle" property="jobtitle" jdbcType="INTEGER" />
+    <result column="jobactivitydesc" property="jobactivitydesc" jdbcType="VARCHAR" />
+    <result column="joblevel" property="joblevel" jdbcType="INTEGER" />
+    <result column="seclevel" property="seclevel" jdbcType="INTEGER" />
+    <result column="departmentid" property="departmentid" jdbcType="INTEGER" />
+    <result column="subcompanyid1" property="subcompanyid1" jdbcType="INTEGER" />
+    <result column="costcenterid" property="costcenterid" jdbcType="INTEGER" />
+    <result column="managerid" property="managerid" jdbcType="INTEGER" />
+    <result column="assistantid" property="assistantid" jdbcType="INTEGER" />
+    <result column="bankid1" property="bankid1" jdbcType="INTEGER" />
+    <result column="accountid1" property="accountid1" jdbcType="VARCHAR" />
+    <result column="resourceimageid" property="resourceimageid" jdbcType="INTEGER" />
+    <result column="createrid" property="createrid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="CHAR" />
+    <result column="lastmodid" property="lastmodid" jdbcType="INTEGER" />
+    <result column="lastmoddate" property="lastmoddate" jdbcType="CHAR" />
+    <result column="lastlogindate" property="lastlogindate" jdbcType="CHAR" />
+    <result column="datefield1" property="datefield1" jdbcType="VARCHAR" />
+    <result column="datefield2" property="datefield2" jdbcType="VARCHAR" />
+    <result column="datefield3" property="datefield3" jdbcType="VARCHAR" />
+    <result column="datefield4" property="datefield4" jdbcType="VARCHAR" />
+    <result column="datefield5" property="datefield5" jdbcType="VARCHAR" />
+    <result column="numberfield1" property="numberfield1" jdbcType="DOUBLE" />
+    <result column="numberfield2" property="numberfield2" jdbcType="DOUBLE" />
+    <result column="numberfield3" property="numberfield3" jdbcType="DOUBLE" />
+    <result column="numberfield4" property="numberfield4" jdbcType="DOUBLE" />
+    <result column="numberfield5" property="numberfield5" jdbcType="DOUBLE" />
+    <result column="textfield1" property="textfield1" jdbcType="VARCHAR" />
+    <result column="textfield2" property="textfield2" jdbcType="VARCHAR" />
+    <result column="textfield3" property="textfield3" jdbcType="VARCHAR" />
+    <result column="textfield4" property="textfield4" jdbcType="VARCHAR" />
+    <result column="textfield5" property="textfield5" jdbcType="VARCHAR" />
+    <result column="tinyintfield1" property="tinyintfield1" jdbcType="TINYINT" />
+    <result column="tinyintfield2" property="tinyintfield2" jdbcType="TINYINT" />
+    <result column="tinyintfield3" property="tinyintfield3" jdbcType="TINYINT" />
+    <result column="tinyintfield4" property="tinyintfield4" jdbcType="TINYINT" />
+    <result column="tinyintfield5" property="tinyintfield5" jdbcType="TINYINT" />
+    <result column="certificatenum" property="certificatenum" jdbcType="VARCHAR" />
+    <result column="nativeplace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="educationlevel" property="educationlevel" jdbcType="INTEGER" />
+    <result column="bememberdate" property="bememberdate" jdbcType="CHAR" />
+    <result column="bepartydate" property="bepartydate" jdbcType="CHAR" />
+    <result column="workcode" property="workcode" jdbcType="VARCHAR" />
+    <result column="regresidentplace" property="regresidentplace" jdbcType="VARCHAR" />
+    <result column="healthinfo" property="healthinfo" jdbcType="CHAR" />
+    <result column="residentplace" property="residentplace" jdbcType="VARCHAR" />
+    <result column="policy" property="policy" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="usekind" property="usekind" jdbcType="INTEGER" />
+    <result column="jobcall" property="jobcall" jdbcType="INTEGER" />
+    <result column="accumfundaccount" property="accumfundaccount" jdbcType="VARCHAR" />
+    <result column="birthplace" property="birthplace" jdbcType="VARCHAR" />
+    <result column="folk" property="folk" jdbcType="VARCHAR" />
+    <result column="residentphone" property="residentphone" jdbcType="VARCHAR" />
+    <result column="residentpostcode" property="residentpostcode" jdbcType="VARCHAR" />
+    <result column="extphone" property="extphone" jdbcType="VARCHAR" />
+    <result column="managerstr" property="managerstr" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="islabouunion" property="islabouunion" jdbcType="CHAR" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="tempresidentnumber" property="tempresidentnumber" jdbcType="VARCHAR" />
+    <result column="probationenddate" property="probationenddate" jdbcType="CHAR" />
+    <result column="countryid" property="countryid" jdbcType="INTEGER" />
+    <result column="passwdchgdate" property="passwdchgdate" jdbcType="CHAR" />
+    <result column="needusb" property="needusb" jdbcType="INTEGER" />
+    <result column="serial" property="serial" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="lloginid" property="lloginid" jdbcType="VARCHAR" />
+    <result column="needdynapass" property="needdynapass" jdbcType="INTEGER" />
+    <result column="dsporder" property="dsporder" jdbcType="DOUBLE" />
+    <result column="passwordstate" property="passwordstate" jdbcType="INTEGER" />
+    <result column="accounttype" property="accounttype" jdbcType="INTEGER" />
+    <result column="belongto" property="belongto" jdbcType="INTEGER" />
+    <result column="dactylogram" property="dactylogram" jdbcType="VARCHAR" />
+    <result column="assistantdactylogram" property="assistantdactylogram" jdbcType="VARCHAR" />
+    <result column="passwordlock" property="passwordlock" jdbcType="INTEGER" />
+    <result column="sumpasswordwrong" property="sumpasswordwrong" jdbcType="INTEGER" />
+    <result column="oldpassword1" property="oldpassword1" jdbcType="VARCHAR" />
+    <result column="oldpassword2" property="oldpassword2" jdbcType="VARCHAR" />
+    <result column="msgStyle" property="msgstyle" jdbcType="VARCHAR" />
+    <result column="messagerurl" property="messagerurl" jdbcType="VARCHAR" />
+    <result column="pinyinlastname" property="pinyinlastname" jdbcType="VARCHAR" />
+    <result column="tokenkey" property="tokenkey" jdbcType="VARCHAR" />
+    <result column="userUsbType" property="userusbtype" jdbcType="VARCHAR" />
+    <result column="outkey" property="outkey" jdbcType="VARCHAR" />
+    <result column="adsjgs" property="adsjgs" jdbcType="VARCHAR" />
+    <result column="adgs" property="adgs" jdbcType="VARCHAR" />
+    <result column="adbm" property="adbm" jdbcType="VARCHAR" />
+    <result column="mobileshowtype" property="mobileshowtype" jdbcType="INTEGER" />
+    <result column="usbstate" property="usbstate" jdbcType="INTEGER" />
+    <result column="totalSpace" property="totalspace" jdbcType="DOUBLE" />
+    <result column="occupySpace" property="occupyspace" jdbcType="DOUBLE" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+    <result column="isADAccount" property="isadaccount" jdbcType="CHAR" />
+    <result column="accountname" property="accountname" jdbcType="VARCHAR" />
+    <result column="notallot" property="notallot" jdbcType="INTEGER" />
+    <result column="beforefrozen" property="beforefrozen" jdbcType="INTEGER" />
+    <result column="resourcefrom" property="resourcefrom" jdbcType="VARCHAR" />
+    <result column="isnewuser" property="isnewuser" jdbcType="VARCHAR" />
+    <result column="ctripcardno" property="ctripcardno" jdbcType="VARCHAR" />
+    <result column="SubAccountName" property="SubAccountName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithDepartment" type="com.cn.mis.domain.entity.mis.HrmResourceWithDepartment" extends="BaseResultMap" >
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="locationname" property="locationname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loginid, password, lastname, sex, birthday, nationality, systemlanguage, maritalstatus, 
+    telephone, mobile, mobilecall, email, locationid, workroom, homeaddress, resourcetype, 
+    startdate, enddate, jobtitle, jobactivitydesc, joblevel, seclevel, departmentid, 
+    subcompanyid1, costcenterid, managerid, assistantid, bankid1, accountid1, resourceimageid, 
+    createrid, createdate, lastmodid, lastmoddate, lastlogindate, datefield1, datefield2, 
+    datefield3, datefield4, datefield5, numberfield1, numberfield2, numberfield3, numberfield4, 
+    numberfield5, textfield1, textfield2, textfield3, textfield4, textfield5, tinyintfield1, 
+    tinyintfield2, tinyintfield3, tinyintfield4, tinyintfield5, certificatenum, nativeplace, 
+    educationlevel, bememberdate, bepartydate, workcode, regresidentplace, healthinfo, 
+    residentplace, policy, degree, height, usekind, jobcall, accumfundaccount, birthplace, 
+    folk, residentphone, residentpostcode, extphone, managerstr, status, fax, islabouunion, 
+    weight, tempresidentnumber, probationenddate, countryid, passwdchgdate, needusb, 
+    serial, account, lloginid, needdynapass, dsporder, passwordstate, accounttype, belongto, 
+    dactylogram, assistantdactylogram, passwordlock, sumpasswordwrong, oldpassword1, 
+    oldpassword2, msgStyle, messagerurl, pinyinlastname, tokenkey, userUsbType, outkey, 
+    adsjgs, adgs, adbm, mobileshowtype, usbstate, totalSpace, occupySpace, ecology_pinyin_search, 
+    isADAccount, accountname, notallot, beforefrozen, resourcefrom, isnewuser, ctripcardno, SubAccountName
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from HrmResource
+  </select>
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.mis.HrmResource">
+    select
+    <include refid="Base_Column_List" />
+    from HrmResource
+    where email = #{email};
+  </select>
+  <select id="selectAllWithDepartment" resultMap="ResultMapWithDepartment">
+    SELECT hr.id,hr.lastname,hr.sex,hr.mobile,hr.email,hr.departmentid,hd.departmentname,hr.status,hr.SubAccountName,hl.locationname,c.name
+    FROM HrmResource hr
+    LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    LEFT JOIN HrmLocations hl ON hr.locationid = hl.id
+    LEFT JOIN FnaCostCenterDtl cd ON  hr.departmentid =cd.objId AND cd.type=2
+    LEFT JOIN FnaCostCenter c ON c.id =cd.fccId
+--     WHERE hr.id=1154
+  </select>
+  <update id="updateBath" parameterType="java.util.List">
+    UPDATE HrmResource
+    SET updateflag = 0
+    WHERE
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item}
+    </foreach>
+  </update>
+  <select id="login" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.mis.HrmResource">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM HrmResource
+    WHERE loginid = #{loginid,jdbcType=VARCHAR} AND password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from HrmResource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from HrmResource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.HrmResource" >
+    insert into HrmResource (id, loginid, password, 
+      lastname, sex, birthday, 
+      nationality, systemlanguage, maritalstatus, 
+      telephone, mobile, mobilecall, 
+      email, locationid, workroom, 
+      homeaddress, resourcetype, startdate, 
+      enddate, jobtitle, jobactivitydesc, 
+      joblevel, seclevel, departmentid, 
+      subcompanyid1, costcenterid, managerid, 
+      assistantid, bankid1, accountid1, 
+      resourceimageid, createrid, createdate, 
+      lastmodid, lastmoddate, lastlogindate, 
+      datefield1, datefield2, datefield3, 
+      datefield4, datefield5, numberfield1, 
+      numberfield2, numberfield3, numberfield4, 
+      numberfield5, textfield1, textfield2, 
+      textfield3, textfield4, textfield5, 
+      tinyintfield1, tinyintfield2, tinyintfield3, 
+      tinyintfield4, tinyintfield5, certificatenum, 
+      nativeplace, educationlevel, bememberdate, 
+      bepartydate, workcode, regresidentplace, 
+      healthinfo, residentplace, policy, 
+      degree, height, usekind, 
+      jobcall, accumfundaccount, birthplace, 
+      folk, residentphone, residentpostcode, 
+      extphone, managerstr, status, 
+      fax, islabouunion, weight, 
+      tempresidentnumber, probationenddate, countryid, 
+      passwdchgdate, needusb, serial, 
+      account, lloginid, needdynapass, 
+      dsporder, passwordstate, accounttype, 
+      belongto, dactylogram, assistantdactylogram, 
+      passwordlock, sumpasswordwrong, oldpassword1, 
+      oldpassword2, msgStyle, messagerurl, 
+      pinyinlastname, tokenkey, userUsbType, 
+      outkey, adsjgs, adgs, 
+      adbm, mobileshowtype, usbstate, 
+      totalSpace, occupySpace, ecology_pinyin_search, 
+      isADAccount, accountname, notallot, 
+      beforefrozen, resourcefrom, isnewuser, 
+      ctripcardno)
+    values (#{id,jdbcType=INTEGER}, #{loginid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{lastname,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=CHAR}, 
+      #{nationality,jdbcType=INTEGER}, #{systemlanguage,jdbcType=INTEGER}, #{maritalstatus,jdbcType=CHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{mobilecall,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{locationid,jdbcType=INTEGER}, #{workroom,jdbcType=VARCHAR}, 
+      #{homeaddress,jdbcType=VARCHAR}, #{resourcetype,jdbcType=CHAR}, #{startdate,jdbcType=CHAR}, 
+      #{enddate,jdbcType=CHAR}, #{jobtitle,jdbcType=INTEGER}, #{jobactivitydesc,jdbcType=VARCHAR}, 
+      #{joblevel,jdbcType=INTEGER}, #{seclevel,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
+      #{subcompanyid1,jdbcType=INTEGER}, #{costcenterid,jdbcType=INTEGER}, #{managerid,jdbcType=INTEGER}, 
+      #{assistantid,jdbcType=INTEGER}, #{bankid1,jdbcType=INTEGER}, #{accountid1,jdbcType=VARCHAR}, 
+      #{resourceimageid,jdbcType=INTEGER}, #{createrid,jdbcType=INTEGER}, #{createdate,jdbcType=CHAR}, 
+      #{lastmodid,jdbcType=INTEGER}, #{lastmoddate,jdbcType=CHAR}, #{lastlogindate,jdbcType=CHAR}, 
+      #{datefield1,jdbcType=VARCHAR}, #{datefield2,jdbcType=VARCHAR}, #{datefield3,jdbcType=VARCHAR}, 
+      #{datefield4,jdbcType=VARCHAR}, #{datefield5,jdbcType=VARCHAR}, #{numberfield1,jdbcType=DOUBLE}, 
+      #{numberfield2,jdbcType=DOUBLE}, #{numberfield3,jdbcType=DOUBLE}, #{numberfield4,jdbcType=DOUBLE}, 
+      #{numberfield5,jdbcType=DOUBLE}, #{textfield1,jdbcType=VARCHAR}, #{textfield2,jdbcType=VARCHAR}, 
+      #{textfield3,jdbcType=VARCHAR}, #{textfield4,jdbcType=VARCHAR}, #{textfield5,jdbcType=VARCHAR}, 
+      #{tinyintfield1,jdbcType=TINYINT}, #{tinyintfield2,jdbcType=TINYINT}, #{tinyintfield3,jdbcType=TINYINT}, 
+      #{tinyintfield4,jdbcType=TINYINT}, #{tinyintfield5,jdbcType=TINYINT}, #{certificatenum,jdbcType=VARCHAR}, 
+      #{nativeplace,jdbcType=VARCHAR}, #{educationlevel,jdbcType=INTEGER}, #{bememberdate,jdbcType=CHAR}, 
+      #{bepartydate,jdbcType=CHAR}, #{workcode,jdbcType=VARCHAR}, #{regresidentplace,jdbcType=VARCHAR}, 
+      #{healthinfo,jdbcType=CHAR}, #{residentplace,jdbcType=VARCHAR}, #{policy,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{usekind,jdbcType=INTEGER}, 
+      #{jobcall,jdbcType=INTEGER}, #{accumfundaccount,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, 
+      #{folk,jdbcType=VARCHAR}, #{residentphone,jdbcType=VARCHAR}, #{residentpostcode,jdbcType=VARCHAR}, 
+      #{extphone,jdbcType=VARCHAR}, #{managerstr,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{fax,jdbcType=VARCHAR}, #{islabouunion,jdbcType=CHAR}, #{weight,jdbcType=INTEGER}, 
+      #{tempresidentnumber,jdbcType=VARCHAR}, #{probationenddate,jdbcType=CHAR}, #{countryid,jdbcType=INTEGER}, 
+      #{passwdchgdate,jdbcType=CHAR}, #{needusb,jdbcType=INTEGER}, #{serial,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{lloginid,jdbcType=VARCHAR}, #{needdynapass,jdbcType=INTEGER}, 
+      #{dsporder,jdbcType=DOUBLE}, #{passwordstate,jdbcType=INTEGER}, #{accounttype,jdbcType=INTEGER}, 
+      #{belongto,jdbcType=INTEGER}, #{dactylogram,jdbcType=VARCHAR}, #{assistantdactylogram,jdbcType=VARCHAR}, 
+      #{passwordlock,jdbcType=INTEGER}, #{sumpasswordwrong,jdbcType=INTEGER}, #{oldpassword1,jdbcType=VARCHAR}, 
+      #{oldpassword2,jdbcType=VARCHAR}, #{msgstyle,jdbcType=VARCHAR}, #{messagerurl,jdbcType=VARCHAR}, 
+      #{pinyinlastname,jdbcType=VARCHAR}, #{tokenkey,jdbcType=VARCHAR}, #{userusbtype,jdbcType=VARCHAR}, 
+      #{outkey,jdbcType=VARCHAR}, #{adsjgs,jdbcType=VARCHAR}, #{adgs,jdbcType=VARCHAR}, 
+      #{adbm,jdbcType=VARCHAR}, #{mobileshowtype,jdbcType=INTEGER}, #{usbstate,jdbcType=INTEGER}, 
+      #{totalspace,jdbcType=DOUBLE}, #{occupyspace,jdbcType=DOUBLE}, #{ecologyPinyinSearch,jdbcType=VARCHAR}, 
+      #{isadaccount,jdbcType=CHAR}, #{accountname,jdbcType=VARCHAR}, #{notallot,jdbcType=INTEGER}, 
+      #{beforefrozen,jdbcType=INTEGER}, #{resourcefrom,jdbcType=VARCHAR}, #{isnewuser,jdbcType=VARCHAR}, 
+      #{ctripcardno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.HrmResource" >
+    insert into HrmResource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginid != null" >
+        loginid,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="lastname != null" >
+        lastname,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="systemlanguage != null" >
+        systemlanguage,
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="mobilecall != null" >
+        mobilecall,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="locationid != null" >
+        locationid,
+      </if>
+      <if test="workroom != null" >
+        workroom,
+      </if>
+      <if test="homeaddress != null" >
+        homeaddress,
+      </if>
+      <if test="resourcetype != null" >
+        resourcetype,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="enddate != null" >
+        enddate,
+      </if>
+      <if test="jobtitle != null" >
+        jobtitle,
+      </if>
+      <if test="jobactivitydesc != null" >
+        jobactivitydesc,
+      </if>
+      <if test="joblevel != null" >
+        joblevel,
+      </if>
+      <if test="seclevel != null" >
+        seclevel,
+      </if>
+      <if test="departmentid != null" >
+        departmentid,
+      </if>
+      <if test="subcompanyid1 != null" >
+        subcompanyid1,
+      </if>
+      <if test="costcenterid != null" >
+        costcenterid,
+      </if>
+      <if test="managerid != null" >
+        managerid,
+      </if>
+      <if test="assistantid != null" >
+        assistantid,
+      </if>
+      <if test="bankid1 != null" >
+        bankid1,
+      </if>
+      <if test="accountid1 != null" >
+        accountid1,
+      </if>
+      <if test="resourceimageid != null" >
+        resourceimageid,
+      </if>
+      <if test="createrid != null" >
+        createrid,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="lastmodid != null" >
+        lastmodid,
+      </if>
+      <if test="lastmoddate != null" >
+        lastmoddate,
+      </if>
+      <if test="lastlogindate != null" >
+        lastlogindate,
+      </if>
+      <if test="datefield1 != null" >
+        datefield1,
+      </if>
+      <if test="datefield2 != null" >
+        datefield2,
+      </if>
+      <if test="datefield3 != null" >
+        datefield3,
+      </if>
+      <if test="datefield4 != null" >
+        datefield4,
+      </if>
+      <if test="datefield5 != null" >
+        datefield5,
+      </if>
+      <if test="numberfield1 != null" >
+        numberfield1,
+      </if>
+      <if test="numberfield2 != null" >
+        numberfield2,
+      </if>
+      <if test="numberfield3 != null" >
+        numberfield3,
+      </if>
+      <if test="numberfield4 != null" >
+        numberfield4,
+      </if>
+      <if test="numberfield5 != null" >
+        numberfield5,
+      </if>
+      <if test="textfield1 != null" >
+        textfield1,
+      </if>
+      <if test="textfield2 != null" >
+        textfield2,
+      </if>
+      <if test="textfield3 != null" >
+        textfield3,
+      </if>
+      <if test="textfield4 != null" >
+        textfield4,
+      </if>
+      <if test="textfield5 != null" >
+        textfield5,
+      </if>
+      <if test="tinyintfield1 != null" >
+        tinyintfield1,
+      </if>
+      <if test="tinyintfield2 != null" >
+        tinyintfield2,
+      </if>
+      <if test="tinyintfield3 != null" >
+        tinyintfield3,
+      </if>
+      <if test="tinyintfield4 != null" >
+        tinyintfield4,
+      </if>
+      <if test="tinyintfield5 != null" >
+        tinyintfield5,
+      </if>
+      <if test="certificatenum != null" >
+        certificatenum,
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace,
+      </if>
+      <if test="educationlevel != null" >
+        educationlevel,
+      </if>
+      <if test="bememberdate != null" >
+        bememberdate,
+      </if>
+      <if test="bepartydate != null" >
+        bepartydate,
+      </if>
+      <if test="workcode != null" >
+        workcode,
+      </if>
+      <if test="regresidentplace != null" >
+        regresidentplace,
+      </if>
+      <if test="healthinfo != null" >
+        healthinfo,
+      </if>
+      <if test="residentplace != null" >
+        residentplace,
+      </if>
+      <if test="policy != null" >
+        policy,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="usekind != null" >
+        usekind,
+      </if>
+      <if test="jobcall != null" >
+        jobcall,
+      </if>
+      <if test="accumfundaccount != null" >
+        accumfundaccount,
+      </if>
+      <if test="birthplace != null" >
+        birthplace,
+      </if>
+      <if test="folk != null" >
+        folk,
+      </if>
+      <if test="residentphone != null" >
+        residentphone,
+      </if>
+      <if test="residentpostcode != null" >
+        residentpostcode,
+      </if>
+      <if test="extphone != null" >
+        extphone,
+      </if>
+      <if test="managerstr != null" >
+        managerstr,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="islabouunion != null" >
+        islabouunion,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="tempresidentnumber != null" >
+        tempresidentnumber,
+      </if>
+      <if test="probationenddate != null" >
+        probationenddate,
+      </if>
+      <if test="countryid != null" >
+        countryid,
+      </if>
+      <if test="passwdchgdate != null" >
+        passwdchgdate,
+      </if>
+      <if test="needusb != null" >
+        needusb,
+      </if>
+      <if test="serial != null" >
+        serial,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="lloginid != null" >
+        lloginid,
+      </if>
+      <if test="needdynapass != null" >
+        needdynapass,
+      </if>
+      <if test="dsporder != null" >
+        dsporder,
+      </if>
+      <if test="passwordstate != null" >
+        passwordstate,
+      </if>
+      <if test="accounttype != null" >
+        accounttype,
+      </if>
+      <if test="belongto != null" >
+        belongto,
+      </if>
+      <if test="dactylogram != null" >
+        dactylogram,
+      </if>
+      <if test="assistantdactylogram != null" >
+        assistantdactylogram,
+      </if>
+      <if test="passwordlock != null" >
+        passwordlock,
+      </if>
+      <if test="sumpasswordwrong != null" >
+        sumpasswordwrong,
+      </if>
+      <if test="oldpassword1 != null" >
+        oldpassword1,
+      </if>
+      <if test="oldpassword2 != null" >
+        oldpassword2,
+      </if>
+      <if test="msgstyle != null" >
+        msgStyle,
+      </if>
+      <if test="messagerurl != null" >
+        messagerurl,
+      </if>
+      <if test="pinyinlastname != null" >
+        pinyinlastname,
+      </if>
+      <if test="tokenkey != null" >
+        tokenkey,
+      </if>
+      <if test="userusbtype != null" >
+        userUsbType,
+      </if>
+      <if test="outkey != null" >
+        outkey,
+      </if>
+      <if test="adsjgs != null" >
+        adsjgs,
+      </if>
+      <if test="adgs != null" >
+        adgs,
+      </if>
+      <if test="adbm != null" >
+        adbm,
+      </if>
+      <if test="mobileshowtype != null" >
+        mobileshowtype,
+      </if>
+      <if test="usbstate != null" >
+        usbstate,
+      </if>
+      <if test="totalspace != null" >
+        totalSpace,
+      </if>
+      <if test="occupyspace != null" >
+        occupySpace,
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search,
+      </if>
+      <if test="isadaccount != null" >
+        isADAccount,
+      </if>
+      <if test="accountname != null" >
+        accountname,
+      </if>
+      <if test="notallot != null" >
+        notallot,
+      </if>
+      <if test="beforefrozen != null" >
+        beforefrozen,
+      </if>
+      <if test="resourcefrom != null" >
+        resourcefrom,
+      </if>
+      <if test="isnewuser != null" >
+        isnewuser,
+      </if>
+      <if test="ctripcardno != null" >
+        ctripcardno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginid != null" >
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null" >
+        #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=CHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=INTEGER},
+      </if>
+      <if test="systemlanguage != null" >
+        #{systemlanguage,jdbcType=INTEGER},
+      </if>
+      <if test="maritalstatus != null" >
+        #{maritalstatus,jdbcType=CHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilecall != null" >
+        #{mobilecall,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="locationid != null" >
+        #{locationid,jdbcType=INTEGER},
+      </if>
+      <if test="workroom != null" >
+        #{workroom,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null" >
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null" >
+        #{resourcetype,jdbcType=CHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=CHAR},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=CHAR},
+      </if>
+      <if test="jobtitle != null" >
+        #{jobtitle,jdbcType=INTEGER},
+      </if>
+      <if test="jobactivitydesc != null" >
+        #{jobactivitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="joblevel != null" >
+        #{joblevel,jdbcType=INTEGER},
+      </if>
+      <if test="seclevel != null" >
+        #{seclevel,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="subcompanyid1 != null" >
+        #{subcompanyid1,jdbcType=INTEGER},
+      </if>
+      <if test="costcenterid != null" >
+        #{costcenterid,jdbcType=INTEGER},
+      </if>
+      <if test="managerid != null" >
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="assistantid != null" >
+        #{assistantid,jdbcType=INTEGER},
+      </if>
+      <if test="bankid1 != null" >
+        #{bankid1,jdbcType=INTEGER},
+      </if>
+      <if test="accountid1 != null" >
+        #{accountid1,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceimageid != null" >
+        #{resourceimageid,jdbcType=INTEGER},
+      </if>
+      <if test="createrid != null" >
+        #{createrid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=CHAR},
+      </if>
+      <if test="lastmodid != null" >
+        #{lastmodid,jdbcType=INTEGER},
+      </if>
+      <if test="lastmoddate != null" >
+        #{lastmoddate,jdbcType=CHAR},
+      </if>
+      <if test="lastlogindate != null" >
+        #{lastlogindate,jdbcType=CHAR},
+      </if>
+      <if test="datefield1 != null" >
+        #{datefield1,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield2 != null" >
+        #{datefield2,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield3 != null" >
+        #{datefield3,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield4 != null" >
+        #{datefield4,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield5 != null" >
+        #{datefield5,jdbcType=VARCHAR},
+      </if>
+      <if test="numberfield1 != null" >
+        #{numberfield1,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield2 != null" >
+        #{numberfield2,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield3 != null" >
+        #{numberfield3,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield4 != null" >
+        #{numberfield4,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield5 != null" >
+        #{numberfield5,jdbcType=DOUBLE},
+      </if>
+      <if test="textfield1 != null" >
+        #{textfield1,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield2 != null" >
+        #{textfield2,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield3 != null" >
+        #{textfield3,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield4 != null" >
+        #{textfield4,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield5 != null" >
+        #{textfield5,jdbcType=VARCHAR},
+      </if>
+      <if test="tinyintfield1 != null" >
+        #{tinyintfield1,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield2 != null" >
+        #{tinyintfield2,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield3 != null" >
+        #{tinyintfield3,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield4 != null" >
+        #{tinyintfield4,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield5 != null" >
+        #{tinyintfield5,jdbcType=TINYINT},
+      </if>
+      <if test="certificatenum != null" >
+        #{certificatenum,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="educationlevel != null" >
+        #{educationlevel,jdbcType=INTEGER},
+      </if>
+      <if test="bememberdate != null" >
+        #{bememberdate,jdbcType=CHAR},
+      </if>
+      <if test="bepartydate != null" >
+        #{bepartydate,jdbcType=CHAR},
+      </if>
+      <if test="workcode != null" >
+        #{workcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regresidentplace != null" >
+        #{regresidentplace,jdbcType=VARCHAR},
+      </if>
+      <if test="healthinfo != null" >
+        #{healthinfo,jdbcType=CHAR},
+      </if>
+      <if test="residentplace != null" >
+        #{residentplace,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="usekind != null" >
+        #{usekind,jdbcType=INTEGER},
+      </if>
+      <if test="jobcall != null" >
+        #{jobcall,jdbcType=INTEGER},
+      </if>
+      <if test="accumfundaccount != null" >
+        #{accumfundaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="folk != null" >
+        #{folk,jdbcType=VARCHAR},
+      </if>
+      <if test="residentphone != null" >
+        #{residentphone,jdbcType=VARCHAR},
+      </if>
+      <if test="residentpostcode != null" >
+        #{residentpostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="extphone != null" >
+        #{extphone,jdbcType=VARCHAR},
+      </if>
+      <if test="managerstr != null" >
+        #{managerstr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="islabouunion != null" >
+        #{islabouunion,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="tempresidentnumber != null" >
+        #{tempresidentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="probationenddate != null" >
+        #{probationenddate,jdbcType=CHAR},
+      </if>
+      <if test="countryid != null" >
+        #{countryid,jdbcType=INTEGER},
+      </if>
+      <if test="passwdchgdate != null" >
+        #{passwdchgdate,jdbcType=CHAR},
+      </if>
+      <if test="needusb != null" >
+        #{needusb,jdbcType=INTEGER},
+      </if>
+      <if test="serial != null" >
+        #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="lloginid != null" >
+        #{lloginid,jdbcType=VARCHAR},
+      </if>
+      <if test="needdynapass != null" >
+        #{needdynapass,jdbcType=INTEGER},
+      </if>
+      <if test="dsporder != null" >
+        #{dsporder,jdbcType=DOUBLE},
+      </if>
+      <if test="passwordstate != null" >
+        #{passwordstate,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null" >
+        #{accounttype,jdbcType=INTEGER},
+      </if>
+      <if test="belongto != null" >
+        #{belongto,jdbcType=INTEGER},
+      </if>
+      <if test="dactylogram != null" >
+        #{dactylogram,jdbcType=VARCHAR},
+      </if>
+      <if test="assistantdactylogram != null" >
+        #{assistantdactylogram,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordlock != null" >
+        #{passwordlock,jdbcType=INTEGER},
+      </if>
+      <if test="sumpasswordwrong != null" >
+        #{sumpasswordwrong,jdbcType=INTEGER},
+      </if>
+      <if test="oldpassword1 != null" >
+        #{oldpassword1,jdbcType=VARCHAR},
+      </if>
+      <if test="oldpassword2 != null" >
+        #{oldpassword2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgstyle != null" >
+        #{msgstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="messagerurl != null" >
+        #{messagerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinlastname != null" >
+        #{pinyinlastname,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenkey != null" >
+        #{tokenkey,jdbcType=VARCHAR},
+      </if>
+      <if test="userusbtype != null" >
+        #{userusbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="adsjgs != null" >
+        #{adsjgs,jdbcType=VARCHAR},
+      </if>
+      <if test="adgs != null" >
+        #{adgs,jdbcType=VARCHAR},
+      </if>
+      <if test="adbm != null" >
+        #{adbm,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileshowtype != null" >
+        #{mobileshowtype,jdbcType=INTEGER},
+      </if>
+      <if test="usbstate != null" >
+        #{usbstate,jdbcType=INTEGER},
+      </if>
+      <if test="totalspace != null" >
+        #{totalspace,jdbcType=DOUBLE},
+      </if>
+      <if test="occupyspace != null" >
+        #{occupyspace,jdbcType=DOUBLE},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isadaccount != null" >
+        #{isadaccount,jdbcType=CHAR},
+      </if>
+      <if test="accountname != null" >
+        #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="notallot != null" >
+        #{notallot,jdbcType=INTEGER},
+      </if>
+      <if test="beforefrozen != null" >
+        #{beforefrozen,jdbcType=INTEGER},
+      </if>
+      <if test="resourcefrom != null" >
+        #{resourcefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="isnewuser != null" >
+        #{isnewuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ctripcardno != null" >
+        #{ctripcardno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.HrmResource" >
+    update HrmResource
+    <set >
+      <if test="loginid != null" >
+        loginid = #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null" >
+        lastname = #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=CHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=INTEGER},
+      </if>
+      <if test="systemlanguage != null" >
+        systemlanguage = #{systemlanguage,jdbcType=INTEGER},
+      </if>
+      <if test="maritalstatus != null" >
+        maritalstatus = #{maritalstatus,jdbcType=CHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilecall != null" >
+        mobilecall = #{mobilecall,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="locationid != null" >
+        locationid = #{locationid,jdbcType=INTEGER},
+      </if>
+      <if test="workroom != null" >
+        workroom = #{workroom,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddress != null" >
+        homeaddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null" >
+        resourcetype = #{resourcetype,jdbcType=CHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=CHAR},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=CHAR},
+      </if>
+      <if test="jobtitle != null" >
+        jobtitle = #{jobtitle,jdbcType=INTEGER},
+      </if>
+      <if test="jobactivitydesc != null" >
+        jobactivitydesc = #{jobactivitydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="joblevel != null" >
+        joblevel = #{joblevel,jdbcType=INTEGER},
+      </if>
+      <if test="seclevel != null" >
+        seclevel = #{seclevel,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        departmentid = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="subcompanyid1 != null" >
+        subcompanyid1 = #{subcompanyid1,jdbcType=INTEGER},
+      </if>
+      <if test="costcenterid != null" >
+        costcenterid = #{costcenterid,jdbcType=INTEGER},
+      </if>
+      <if test="managerid != null" >
+        managerid = #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="assistantid != null" >
+        assistantid = #{assistantid,jdbcType=INTEGER},
+      </if>
+      <if test="bankid1 != null" >
+        bankid1 = #{bankid1,jdbcType=INTEGER},
+      </if>
+      <if test="accountid1 != null" >
+        accountid1 = #{accountid1,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceimageid != null" >
+        resourceimageid = #{resourceimageid,jdbcType=INTEGER},
+      </if>
+      <if test="createrid != null" >
+        createrid = #{createrid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=CHAR},
+      </if>
+      <if test="lastmodid != null" >
+        lastmodid = #{lastmodid,jdbcType=INTEGER},
+      </if>
+      <if test="lastmoddate != null" >
+        lastmoddate = #{lastmoddate,jdbcType=CHAR},
+      </if>
+      <if test="lastlogindate != null" >
+        lastlogindate = #{lastlogindate,jdbcType=CHAR},
+      </if>
+      <if test="datefield1 != null" >
+        datefield1 = #{datefield1,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield2 != null" >
+        datefield2 = #{datefield2,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield3 != null" >
+        datefield3 = #{datefield3,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield4 != null" >
+        datefield4 = #{datefield4,jdbcType=VARCHAR},
+      </if>
+      <if test="datefield5 != null" >
+        datefield5 = #{datefield5,jdbcType=VARCHAR},
+      </if>
+      <if test="numberfield1 != null" >
+        numberfield1 = #{numberfield1,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield2 != null" >
+        numberfield2 = #{numberfield2,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield3 != null" >
+        numberfield3 = #{numberfield3,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield4 != null" >
+        numberfield4 = #{numberfield4,jdbcType=DOUBLE},
+      </if>
+      <if test="numberfield5 != null" >
+        numberfield5 = #{numberfield5,jdbcType=DOUBLE},
+      </if>
+      <if test="textfield1 != null" >
+        textfield1 = #{textfield1,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield2 != null" >
+        textfield2 = #{textfield2,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield3 != null" >
+        textfield3 = #{textfield3,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield4 != null" >
+        textfield4 = #{textfield4,jdbcType=VARCHAR},
+      </if>
+      <if test="textfield5 != null" >
+        textfield5 = #{textfield5,jdbcType=VARCHAR},
+      </if>
+      <if test="tinyintfield1 != null" >
+        tinyintfield1 = #{tinyintfield1,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield2 != null" >
+        tinyintfield2 = #{tinyintfield2,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield3 != null" >
+        tinyintfield3 = #{tinyintfield3,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield4 != null" >
+        tinyintfield4 = #{tinyintfield4,jdbcType=TINYINT},
+      </if>
+      <if test="tinyintfield5 != null" >
+        tinyintfield5 = #{tinyintfield5,jdbcType=TINYINT},
+      </if>
+      <if test="certificatenum != null" >
+        certificatenum = #{certificatenum,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="educationlevel != null" >
+        educationlevel = #{educationlevel,jdbcType=INTEGER},
+      </if>
+      <if test="bememberdate != null" >
+        bememberdate = #{bememberdate,jdbcType=CHAR},
+      </if>
+      <if test="bepartydate != null" >
+        bepartydate = #{bepartydate,jdbcType=CHAR},
+      </if>
+      <if test="workcode != null" >
+        workcode = #{workcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regresidentplace != null" >
+        regresidentplace = #{regresidentplace,jdbcType=VARCHAR},
+      </if>
+      <if test="healthinfo != null" >
+        healthinfo = #{healthinfo,jdbcType=CHAR},
+      </if>
+      <if test="residentplace != null" >
+        residentplace = #{residentplace,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        policy = #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="usekind != null" >
+        usekind = #{usekind,jdbcType=INTEGER},
+      </if>
+      <if test="jobcall != null" >
+        jobcall = #{jobcall,jdbcType=INTEGER},
+      </if>
+      <if test="accumfundaccount != null" >
+        accumfundaccount = #{accumfundaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        birthplace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="folk != null" >
+        folk = #{folk,jdbcType=VARCHAR},
+      </if>
+      <if test="residentphone != null" >
+        residentphone = #{residentphone,jdbcType=VARCHAR},
+      </if>
+      <if test="residentpostcode != null" >
+        residentpostcode = #{residentpostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="extphone != null" >
+        extphone = #{extphone,jdbcType=VARCHAR},
+      </if>
+      <if test="managerstr != null" >
+        managerstr = #{managerstr,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="islabouunion != null" >
+        islabouunion = #{islabouunion,jdbcType=CHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="tempresidentnumber != null" >
+        tempresidentnumber = #{tempresidentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="probationenddate != null" >
+        probationenddate = #{probationenddate,jdbcType=CHAR},
+      </if>
+      <if test="countryid != null" >
+        countryid = #{countryid,jdbcType=INTEGER},
+      </if>
+      <if test="passwdchgdate != null" >
+        passwdchgdate = #{passwdchgdate,jdbcType=CHAR},
+      </if>
+      <if test="needusb != null" >
+        needusb = #{needusb,jdbcType=INTEGER},
+      </if>
+      <if test="serial != null" >
+        serial = #{serial,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="lloginid != null" >
+        lloginid = #{lloginid,jdbcType=VARCHAR},
+      </if>
+      <if test="needdynapass != null" >
+        needdynapass = #{needdynapass,jdbcType=INTEGER},
+      </if>
+      <if test="dsporder != null" >
+        dsporder = #{dsporder,jdbcType=DOUBLE},
+      </if>
+      <if test="passwordstate != null" >
+        passwordstate = #{passwordstate,jdbcType=INTEGER},
+      </if>
+      <if test="accounttype != null" >
+        accounttype = #{accounttype,jdbcType=INTEGER},
+      </if>
+      <if test="belongto != null" >
+        belongto = #{belongto,jdbcType=INTEGER},
+      </if>
+      <if test="dactylogram != null" >
+        dactylogram = #{dactylogram,jdbcType=VARCHAR},
+      </if>
+      <if test="assistantdactylogram != null" >
+        assistantdactylogram = #{assistantdactylogram,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordlock != null" >
+        passwordlock = #{passwordlock,jdbcType=INTEGER},
+      </if>
+      <if test="sumpasswordwrong != null" >
+        sumpasswordwrong = #{sumpasswordwrong,jdbcType=INTEGER},
+      </if>
+      <if test="oldpassword1 != null" >
+        oldpassword1 = #{oldpassword1,jdbcType=VARCHAR},
+      </if>
+      <if test="oldpassword2 != null" >
+        oldpassword2 = #{oldpassword2,jdbcType=VARCHAR},
+      </if>
+      <if test="msgstyle != null" >
+        msgStyle = #{msgstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="messagerurl != null" >
+        messagerurl = #{messagerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyinlastname != null" >
+        pinyinlastname = #{pinyinlastname,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenkey != null" >
+        tokenkey = #{tokenkey,jdbcType=VARCHAR},
+      </if>
+      <if test="userusbtype != null" >
+        userUsbType = #{userusbtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        outkey = #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="adsjgs != null" >
+        adsjgs = #{adsjgs,jdbcType=VARCHAR},
+      </if>
+      <if test="adgs != null" >
+        adgs = #{adgs,jdbcType=VARCHAR},
+      </if>
+      <if test="adbm != null" >
+        adbm = #{adbm,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileshowtype != null" >
+        mobileshowtype = #{mobileshowtype,jdbcType=INTEGER},
+      </if>
+      <if test="usbstate != null" >
+        usbstate = #{usbstate,jdbcType=INTEGER},
+      </if>
+      <if test="totalspace != null" >
+        totalSpace = #{totalspace,jdbcType=DOUBLE},
+      </if>
+      <if test="occupyspace != null" >
+        occupySpace = #{occupyspace,jdbcType=DOUBLE},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isadaccount != null" >
+        isADAccount = #{isadaccount,jdbcType=CHAR},
+      </if>
+      <if test="accountname != null" >
+        accountname = #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="notallot != null" >
+        notallot = #{notallot,jdbcType=INTEGER},
+      </if>
+      <if test="beforefrozen != null" >
+        beforefrozen = #{beforefrozen,jdbcType=INTEGER},
+      </if>
+      <if test="resourcefrom != null" >
+        resourcefrom = #{resourcefrom,jdbcType=VARCHAR},
+      </if>
+      <if test="isnewuser != null" >
+        isnewuser = #{isnewuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ctripcardno != null" >
+        ctripcardno = #{ctripcardno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.HrmResource" >
+    update HrmResource
+    set loginid = #{loginid,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      lastname = #{lastname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=CHAR},
+      nationality = #{nationality,jdbcType=INTEGER},
+      systemlanguage = #{systemlanguage,jdbcType=INTEGER},
+      maritalstatus = #{maritalstatus,jdbcType=CHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      mobilecall = #{mobilecall,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      locationid = #{locationid,jdbcType=INTEGER},
+      workroom = #{workroom,jdbcType=VARCHAR},
+      homeaddress = #{homeaddress,jdbcType=VARCHAR},
+      resourcetype = #{resourcetype,jdbcType=CHAR},
+      startdate = #{startdate,jdbcType=CHAR},
+      enddate = #{enddate,jdbcType=CHAR},
+      jobtitle = #{jobtitle,jdbcType=INTEGER},
+      jobactivitydesc = #{jobactivitydesc,jdbcType=VARCHAR},
+      joblevel = #{joblevel,jdbcType=INTEGER},
+      seclevel = #{seclevel,jdbcType=INTEGER},
+      departmentid = #{departmentid,jdbcType=INTEGER},
+      subcompanyid1 = #{subcompanyid1,jdbcType=INTEGER},
+      costcenterid = #{costcenterid,jdbcType=INTEGER},
+      managerid = #{managerid,jdbcType=INTEGER},
+      assistantid = #{assistantid,jdbcType=INTEGER},
+      bankid1 = #{bankid1,jdbcType=INTEGER},
+      accountid1 = #{accountid1,jdbcType=VARCHAR},
+      resourceimageid = #{resourceimageid,jdbcType=INTEGER},
+      createrid = #{createrid,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=CHAR},
+      lastmodid = #{lastmodid,jdbcType=INTEGER},
+      lastmoddate = #{lastmoddate,jdbcType=CHAR},
+      lastlogindate = #{lastlogindate,jdbcType=CHAR},
+      datefield1 = #{datefield1,jdbcType=VARCHAR},
+      datefield2 = #{datefield2,jdbcType=VARCHAR},
+      datefield3 = #{datefield3,jdbcType=VARCHAR},
+      datefield4 = #{datefield4,jdbcType=VARCHAR},
+      datefield5 = #{datefield5,jdbcType=VARCHAR},
+      numberfield1 = #{numberfield1,jdbcType=DOUBLE},
+      numberfield2 = #{numberfield2,jdbcType=DOUBLE},
+      numberfield3 = #{numberfield3,jdbcType=DOUBLE},
+      numberfield4 = #{numberfield4,jdbcType=DOUBLE},
+      numberfield5 = #{numberfield5,jdbcType=DOUBLE},
+      textfield1 = #{textfield1,jdbcType=VARCHAR},
+      textfield2 = #{textfield2,jdbcType=VARCHAR},
+      textfield3 = #{textfield3,jdbcType=VARCHAR},
+      textfield4 = #{textfield4,jdbcType=VARCHAR},
+      textfield5 = #{textfield5,jdbcType=VARCHAR},
+      tinyintfield1 = #{tinyintfield1,jdbcType=TINYINT},
+      tinyintfield2 = #{tinyintfield2,jdbcType=TINYINT},
+      tinyintfield3 = #{tinyintfield3,jdbcType=TINYINT},
+      tinyintfield4 = #{tinyintfield4,jdbcType=TINYINT},
+      tinyintfield5 = #{tinyintfield5,jdbcType=TINYINT},
+      certificatenum = #{certificatenum,jdbcType=VARCHAR},
+      nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      educationlevel = #{educationlevel,jdbcType=INTEGER},
+      bememberdate = #{bememberdate,jdbcType=CHAR},
+      bepartydate = #{bepartydate,jdbcType=CHAR},
+      workcode = #{workcode,jdbcType=VARCHAR},
+      regresidentplace = #{regresidentplace,jdbcType=VARCHAR},
+      healthinfo = #{healthinfo,jdbcType=CHAR},
+      residentplace = #{residentplace,jdbcType=VARCHAR},
+      policy = #{policy,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      usekind = #{usekind,jdbcType=INTEGER},
+      jobcall = #{jobcall,jdbcType=INTEGER},
+      accumfundaccount = #{accumfundaccount,jdbcType=VARCHAR},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      folk = #{folk,jdbcType=VARCHAR},
+      residentphone = #{residentphone,jdbcType=VARCHAR},
+      residentpostcode = #{residentpostcode,jdbcType=VARCHAR},
+      extphone = #{extphone,jdbcType=VARCHAR},
+      managerstr = #{managerstr,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      fax = #{fax,jdbcType=VARCHAR},
+      islabouunion = #{islabouunion,jdbcType=CHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      tempresidentnumber = #{tempresidentnumber,jdbcType=VARCHAR},
+      probationenddate = #{probationenddate,jdbcType=CHAR},
+      countryid = #{countryid,jdbcType=INTEGER},
+      passwdchgdate = #{passwdchgdate,jdbcType=CHAR},
+      needusb = #{needusb,jdbcType=INTEGER},
+      serial = #{serial,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      lloginid = #{lloginid,jdbcType=VARCHAR},
+      needdynapass = #{needdynapass,jdbcType=INTEGER},
+      dsporder = #{dsporder,jdbcType=DOUBLE},
+      passwordstate = #{passwordstate,jdbcType=INTEGER},
+      accounttype = #{accounttype,jdbcType=INTEGER},
+      belongto = #{belongto,jdbcType=INTEGER},
+      dactylogram = #{dactylogram,jdbcType=VARCHAR},
+      assistantdactylogram = #{assistantdactylogram,jdbcType=VARCHAR},
+      passwordlock = #{passwordlock,jdbcType=INTEGER},
+      sumpasswordwrong = #{sumpasswordwrong,jdbcType=INTEGER},
+      oldpassword1 = #{oldpassword1,jdbcType=VARCHAR},
+      oldpassword2 = #{oldpassword2,jdbcType=VARCHAR},
+      msgStyle = #{msgstyle,jdbcType=VARCHAR},
+      messagerurl = #{messagerurl,jdbcType=VARCHAR},
+      pinyinlastname = #{pinyinlastname,jdbcType=VARCHAR},
+      tokenkey = #{tokenkey,jdbcType=VARCHAR},
+      userUsbType = #{userusbtype,jdbcType=VARCHAR},
+      outkey = #{outkey,jdbcType=VARCHAR},
+      adsjgs = #{adsjgs,jdbcType=VARCHAR},
+      adgs = #{adgs,jdbcType=VARCHAR},
+      adbm = #{adbm,jdbcType=VARCHAR},
+      mobileshowtype = #{mobileshowtype,jdbcType=INTEGER},
+      usbstate = #{usbstate,jdbcType=INTEGER},
+      totalSpace = #{totalspace,jdbcType=DOUBLE},
+      occupySpace = #{occupyspace,jdbcType=DOUBLE},
+      ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      isADAccount = #{isadaccount,jdbcType=CHAR},
+      accountname = #{accountname,jdbcType=VARCHAR},
+      notallot = #{notallot,jdbcType=INTEGER},
+      beforefrozen = #{beforefrozen,jdbcType=INTEGER},
+      resourcefrom = #{resourcefrom,jdbcType=VARCHAR},
+      isnewuser = #{isnewuser,jdbcType=VARCHAR},
+      ctripcardno = #{ctripcardno,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="checkAllWithIm" resultType="com.cn.mis.domain.entity.inface.IFHrmResource">
+    SELECT id,loginid,password,lastname,
+    sex,telephone,mobile,email,
+    startdate,enddate,jobtitle,seclevel,
+    departmentid,subcompanyid1,costcenterid,
+    managerid,assistantid,resourceimageid,
+    createrid,createdate,lastmodid,
+    workcode,
+    managerstr,status,probationenddate,
+    passwdchgdate,dsporder,accounttype,
+    belongto,dactylogram,assistantdactylogram,
+    pinyinlastname,mobileshowtype,ecology_pinyin_search
+    FROM HrmResource
+  </select>
+</mapper>

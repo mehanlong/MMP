@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.FM144Mapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.FM144" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="requestId" property="requestid" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="employee" property="employee" jdbcType="INTEGER" />
+    <result column="request_date" property="requestDate" jdbcType="CHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="performance" property="performance" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.mis.FM144WithBLOBs" extends="BaseResultMap" >
+    <result column="attachment" property="attachment" jdbcType="LONGVARCHAR" />
+    <result column="key_target1" property="keyTarget1" jdbcType="LONGVARCHAR" />
+    <result column="key_results1" property="keyResults1" jdbcType="LONGVARCHAR" />
+    <result column="key_target2" property="keyTarget2" jdbcType="LONGVARCHAR" />
+    <result column="key_results2" property="keyResults2" jdbcType="LONGVARCHAR" />
+    <result column="key_target3" property="keyTarget3" jdbcType="LONGVARCHAR" />
+    <result column="key_results3" property="keyResults3" jdbcType="LONGVARCHAR" />
+    <result column="key_target4" property="keyTarget4" jdbcType="LONGVARCHAR" />
+    <result column="key_results4" property="keyResults4" jdbcType="LONGVARCHAR" />
+    <result column="key_target5" property="keyTarget5" jdbcType="LONGVARCHAR" />
+    <result column="key_results5" property="keyResults5" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, requestId, department, code, employee, request_date, title, performance
+  </sql>
+  <sql id="Blob_Column_List" >
+    attachment, key_target1, key_results1, key_target2, key_results2, key_target3, key_results3, 
+    key_target4, key_results4, key_target5, key_results5
+  </sql>
+  <select id="selectByParames" resultMap="ResultMapWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.FM144WithBLOBs" >
+    SELECT id
+    FROM formtable_main_144
+    WHERE 1=1
+    <if test="employee != null">
+      AND employee = #{employee}
+    </if>
+    <if test="performance != null">
+      AND performance = #{performance}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from formtable_main_144
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from formtable_main_144
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.FM144WithBLOBs" >
+    insert into formtable_main_144 (id, requestId, department, 
+      code, employee, request_date, 
+      title, performance, attachment, 
+      key_target1, key_results1, key_target2, 
+      key_results2, key_target3, key_results3, 
+      key_target4, key_results4, key_target5, 
+      key_results5)
+    values (#{id,jdbcType=INTEGER}, #{requestid,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{employee,jdbcType=INTEGER}, #{requestDate,jdbcType=CHAR}, 
+      #{title,jdbcType=VARCHAR}, #{performance,jdbcType=VARCHAR}, #{attachment,jdbcType=LONGVARCHAR}, 
+      #{keyTarget1,jdbcType=LONGVARCHAR}, #{keyResults1,jdbcType=LONGVARCHAR}, #{keyTarget2,jdbcType=LONGVARCHAR}, 
+      #{keyResults2,jdbcType=LONGVARCHAR}, #{keyTarget3,jdbcType=LONGVARCHAR}, #{keyResults3,jdbcType=LONGVARCHAR}, 
+      #{keyTarget4,jdbcType=LONGVARCHAR}, #{keyResults4,jdbcType=LONGVARCHAR}, #{keyTarget5,jdbcType=LONGVARCHAR}, 
+      #{keyResults5,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.FM144WithBLOBs" >
+    insert into formtable_main_144
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestid != null" >
+        requestId,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="employee != null" >
+        employee,
+      </if>
+      <if test="requestDate != null" >
+        request_date,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="attachment != null" >
+        attachment,
+      </if>
+      <if test="keyTarget1 != null" >
+        key_target1,
+      </if>
+      <if test="keyResults1 != null" >
+        key_results1,
+      </if>
+      <if test="keyTarget2 != null" >
+        key_target2,
+      </if>
+      <if test="keyResults2 != null" >
+        key_results2,
+      </if>
+      <if test="keyTarget3 != null" >
+        key_target3,
+      </if>
+      <if test="keyResults3 != null" >
+        key_results3,
+      </if>
+      <if test="keyTarget4 != null" >
+        key_target4,
+      </if>
+      <if test="keyResults4 != null" >
+        key_results4,
+      </if>
+      <if test="keyTarget5 != null" >
+        key_target5,
+      </if>
+      <if test="keyResults5 != null" >
+        key_results5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="requestDate != null" >
+        #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget1 != null" >
+        #{keyTarget1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults1 != null" >
+        #{keyResults1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget2 != null" >
+        #{keyTarget2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults2 != null" >
+        #{keyResults2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget3 != null" >
+        #{keyTarget3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults3 != null" >
+        #{keyResults3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget4 != null" >
+        #{keyTarget4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults4 != null" >
+        #{keyResults4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget5 != null" >
+        #{keyTarget5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults5 != null" >
+        #{keyResults5,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.FM144WithBLOBs" >
+    update formtable_main_144
+    <set >
+      <if test="requestid != null" >
+        requestId = #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        employee = #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="requestDate != null" >
+        request_date = #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null" >
+        attachment = #{attachment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget1 != null" >
+        key_target1 = #{keyTarget1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults1 != null" >
+        key_results1 = #{keyResults1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget2 != null" >
+        key_target2 = #{keyTarget2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults2 != null" >
+        key_results2 = #{keyResults2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget3 != null" >
+        key_target3 = #{keyTarget3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults3 != null" >
+        key_results3 = #{keyResults3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget4 != null" >
+        key_target4 = #{keyTarget4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults4 != null" >
+        key_results4 = #{keyResults4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget5 != null" >
+        key_target5 = #{keyTarget5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyResults5 != null" >
+        key_results5 = #{keyResults5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.FM144WithBLOBs" >
+    update formtable_main_144
+    set requestId = #{requestid,jdbcType=INTEGER},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      employee = #{employee,jdbcType=INTEGER},
+      request_date = #{requestDate,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      performance = #{performance,jdbcType=VARCHAR},
+      attachment = #{attachment,jdbcType=LONGVARCHAR},
+      key_target1 = #{keyTarget1,jdbcType=LONGVARCHAR},
+      key_results1 = #{keyResults1,jdbcType=LONGVARCHAR},
+      key_target2 = #{keyTarget2,jdbcType=LONGVARCHAR},
+      key_results2 = #{keyResults2,jdbcType=LONGVARCHAR},
+      key_target3 = #{keyTarget3,jdbcType=LONGVARCHAR},
+      key_results3 = #{keyResults3,jdbcType=LONGVARCHAR},
+      key_target4 = #{keyTarget4,jdbcType=LONGVARCHAR},
+      key_results4 = #{keyResults4,jdbcType=LONGVARCHAR},
+      key_target5 = #{keyTarget5,jdbcType=LONGVARCHAR},
+      key_results5 = #{keyResults5,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.FM144" >
+    update formtable_main_144
+    set requestId = #{requestid,jdbcType=INTEGER},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      employee = #{employee,jdbcType=INTEGER},
+      request_date = #{requestDate,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      performance = #{performance,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

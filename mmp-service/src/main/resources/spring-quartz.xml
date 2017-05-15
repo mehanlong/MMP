@@ -13,6 +13,7 @@
     <bean id="xcApprovalJob" class="com.cn.mis.timetask.XCApprovalTimeTask"/>
     <bean id="xcFOSettlementsJob" class="com.cn.mis.timetask.XCFlightOrderSettlementsTimeTask"/>
     <bean id="paymentJob" class="com.cn.mis.timetask.PaymentTimeTask"/>
+    <bean id="syncInfaceJob" class="com.cn.mis.timetask.InfaceTimeTask"/>
 
     <!-- job的配置开始 -->
     <bean id="accountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -99,6 +100,16 @@
     <bean id="xcFOSettlementsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
             <ref bean="xcFOSettlementsJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="syncInfaceJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="syncInfaceJob" />
         </property>
         <property name="targetMethod">
             <value>run</value>
@@ -195,12 +206,20 @@
             <ref bean="xcFOSettlementsJobDetail" />
         </property>
         <property name="cronExpression">
-            <value>0 0 0 1 * ?</value>
+            <value>0 59 23 L * ?</value>
         </property>
     </bean>
     <bean id="paymentJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
             <ref bean="paymentJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>
+        </property>
+    </bean>
+    <bean id="syncInfaceJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="syncInfaceJobDetail" />
         </property>
         <property name="cronExpression">
             <value>0 */1 * * * ?</value>
@@ -215,13 +234,14 @@
                 <ref bean="crontestAccount8_20JobTrigger" />
                 <ref bean="crontestAccount20_24JobTrigger" />
                 <ref bean="crontestAccount0_8JobTrigger" />
+                <ref bean="allAccountJobTrigger"/>
                 <ref bean="userJobTrigger" />
                 <ref bean="syncOAJobTrigger" />
-                <ref bean="allAccountJobTrigger"/>
                 <ref bean="xcAccountJobTrigger"/>
                 <ref bean="xcApprovalJobTrigger"/>
                 <ref bean="xcFOSettlementsJobTrigger"/>
                 <ref bean="paymentJobTrigger"/>
+                <!--<ref bean="syncInfaceJobTrigger"/>-->
             </list>
         </property>
     </bean>

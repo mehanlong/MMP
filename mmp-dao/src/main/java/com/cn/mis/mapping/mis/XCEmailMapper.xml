@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.mis.dao.mis.XCEmailMapper">
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.XCEmail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="corp_name" jdbcType="VARCHAR" property="corpName" />
+    <result column="primary_department" jdbcType="VARCHAR" property="primaryDepartment" />
+    <result column="affiliation_department" jdbcType="VARCHAR" property="affiliationDepartment" />
+    <result column="booking_agent" jdbcType="VARCHAR" property="bookingAgent" />
+    <result column="booking_type" jdbcType="VARCHAR" property="bookingType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="dparture_city" jdbcType="VARCHAR" property="dpartureCity" />
+    <result column="destination_city" jdbcType="VARCHAR" property="destinationCity" />
+    <result column="departure_date" jdbcType="TIMESTAMP" property="departureDate" />
+    <result column="destination_date" jdbcType="TIMESTAMP" property="destinationDate" />
+    <result column="email_time" jdbcType="TIMESTAMP" property="emailTime" />
+    <result column="process_time" jdbcType="TIMESTAMP" property="processTime" />
+    <result column="process_flag" jdbcType="TINYINT" property="processFlag" />
+    <result column="am_or_pm" jdbcType="VARCHAR" property="amOrPm" />
+    <result column="pm_ro_am" jdbcType="NCHAR" property="pmRoAm" />
+    <result column="process_code" jdbcType="VARCHAR" property="processCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, corp_name, primary_department, affiliation_department, booking_agent, booking_type, 
+    name, dparture_city, destination_city, departure_date, destination_date, email_time, 
+    process_time, process_flag, am_or_pm, pm_ro_am ,process_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qd_inface_xcemail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qd_inface_xc
+--     from qd_inface_xcemail
+    where process_flag != 1 OR process_flag IS NULL
+--     WHERE id = 88
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from qd_inface_xcemail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.XCEmail">
+    update qd_inface_xc
+--     update qd_inface_xcemail
+    <set>
+      <if test="corpName != null">
+        corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryDepartment != null">
+        primary_department = #{primaryDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="affiliationDepartment != null">
+        affiliation_department = #{affiliationDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingAgent != null">
+        booking_agent = #{bookingAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingType != null">
+        booking_type = #{bookingType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="dpartureCity != null">
+        dparture_city = #{dpartureCity,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationCity != null">
+        destination_city = #{destinationCity,jdbcType=VARCHAR},
+      </if>
+      <if test="departureDate != null">
+        departure_date = #{departureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="destinationDate != null">
+        destination_date = #{destinationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="emailTime != null">
+        email_time = #{emailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processTime != null">
+        process_time = #{processTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processFlag != null">
+        process_flag = #{processFlag,jdbcType=TINYINT},
+      </if>
+      <if test="amOrPm != null">
+        am_or_pm = #{amOrPm,jdbcType=VARCHAR},
+      </if>
+      <if test="pmRoAm != null">
+        pm_ro_am = #{pmRoAm,jdbcType=NCHAR},
+      </if>
+      <if test="processCode != null">
+        process_code = #{processCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

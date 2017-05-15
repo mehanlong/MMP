@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.im.IMCompdeptMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.im.IMCompdept" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="compid" property="compid" jdbcType="INTEGER" />
+    <result column="deptname" property="deptname" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="updatetype" property="updatetype" jdbcType="INTEGER" />
+    <result column="sortmanager" property="sortmanager" jdbcType="INTEGER" />
+    <result column="wdsort" property="wdsort" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="deptenname" property="deptenname" jdbcType="VARCHAR" />
+    <result column="deptorgid" property="deptorgid" jdbcType="BIGINT" />
+    <result column="porgid" property="porgid" jdbcType="BIGINT" />
+    <result column="isempty" property="isempty" jdbcType="INTEGER" />
+    <result column="deptshortname" property="deptshortname" jdbcType="VARCHAR" />
+    <result column="showlevel" property="showlevel" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, compid, deptname, pid, update_time, updatetype, sortmanager, wdsort, tel, deptenname, 
+    deptorgid, porgid, isempty, deptshortname, showlevel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from compdept
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from compdept
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.im.IMCompdept" >
+    insert into compdept (id, compid, deptname, 
+      pid, update_time, updatetype, 
+      sortmanager, wdsort, tel, 
+      deptenname, deptorgid, porgid, 
+      isempty, deptshortname, showlevel
+      )
+    values (#{id,jdbcType=INTEGER}, #{compid,jdbcType=INTEGER}, #{deptname,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updatetype,jdbcType=INTEGER}, 
+      #{sortmanager,jdbcType=INTEGER}, #{wdsort,jdbcType=INTEGER}, #{tel,jdbcType=CHAR}, 
+      #{deptenname,jdbcType=VARCHAR}, #{deptorgid,jdbcType=BIGINT}, #{porgid,jdbcType=BIGINT}, 
+      #{isempty,jdbcType=INTEGER}, #{deptshortname,jdbcType=VARCHAR}, #{showlevel,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.im.IMCompdept" useGeneratedKeys="true" keyProperty="id">
+    insert into compdept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="compid != null" >
+        compid,
+      </if>
+      <if test="deptname != null" >
+        deptname,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updatetype != null" >
+        updatetype,
+      </if>
+      <if test="sortmanager != null" >
+        sortmanager,
+      </if>
+      <if test="wdsort != null" >
+        wdsort,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="deptenname != null" >
+        deptenname,
+      </if>
+      <if test="deptorgid != null" >
+        deptorgid,
+      </if>
+      <if test="porgid != null" >
+        porgid,
+      </if>
+      <if test="isempty != null" >
+        isempty,
+      </if>
+      <if test="deptshortname != null" >
+        deptshortname,
+      </if>
+      <if test="showlevel != null" >
+        showlevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="compid != null" >
+        #{compid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="sortmanager != null" >
+        #{sortmanager,jdbcType=INTEGER},
+      </if>
+      <if test="wdsort != null" >
+        #{wdsort,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="deptenname != null" >
+        #{deptenname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptorgid != null" >
+        #{deptorgid,jdbcType=BIGINT},
+      </if>
+      <if test="porgid != null" >
+        #{porgid,jdbcType=BIGINT},
+      </if>
+      <if test="isempty != null" >
+        #{isempty,jdbcType=INTEGER},
+      </if>
+      <if test="deptshortname != null" >
+        #{deptshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="showlevel != null" >
+        #{showlevel,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.im.IMCompdept" >
+    update compdept
+    <set >
+      <if test="compid != null" >
+        compid = #{compid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null" >
+        deptname = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        updatetype = #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="sortmanager != null" >
+        sortmanager = #{sortmanager,jdbcType=INTEGER},
+      </if>
+      <if test="wdsort != null" >
+        wdsort = #{wdsort,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=CHAR},
+      </if>
+      <if test="deptenname != null" >
+        deptenname = #{deptenname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptorgid != null" >
+        deptorgid = #{deptorgid,jdbcType=BIGINT},
+      </if>
+      <if test="porgid != null" >
+        porgid = #{porgid,jdbcType=BIGINT},
+      </if>
+      <if test="isempty != null" >
+        isempty = #{isempty,jdbcType=INTEGER},
+      </if>
+      <if test="deptshortname != null" >
+        deptshortname = #{deptshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="showlevel != null" >
+        showlevel = #{showlevel,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.im.IMCompdept" >
+    update compdept
+    set compid = #{compid,jdbcType=INTEGER},
+      deptname = #{deptname,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      updatetype = #{updatetype,jdbcType=INTEGER},
+      sortmanager = #{sortmanager,jdbcType=INTEGER},
+      wdsort = #{wdsort,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=CHAR},
+      deptenname = #{deptenname,jdbcType=VARCHAR},
+      deptorgid = #{deptorgid,jdbcType=BIGINT},
+      porgid = #{porgid,jdbcType=BIGINT},
+      isempty = #{isempty,jdbcType=INTEGER},
+      deptshortname = #{deptshortname,jdbcType=VARCHAR},
+      showlevel = #{showlevel,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

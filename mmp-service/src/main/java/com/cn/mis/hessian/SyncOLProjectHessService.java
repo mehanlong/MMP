@@ -5,21 +5,21 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.cn.mis.client.ISyncOLProjectApi;
 import com.cn.mis.domain.bean.req.SyncOLReq;
 import com.cn.mis.domain.bean.resp.BaseResp;
 import com.cn.mis.domain.bean.resp.RelPermitResp;
-import com.cn.mis.domain.entity.OLSyncProject;
-import com.cn.mis.domain.entity.UFCommunityWithBLOBs;
-import com.cn.mis.service.IOLSyncProjectService;
-import com.cn.mis.service.IUFCommunityService;
-import com.cn.mis.client.*;
+import com.cn.mis.domain.entity.mis.OLSyncProject;
+import com.cn.mis.domain.entity.mis.UFCommunityWithBLOBs;
+import com.cn.mis.service.mis.IOLSyncProjectService;
+import com.cn.mis.service.mis.IUFCommunityService;
 import com.cn.mis.utils.json.JsonUtil;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.reflect.TypeToken;
 
 @Service("syncOLProjectHessService")
-public class SyncOLProjectHessService implements ISyncOLProjectApi{
+public class SyncOLProjectHessService implements ISyncOLProjectApi {
 	
 	@Resource
 	private IOLSyncProjectService iOLsyncProjectService;

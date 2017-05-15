@@ -1,25 +1,20 @@
 package com.cn.mis.timetask;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.cn.mis.domain.entity.OperateProject;
-import com.cn.mis.domain.entity.OperateProperty;
-import com.cn.mis.service.IOperateProjectService;
-import com.cn.mis.service.IOperatePropertyService;
-import com.cn.mis.service.impl.RPCService;
-import com.qding.framework.common.util.SpringContextUtils;
+import com.cn.mis.domain.entity.mis.OperateProject;
+import com.cn.mis.domain.entity.mis.OperateProperty;
+import com.cn.mis.service.mis.IOperateProjectService;
+import com.cn.mis.service.mis.IOperatePropertyService;
+import com.cn.mis.service.mis.impl.RPCService;
 import org.springframework.stereotype.Component;
 
 import com.qding.brick.enums.BizTypeEnum;
 import com.qding.brick.pojo.biz.Project;
 import com.qding.brick.pojo.biz.PropertyInfo;
 import com.qding.brick.pojo.biz.Region;
-import com.qding.brick.remote.biz.RegionRemote;
 import com.qding.brick.struts.request.BizRemoteRequest;
 import com.qding.brick.struts.response.BizRemoteResponse;
 import com.qding.brick.struts.response.RegionResponse;

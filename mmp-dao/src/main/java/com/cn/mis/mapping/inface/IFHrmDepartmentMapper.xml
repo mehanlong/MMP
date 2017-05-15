@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.inface.IFHrmDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.inface.IFHrmDepartment" >
+    <result column="departmentmark" property="departmentmark" jdbcType="VARCHAR" />
+    <result column="departmentname" property="departmentname" jdbcType="VARCHAR" />
+    <result column="subcompanyid1" property="subcompanyid1" jdbcType="INTEGER" />
+    <result column="supdepid" property="supdepid" jdbcType="INTEGER" />
+    <result column="showorder" property="showorder" jdbcType="INTEGER" />
+    <result column="canceled" property="canceled" jdbcType="CHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithIM" type="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithIM" extends="BaseResultMap">
+    <result column="imid" property="imid" jdbcType="INTEGER" />
+    <result column="imsyncflag" property="imsyncflag" jdbcType="INTEGER" />
+    <result column="imcreatetime" property="imcreatetime" jdbcType="TIMESTAMP" />
+    <result column="immodifytime" property="immodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithTX" type="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithTX" extends="BaseResultMap">
+    <result column="txid" property="txid" jdbcType="BIGINT" />
+    <result column="txsyncflag" property="txsyncflag" jdbcType="INTEGER" />
+    <result column="txcreatetime" property="txcreatetime" jdbcType="TIMESTAMP" />
+    <result column="txmodifytime" property="txmodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithCustom" type="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithCustom" extends="ResultMapWithIM">
+    <result column="impid" property="impid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, departmentmark, departmentname,
+    subcompanyid1, supdepid,showorder,
+    canceled, departmentcode,ecology_pinyin_search,imid,
+    imsyncflag,imcreatetime, immodifytime
+  </sql>
+  <select id="checkAllWithIm" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartment">
+    SELECT id, departmentmark, departmentname,
+    subcompanyid1, supdepid,showorder,
+    canceled, departmentcode,ecology_pinyin_search
+    FROM HrmDepartment
+  </select>
+  <select id="checkAllWithTx" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartment">
+    SELECT id, departmentmark, departmentname,
+    subcompanyid1, supdepid,showorder,
+    canceled, departmentcode,ecology_pinyin_search
+    FROM HrmDepartment
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into HrmDepartment (departmentmark, departmentname, subcompanyid1, 
+      supdepid, showorder, canceled, 
+      departmentcode, ecology_pinyin_search,id)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.departmentmark,jdbcType=VARCHAR}, #{item.departmentname,jdbcType=VARCHAR}, #{item.subcompanyid1,jdbcType=INTEGER},
+      #{item.supdepid,jdbcType=INTEGER}, #{item.showorder,jdbcType=INTEGER}, #{item.canceled,jdbcType=CHAR},
+      #{item.departmentcode,jdbcType=VARCHAR}, #{item.ecologyPinyinSearch,jdbcType=VARCHAR},#{item.id,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertBatchTx" parameterType="java.util.List">
+    insert into HrmDepartment (departmentmark, departmentname, subcompanyid1,
+    supdepid, showorder, canceled,
+    departmentcode, ecology_pinyin_search, txid,
+    txsyncflag, txcreatetime, txmodifytime,
+    id)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.departmentmark,jdbcType=VARCHAR}, #{item.departmentname,jdbcType=VARCHAR}, #{item.subcompanyid1,jdbcType=INTEGER},
+      #{item.supdepid,jdbcType=INTEGER}, #{item.showorder,jdbcType=INTEGER}, #{item.canceled,jdbcType=CHAR},
+      #{item.departmentcode,jdbcType=VARCHAR}, #{item.ecologyPinyinSearch,jdbcType=VARCHAR}, #{item.txid,jdbcType=INTEGER},
+      #{item.txsyncflag,jdbcType=INTEGER}, #{item.txcreatetime,jdbcType=TIMESTAMP}, #{item.txmodifytime,jdbcType=TIMESTAMP},
+      #{item.id,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <update id="updateSelBatch" parameterType="java.util.List">
+    update HrmDepartment
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="departmentmark = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentmark != null"> when id=#{item.id} then #{item.departmentmark} </if></foreach></trim>
+      <trim prefix="departmentname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentname != null"> when id=#{item.id} then #{item.departmentname} </if></foreach></trim>
+      <trim prefix="subcompanyid1 = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.subcompanyid1 != null"> when id=#{item.id} then #{item.subcompanyid1} </if></foreach></trim>
+      <trim prefix="supdepid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.supdepid != null"> when id=#{item.id} then #{item.supdepid} </if></foreach></trim>
+      <trim prefix="showorder = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.showorder != null"> when id=#{item.id} then #{item.showorder} </if></foreach></trim>
+      <trim prefix="canceled = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.canceled != null"> when id=#{item.id} then #{item.canceled} </if></foreach></trim>
+      <trim prefix="departmentcode = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentcode != null"> when id=#{item.id} then #{item.departmentcode} </if></foreach></trim>
+      <trim prefix="ecology_pinyin_search = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.ecologyPinyinSearch != null"> when id=#{item.id} then #{item.ecologyPinyinSearch} </if></foreach></trim>
+      <trim prefix="imid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imid != null"> when id=#{item.id} then #{item.imid} </if></foreach></trim>
+      <trim prefix="imsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imsyncflag != null"> when id=#{item.id} then #{item.imsyncflag} </if></foreach></trim>
+      <trim prefix="imcreatetime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imcreatetime != null"> when id=#{item.id} then #{item.imcreatetime} </if></foreach></trim>
+      <trim prefix="immodifytime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.immodifytime != null"> when id=#{item.id} then #{item.immodifytime} </if></foreach></trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item.id}
+    </foreach>
+  </update>
+  <update id="updateSelBatchTx" parameterType="java.util.List">
+    update HrmDepartment
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="departmentmark = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentmark != null"> when id=#{item.id} then #{item.departmentmark} </if></foreach></trim>
+      <trim prefix="departmentname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentname != null"> when id=#{item.id} then #{item.departmentname} </if></foreach></trim>
+      <trim prefix="subcompanyid1 = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.subcompanyid1 != null"> when id=#{item.id} then #{item.subcompanyid1} </if></foreach></trim>
+      <trim prefix="supdepid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.supdepid != null"> when id=#{item.id} then #{item.supdepid} </if></foreach></trim>
+      <trim prefix="showorder = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.showorder != null"> when id=#{item.id} then #{item.showorder} </if></foreach></trim>
+      <trim prefix="canceled = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.canceled != null"> when id=#{item.id} then #{item.canceled} </if></foreach></trim>
+      <trim prefix="departmentcode = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentcode != null"> when id=#{item.id} then #{item.departmentcode} </if></foreach></trim>
+      <trim prefix="ecology_pinyin_search = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.ecologyPinyinSearch != null"> when id=#{item.id} then #{item.ecologyPinyinSearch} </if></foreach></trim>
+      <trim prefix="txid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txid != null"> when id=#{item.id} then #{item.txid} </if></foreach></trim>
+      <trim prefix="txsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txsyncflag != null"> when id=#{item.id} then #{item.txsyncflag} </if></foreach></trim>
+      <trim prefix="txcreatetime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txcreatetime != null"> when id=#{item.id} then #{item.txcreatetime} </if></foreach></trim>
+      <trim prefix="txmodifytime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txmodifytime != null"> when id=#{item.id} then #{item.txmodifytime} </if></foreach></trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item.id}
+    </foreach>
+  </update>
+  <update id="updateInitBatchTx" parameterType="java.util.List">
+    update HrmDepartment
+    <trim prefix="set" suffixOverrides=",">
+       <trim prefix="txid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentname != null"> when departmentname=#{item.departmentname} then #{item.txid} </if></foreach></trim>
+       <trim prefix="txsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentname != null"> when departmentname=#{item.departmentname} then #{item.txsyncflag} </if></foreach></trim>
+      </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      departmentname=#{item.departmentname}
+    </foreach>
+  </update>
+  <select id="selectAllNeedInit" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithCustom">
+    select
+    <include refid="Base_Column_List" />
+    from HrmDepartment
+    where (imsyncflag is null or imsyncflag = 0) and (canceled IS NULL OR canceled = 0) AND imid IS NULL
+  </select>
+  <select id="selectAllNeedInitTx" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithCustomTX">
+    select
+    <include refid="Base_Column_List" />
+    from HrmDepartment
+    where (txsyncflag is null or txsyncflag = 0) AND (canceled IS NULL OR canceled = 0) AND txid IS NULL
+  </select>
+  <select id="selectAllNeedUpdate" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithCustom">
+    SELECT hdl.id,hdl.departmentname,hdl.subcompanyid1,hdl.imid,isnull(hdr.imid,1) AS impid,hdl.canceled
+    FROM HrmDepartment hdl LEFT JOIN HrmDepartment hdr ON hdl.supdepid = hdr.id
+    WHERE hdl.imid IS NOT NULL AND hdl.imsyncflag = 1
+  </select>
+  <select id="selectAllNeedUpdateTx" resultType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithCustomTX">
+    SELECT hdl.id,hdl.departmentname,hdl.subcompanyid1,hdl.txid,isnull(hdr.txid,1) AS txpid,hdl.canceled
+    FROM HrmDepartment hdl LEFT JOIN HrmDepartment hdr ON hdl.supdepid = hdr.id
+    WHERE hdl.txid IS NOT NULL AND hdl.txsyncflag = 1
+  </select>
+  <update id="updateSyncFlag" parameterType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithIM">
+    update HrmDepartment
+    <trim prefix="set" suffixOverrides=",">
+      <if test="imcreatetime != null">
+        imcreatetime = #{imcreatetime},
+      </if>
+      <if test="immodifytime != null">
+        immodifytime = #{immodifytime},
+      </if>
+      <if test="imsyncflag != null">
+        imsyncflag = #{imsyncflag},
+      </if>
+      <if test="imid != null">
+        imid = #{imid},
+      </if>
+    </trim>
+    where id = #{id}
+  </update>
+  <update id="updateSyncFlagTx" parameterType="com.cn.mis.domain.entity.inface.IFHrmDepartmentWithTX">
+    update HrmDepartment
+    <trim prefix="set" suffixOverrides=",">
+      <if test="txcreatetime != null">
+        txcreatetime = #{txcreatetime},
+      </if>
+      <if test="txmodifytime != null">
+        txmodifytime = #{txmodifytime},
+      </if>
+      <if test="txsyncflag != null">
+        txsyncflag = #{txsyncflag},
+      </if>
+      <if test="txid != null">
+        txid = #{txid},
+      </if>
+    </trim>
+    where id = #{id}
+  </update>
+</mapper>

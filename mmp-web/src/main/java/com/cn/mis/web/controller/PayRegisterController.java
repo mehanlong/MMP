@@ -4,10 +4,8 @@ import com.cn.mis.domain.bean.pojo.SubmitStatus;
 import com.cn.mis.domain.bean.req.PayRegisterReq;
 import com.cn.mis.domain.bean.resp.BaseResult;
 import com.cn.mis.domain.bean.resp.ListResult;
-import com.cn.mis.domain.entity.PayRegister;
-import com.cn.mis.domain.entity.User;
-import com.cn.mis.service.IPayRegisterService;
-import com.cn.mis.service.IUserService;
+import com.cn.mis.domain.entity.mis.PayRegister;
+import com.cn.mis.service.mis.IPayRegisterService;
 import com.cn.mis.utils.date.DateStyle;
 import com.cn.mis.utils.date.DateUtil;
 import com.cn.mis.utils.json.JsonUtil;
@@ -58,6 +56,11 @@ public class PayRegisterController {
     @ResponseBody
     private String selectReceiveLoan(){
         return "/jsp/receiveloan.jsp";
+    }
+
+    @RequestMapping("index")
+    private String toindex(){
+        return "/index.jsp";
     }
 
     @RequestMapping("/selectSubmitStatus")

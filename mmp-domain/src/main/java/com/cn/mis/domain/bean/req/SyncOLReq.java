@@ -1,6 +1,6 @@
 package com.cn.mis.domain.bean.req;
 
-import com.cn.mis.domain.entity.OLSyncProject;
+import com.cn.mis.domain.entity.mis.OLSyncProject;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.cn.mis.web.controller;
 
-import com.cn.mis.domain.entity.OperateProject;
-import com.cn.mis.service.IOperateProjectService;
-import com.cn.mis.service.impl.RPCService;
+import com.cn.mis.domain.entity.mis.OperateProject;
+import com.cn.mis.service.mis.IOperateProjectService;
+import com.cn.mis.service.mis.impl.RPCService;
 import com.qding.brick.enums.BizTypeEnum;
 import com.qding.brick.pojo.biz.Project;
 import com.qding.brick.struts.request.BizRemoteRequest;

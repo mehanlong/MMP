@@ -1,17 +1,15 @@
 package com.cn.mis.web.controller;
 
-import com.alibaba.dubbo.common.json.JSONObject;
 import com.cn.mis.domain.bean.resp.BaseResult;
 import com.cn.mis.domain.bean.resp.ListResult;
-import com.cn.mis.domain.entity.*;
-import com.cn.mis.service.*;
+import com.cn.mis.domain.entity.mis.*;
+import com.cn.mis.service.mis.*;
 import com.cn.mis.utils.email.EMailProperties;
 import com.cn.mis.utils.email.EmailSender;
 import com.cn.mis.utils.json.JsonUtil;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.JsonObject;
+import com.github.pagehelper.util.StringUtil;
 import com.qding.framework.common.util.MD5Util;
-import com.qiniu.util.Json;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +50,9 @@ public class TestController {
 
     @Resource
     private IFM24Service ifm24Service;
+
+    @Resource
+    private IFM24DT1Service ifm24DT1Service;
 
     @RequestMapping("/login")
     @ResponseBody
@@ -160,31 +161,46 @@ public class TestController {
     private String chengdata(){
         List<FM24WithBLOBs> list = ifm24Service.selectAll();
         List<UFCContractWithBLOBs> list1 = iufContractService.selectAll();
+        List<FM24DT1> list2 = ifm24DT1Service.selectAll();
 
-        for (UFCContractWithBLOBs tmp:list1){
-            if (tmp.getContractAmount1() == null || tmp.getContractAmount1().equals("")){
-                if (tmp.getContractAmount() != null && !tmp.getContractAmount().equals("")){
-                    String[] spl = tmp.getContractAmount().split(",");
-                    Double dd = 0.0;
-                    if (spl.length == 3){
-                        dd += Double.valueOf(spl[0])*1000000;
-                        dd += Double.valueOf(spl[1])*1000;
-                        dd += Double.valueOf(spl[2]);
-
-                    }
-                    if (spl.length == 2){
-                        dd += Double.valueOf(spl[0])*1000;
-                        dd += Double.valueOf(spl[1]);
-                    }
-
-                    if (spl.length == 1){
-                        dd += Double.valueOf(spl[0]);
-                    }
-                    tmp.setContractAmount1(new BigDecimal(dd+""));
-                    iufContractService.updateByPrimaryKeySelective(tmp);
-                }
+        for (FM24DT1 fm:list2){
+            if (StringUtil.isNotEmpty(fm.getProperty())){
+                String tmp1 = fm.getProperty();
+                BigDecimal property = BigDecimal.valueOf(Double.valueOf(tmp1));
+                fm.setPropertyNew(property);
             }
+            if (StringUtil.isNotEmpty(fm.getServiceAmount())){
+                String tmp2 = fm.getServiceAmount().replaceAll("%","");
+                BigDecimal serviceamount = BigDecimal.valueOf(Double.valueOf(tmp2));
+                fm.setYearServiceAmountNew(serviceamount);
+            }
+            ifm24DT1Service.updateByPrimaryKeySelective(fm);
         }
+
+//        for (UFCContractWithBLOBs tmp:list1){
+//            if (tmp.getContractAmount1() == null || tmp.getContractAmount1().equals("")){
+//                if (tmp.getContractAmount() != null && !tmp.getContractAmount().equals("")){
+//                    String[] spl = tmp.getContractAmount().split(",");
+//                    Double dd = 0.0;
+//                    if (spl.length == 3){
+//                        dd += Double.valueOf(spl[0])*1000000;
+//                        dd += Double.valueOf(spl[1])*1000;
+//                        dd += Double.valueOf(spl[2]);
+//
+//                    }
+//                    if (spl.length == 2){
+//                        dd += Double.valueOf(spl[0])*1000;
+//                        dd += Double.valueOf(spl[1]);
+//                    }
+//
+//                    if (spl.length == 1){
+//                        dd += Double.valueOf(spl[0]);
+//                    }
+//                    tmp.setContractAmount1(new BigDecimal(dd+""));
+//                    iufContractService.updateByPrimaryKeySelective(tmp);
+//                }
+//            }
+//        }
 //        for (FM24WithBLOBs fm24WithBLOBs: list){
 //            if (fm24WithBLOBs.getContractAmount() != null && !fm24WithBLOBs.getContractAmount().equals("")){
 //                String tmp = fm24WithBLOBs.getContractAmount();

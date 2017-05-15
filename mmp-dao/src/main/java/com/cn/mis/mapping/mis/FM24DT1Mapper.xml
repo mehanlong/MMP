@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.FM24DT1Mapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.FM24DT1" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mainid" property="mainid" jdbcType="INTEGER" />
+    <result column="community" property="community" jdbcType="VARCHAR" />
+    <result column="household_num" property="householdNum" jdbcType="VARCHAR" />
+    <result column="year_service_amount" property="yearServiceAmount" jdbcType="VARCHAR" />
+    <result column="plan_online_date" property="planOnlineDate" jdbcType="CHAR" />
+    <result column="unit_access_flag" property="unitAccessFlag" jdbcType="INTEGER" />
+    <result column="operation_flag" property="operationFlag" jdbcType="INTEGER" />
+    <result column="property" property="property" jdbcType="VARCHAR" />
+    <result column="service_amount" property="serviceAmount" jdbcType="VARCHAR" />
+    <result column="community_add" property="communityAdd" jdbcType="VARCHAR" />
+    <result column="managment_area" property="managmentArea" jdbcType="DECIMAL" />
+    <result column="online_households" property="onlineHouseholds" jdbcType="VARCHAR" />
+    <result column="section" property="section" jdbcType="INTEGER" />
+    <result column="property_type" property="propertyType" jdbcType="INTEGER" />
+    <result column="city1" property="city1" jdbcType="INTEGER" />
+    <result column="household_num_new" property="householdNumNew" jdbcType="INTEGER" />
+    <result column="online_households_new" property="onlineHouseholdsNew" jdbcType="INTEGER" />
+    <result column="year_service_amount_new" property="yearServiceAmountNew" jdbcType="DECIMAL" />
+    <result column="property_new" property="propertyNew" jdbcType="DECIMAL" />
+    <result column="service_amount_new" property="serviceAmountNew" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.mis.FM24DT1" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mainid, community, household_num, year_service_amount, plan_online_date, unit_access_flag, 
+    operation_flag, property, service_amount, community_add, managment_area, online_households, 
+    section, property_type, city1, household_num_new, online_households_new, year_service_amount_new, 
+    property_new, service_amount_new
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from formtable_main_24_dt1
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from formtable_main_24_dt1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from formtable_main_24_dt1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.FM24DT1" >
+    insert into formtable_main_24_dt1 (id, mainid, community, 
+      household_num, year_service_amount, plan_online_date, 
+      unit_access_flag, operation_flag, property, 
+      service_amount, community_add, managment_area, 
+      online_households, section, property_type, 
+      city1, household_num_new, online_households_new, 
+      year_service_amount_new, property_new, service_amount_new, 
+      comment)
+    values (#{id,jdbcType=INTEGER}, #{mainid,jdbcType=INTEGER}, #{community,jdbcType=VARCHAR}, 
+      #{householdNum,jdbcType=VARCHAR}, #{yearServiceAmount,jdbcType=VARCHAR}, #{planOnlineDate,jdbcType=CHAR}, 
+      #{unitAccessFlag,jdbcType=INTEGER}, #{operationFlag,jdbcType=INTEGER}, #{property,jdbcType=VARCHAR}, 
+      #{serviceAmount,jdbcType=VARCHAR}, #{communityAdd,jdbcType=VARCHAR}, #{managmentArea,jdbcType=DECIMAL}, 
+      #{onlineHouseholds,jdbcType=VARCHAR}, #{section,jdbcType=INTEGER}, #{propertyType,jdbcType=INTEGER}, 
+      #{city1,jdbcType=INTEGER}, #{householdNumNew,jdbcType=INTEGER}, #{onlineHouseholdsNew,jdbcType=INTEGER}, 
+      #{yearServiceAmountNew,jdbcType=DECIMAL}, #{propertyNew,jdbcType=DECIMAL}, #{serviceAmountNew,jdbcType=DECIMAL}, 
+      #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.FM24DT1" >
+    insert into formtable_main_24_dt1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mainid != null" >
+        mainid,
+      </if>
+      <if test="community != null" >
+        community,
+      </if>
+      <if test="householdNum != null" >
+        household_num,
+      </if>
+      <if test="yearServiceAmount != null" >
+        year_service_amount,
+      </if>
+      <if test="planOnlineDate != null" >
+        plan_online_date,
+      </if>
+      <if test="unitAccessFlag != null" >
+        unit_access_flag,
+      </if>
+      <if test="operationFlag != null" >
+        operation_flag,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="serviceAmount != null" >
+        service_amount,
+      </if>
+      <if test="communityAdd != null" >
+        community_add,
+      </if>
+      <if test="managmentArea != null" >
+        managment_area,
+      </if>
+      <if test="onlineHouseholds != null" >
+        online_households,
+      </if>
+      <if test="section != null" >
+        section,
+      </if>
+      <if test="propertyType != null" >
+        property_type,
+      </if>
+      <if test="city1 != null" >
+        city1,
+      </if>
+      <if test="householdNumNew != null" >
+        household_num_new,
+      </if>
+      <if test="onlineHouseholdsNew != null" >
+        online_households_new,
+      </if>
+      <if test="yearServiceAmountNew != null" >
+        year_service_amount_new,
+      </if>
+      <if test="propertyNew != null" >
+        property_new,
+      </if>
+      <if test="serviceAmountNew != null" >
+        service_amount_new,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mainid != null" >
+        #{mainid,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNum != null" >
+        #{householdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="yearServiceAmount != null" >
+        #{yearServiceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="planOnlineDate != null" >
+        #{planOnlineDate,jdbcType=CHAR},
+      </if>
+      <if test="unitAccessFlag != null" >
+        #{unitAccessFlag,jdbcType=INTEGER},
+      </if>
+      <if test="operationFlag != null" >
+        #{operationFlag,jdbcType=INTEGER},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAmount != null" >
+        #{serviceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="communityAdd != null" >
+        #{communityAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="managmentArea != null" >
+        #{managmentArea,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHouseholds != null" >
+        #{onlineHouseholds,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null" >
+        #{propertyType,jdbcType=INTEGER},
+      </if>
+      <if test="city1 != null" >
+        #{city1,jdbcType=INTEGER},
+      </if>
+      <if test="householdNumNew != null" >
+        #{householdNumNew,jdbcType=INTEGER},
+      </if>
+      <if test="onlineHouseholdsNew != null" >
+        #{onlineHouseholdsNew,jdbcType=INTEGER},
+      </if>
+      <if test="yearServiceAmountNew != null" >
+        #{yearServiceAmountNew,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyNew != null" >
+        #{propertyNew,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceAmountNew != null" >
+        #{serviceAmountNew,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.FM24DT1" >
+    update formtable_main_24_dt1
+    <set >
+      <if test="mainid != null" >
+        mainid = #{mainid,jdbcType=INTEGER},
+      </if>
+      <if test="community != null" >
+        community = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="householdNum != null" >
+        household_num = #{householdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="yearServiceAmount != null" >
+        year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="planOnlineDate != null" >
+        plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      </if>
+      <if test="unitAccessFlag != null" >
+        unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      </if>
+      <if test="operationFlag != null" >
+        operation_flag = #{operationFlag,jdbcType=INTEGER},
+      </if>
+      <if test="property != null" >
+        property = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceAmount != null" >
+        service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="communityAdd != null" >
+        community_add = #{communityAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="managmentArea != null" >
+        managment_area = #{managmentArea,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineHouseholds != null" >
+        online_households = #{onlineHouseholds,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        section = #{section,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null" >
+        property_type = #{propertyType,jdbcType=INTEGER},
+      </if>
+      <if test="city1 != null" >
+        city1 = #{city1,jdbcType=INTEGER},
+      </if>
+      <if test="householdNumNew != null" >
+        household_num_new = #{householdNumNew,jdbcType=INTEGER},
+      </if>
+      <if test="onlineHouseholdsNew != null" >
+        online_households_new = #{onlineHouseholdsNew,jdbcType=INTEGER},
+      </if>
+      <if test="yearServiceAmountNew != null" >
+        year_service_amount_new = #{yearServiceAmountNew,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyNew != null" >
+        property_new = #{propertyNew,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceAmountNew != null" >
+        service_amount_new = #{serviceAmountNew,jdbcType=DECIMAL},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.FM24DT1" >
+    update formtable_main_24_dt1
+    set mainid = #{mainid,jdbcType=INTEGER},
+      community = #{community,jdbcType=VARCHAR},
+      household_num = #{householdNum,jdbcType=VARCHAR},
+      year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      operation_flag = #{operationFlag,jdbcType=INTEGER},
+      property = #{property,jdbcType=VARCHAR},
+      service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      community_add = #{communityAdd,jdbcType=VARCHAR},
+      managment_area = #{managmentArea,jdbcType=DECIMAL},
+      online_households = #{onlineHouseholds,jdbcType=VARCHAR},
+      section = #{section,jdbcType=INTEGER},
+      property_type = #{propertyType,jdbcType=INTEGER},
+      city1 = #{city1,jdbcType=INTEGER},
+      household_num_new = #{householdNumNew,jdbcType=INTEGER},
+      online_households_new = #{onlineHouseholdsNew,jdbcType=INTEGER},
+      year_service_amount_new = #{yearServiceAmountNew,jdbcType=DECIMAL},
+      property_new = #{propertyNew,jdbcType=DECIMAL},
+      service_amount_new = #{serviceAmountNew,jdbcType=DECIMAL},
+      comment = #{comment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.FM24DT1" >
+    update formtable_main_24_dt1
+    set mainid = #{mainid,jdbcType=INTEGER},
+      community = #{community,jdbcType=VARCHAR},
+      household_num = #{householdNum,jdbcType=VARCHAR},
+      year_service_amount = #{yearServiceAmount,jdbcType=VARCHAR},
+      plan_online_date = #{planOnlineDate,jdbcType=CHAR},
+      unit_access_flag = #{unitAccessFlag,jdbcType=INTEGER},
+      operation_flag = #{operationFlag,jdbcType=INTEGER},
+      property = #{property,jdbcType=VARCHAR},
+      service_amount = #{serviceAmount,jdbcType=VARCHAR},
+      community_add = #{communityAdd,jdbcType=VARCHAR},
+      managment_area = #{managmentArea,jdbcType=DECIMAL},
+      online_households = #{onlineHouseholds,jdbcType=VARCHAR},
+      section = #{section,jdbcType=INTEGER},
+      property_type = #{propertyType,jdbcType=INTEGER},
+      city1 = #{city1,jdbcType=INTEGER},
+      household_num_new = #{householdNumNew,jdbcType=INTEGER},
+      online_households_new = #{onlineHouseholdsNew,jdbcType=INTEGER},
+      year_service_amount_new = #{yearServiceAmountNew,jdbcType=DECIMAL},
+      property_new = #{propertyNew,jdbcType=DECIMAL},
+      service_amount_new = #{serviceAmountNew,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

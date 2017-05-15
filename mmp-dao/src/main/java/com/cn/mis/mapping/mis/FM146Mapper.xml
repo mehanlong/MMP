@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.FM146Mapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.FM146" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="requestId" property="requestid" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="employee" property="employee" jdbcType="INTEGER" />
+    <result column="request_date" property="requestDate" jdbcType="CHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="performance" property="performance" jdbcType="VARCHAR" />
+    <result column="performance_score" property="performanceScore" jdbcType="INTEGER" />
+    <result column="performance_code" property="performanceCode" jdbcType="VARCHAR" />
+    <result column="evaluation_object" property="evaluationObject" jdbcType="INTEGER" />
+    <result column="already_confirmed" property="alreadyConfirmed" jdbcType="CHAR" />
+    <result column="direct_superior" property="directSuperior" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.mis.FM146WithBLOBs" extends="BaseResultMap" >
+    <result column="evaluation_results" property="evaluationResults" jdbcType="LONGVARCHAR" />
+    <result column="improvement_suggestion" property="improvementSuggestion" jdbcType="LONGVARCHAR" />
+    <result column="enclosure" property="enclosure" jdbcType="LONGVARCHAR" />
+    <result column="employee_selfevaluation" property="employeeSelfevaluation" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, requestId, department, code, employee, request_date, title, performance, performance_score, 
+    performance_code, evaluation_object, already_confirmed, direct_superior
+  </sql>
+  <sql id="Blob_Column_List" >
+    evaluation_results, improvement_suggestion, enclosure, employee_selfevaluation
+  </sql>
+  <select id="selectByParames" resultMap="ResultMapWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.FM146WithBLOBs" >
+    SELECT id
+    FROM formtable_main_146
+    WHERE 1=1
+    <if test="employee != null">
+      AND employee = #{employee}
+    </if>
+    <if test="performance != null">
+      AND performance = #{performance}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from formtable_main_146
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from formtable_main_146
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.FM146WithBLOBs" >
+    insert into formtable_main_146 (id, requestId, department, 
+      code, employee, request_date, 
+      title, performance, performance_score, 
+      performance_code, evaluation_object, already_confirmed, 
+      direct_superior, evaluation_results, 
+      improvement_suggestion, enclosure, 
+      employee_selfevaluation)
+    values (#{id,jdbcType=INTEGER}, #{requestid,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{employee,jdbcType=INTEGER}, #{requestDate,jdbcType=CHAR}, 
+      #{title,jdbcType=VARCHAR}, #{performance,jdbcType=VARCHAR}, #{performanceScore,jdbcType=INTEGER}, 
+      #{performanceCode,jdbcType=VARCHAR}, #{evaluationObject,jdbcType=INTEGER}, #{alreadyConfirmed,jdbcType=CHAR}, 
+      #{directSuperior,jdbcType=INTEGER}, #{evaluationResults,jdbcType=LONGVARCHAR}, 
+      #{improvementSuggestion,jdbcType=LONGVARCHAR}, #{enclosure,jdbcType=LONGVARCHAR}, 
+      #{employeeSelfevaluation,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.FM146WithBLOBs" >
+    insert into formtable_main_146
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestid != null" >
+        requestId,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="employee != null" >
+        employee,
+      </if>
+      <if test="requestDate != null" >
+        request_date,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="performanceScore != null" >
+        performance_score,
+      </if>
+      <if test="performanceCode != null" >
+        performance_code,
+      </if>
+      <if test="evaluationObject != null" >
+        evaluation_object,
+      </if>
+      <if test="alreadyConfirmed != null" >
+        already_confirmed,
+      </if>
+      <if test="directSuperior != null" >
+        direct_superior,
+      </if>
+      <if test="evaluationResults != null" >
+        evaluation_results,
+      </if>
+      <if test="improvementSuggestion != null" >
+        improvement_suggestion,
+      </if>
+      <if test="enclosure != null" >
+        enclosure,
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        employee_selfevaluation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="requestDate != null" >
+        #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceScore != null" >
+        #{performanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="performanceCode != null" >
+        #{performanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationObject != null" >
+        #{evaluationObject,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyConfirmed != null" >
+        #{alreadyConfirmed,jdbcType=CHAR},
+      </if>
+      <if test="directSuperior != null" >
+        #{directSuperior,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationResults != null" >
+        #{evaluationResults,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="improvementSuggestion != null" >
+        #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        #{enclosure,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        #{employeeSelfevaluation,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.FM146WithBLOBs" >
+    update formtable_main_146
+    <set >
+      <if test="requestid != null" >
+        requestId = #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        employee = #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="requestDate != null" >
+        request_date = #{requestDate,jdbcType=CHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceScore != null" >
+        performance_score = #{performanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="performanceCode != null" >
+        performance_code = #{performanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationObject != null" >
+        evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      </if>
+      <if test="alreadyConfirmed != null" >
+        already_confirmed = #{alreadyConfirmed,jdbcType=CHAR},
+      </if>
+      <if test="directSuperior != null" >
+        direct_superior = #{directSuperior,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationResults != null" >
+        evaluation_results = #{evaluationResults,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="improvementSuggestion != null" >
+        improvement_suggestion = #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        employee_selfevaluation = #{employeeSelfevaluation,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.FM146WithBLOBs" >
+    update formtable_main_146
+    set requestId = #{requestid,jdbcType=INTEGER},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      employee = #{employee,jdbcType=INTEGER},
+      request_date = #{requestDate,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      performance = #{performance,jdbcType=VARCHAR},
+      performance_score = #{performanceScore,jdbcType=INTEGER},
+      performance_code = #{performanceCode,jdbcType=VARCHAR},
+      evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      already_confirmed = #{alreadyConfirmed,jdbcType=CHAR},
+      direct_superior = #{directSuperior,jdbcType=INTEGER},
+      evaluation_results = #{evaluationResults,jdbcType=LONGVARCHAR},
+      improvement_suggestion = #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      enclosure = #{enclosure,jdbcType=LONGVARCHAR},
+      employee_selfevaluation = #{employeeSelfevaluation,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.FM146" >
+    update formtable_main_146
+    set requestId = #{requestid,jdbcType=INTEGER},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      employee = #{employee,jdbcType=INTEGER},
+      request_date = #{requestDate,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      performance = #{performance,jdbcType=VARCHAR},
+      performance_score = #{performanceScore,jdbcType=INTEGER},
+      performance_code = #{performanceCode,jdbcType=VARCHAR},
+      evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      already_confirmed = #{alreadyConfirmed,jdbcType=CHAR},
+      direct_superior = #{directSuperior,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

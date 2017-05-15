@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.QIPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.QIPayment" >
+    <id column="requestid" property="requestid" jdbcType="INTEGER" />
+    <result column="employee" property="employee" jdbcType="INTEGER" />
+    <result column="contract_code" property="contractCode" jdbcType="VARCHAR" />
+    <result column="contract_add" property="contractAdd" jdbcType="VARCHAR" />
+    <result column="processcode" property="processcode" jdbcType="INTEGER" />
+    <result column="agreement_number" property="agreementNumber" jdbcType="VARCHAR" />
+    <result column="processtime" property="processtime" jdbcType="DATE" />
+    <result column="request_type" property="request_type" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithHrmResource" type="com.cn.mis.domain.entity.mis.QIPayment" extends="BaseResultMap" >
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    <result column="requestnamenew" property="requestnamenew" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    requestid, employee, contract_code, contract_add, processcode, agreement_number, 
+    processtime,request_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qd_inface_payment
+    where requestid = #{requestid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllNeedSend" resultMap="ResultMapWithHrmResource">
+    SELECT qp.requestid, qp.employee, qp.contract_code, qp.contract_add, qp.processcode, qp.agreement_number,
+    qp.processtime,hr.lastname,hr.email,wr.requestnamenew,qp.request_type
+    FROM qd_inface_payment qp
+    LEFT JOIN HrmResource hr ON qp.employee = hr.id
+    LEFT JOIN workflow_requestbase wr ON qp.requestid = wr.requestid
+    WHERE qp.processcode = 0 OR qp.processcode IS NULL
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qd_inface_payment
+    where requestid = #{requestid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.QIPayment" >
+    insert into qd_inface_payment (requestid, employee, contract_code, 
+      contract_add, processcode, agreement_number, 
+      processtime)
+    values (#{requestid,jdbcType=INTEGER}, #{employee,jdbcType=INTEGER}, #{contractCode,jdbcType=VARCHAR}, 
+      #{contractAdd,jdbcType=VARCHAR}, #{processcode,jdbcType=INTEGER}, #{agreementNumber,jdbcType=VARCHAR}, 
+      #{processtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.QIPayment" >
+    insert into qd_inface_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requestid != null" >
+        requestid,
+      </if>
+      <if test="employee != null" >
+        employee,
+      </if>
+      <if test="contractCode != null" >
+        contract_code,
+      </if>
+      <if test="contractAdd != null" >
+        contract_add,
+      </if>
+      <if test="processcode != null" >
+        processcode,
+      </if>
+      <if test="agreementNumber != null" >
+        agreement_number,
+      </if>
+      <if test="processtime != null" >
+        processtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="contractCode != null" >
+        #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAdd != null" >
+        #{contractAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="processcode != null" >
+        #{processcode,jdbcType=INTEGER},
+      </if>
+      <if test="agreementNumber != null" >
+        #{agreementNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="processtime != null" >
+        #{processtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.QIPayment" >
+    update qd_inface_payment
+    <set >
+      <if test="employee != null" >
+        employee = #{employee,jdbcType=INTEGER},
+      </if>
+      <if test="contractCode != null" >
+        contract_code = #{contractCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAdd != null" >
+        contract_add = #{contractAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="processcode != null" >
+        processcode = #{processcode,jdbcType=INTEGER},
+      </if>
+      <if test="agreementNumber != null" >
+        agreement_number = #{agreementNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="processtime != null" >
+        processtime = #{processtime,jdbcType=DATE},
+      </if>
+    </set>
+    where requestid = #{requestid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.QIPayment" >
+    update qd_inface_payment
+    set employee = #{employee,jdbcType=INTEGER},
+      contract_code = #{contractCode,jdbcType=VARCHAR},
+      contract_add = #{contractAdd,jdbcType=VARCHAR},
+      processcode = #{processcode,jdbcType=INTEGER},
+      agreement_number = #{agreementNumber,jdbcType=VARCHAR},
+      processtime = #{processtime,jdbcType=DATE}
+    where requestid = #{requestid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,8 +1,8 @@
 package com.cn.mis.timetask;
 
 import com.cn.mis.common.Common;
-import com.cn.mis.domain.entity.XCEmail;
-import com.cn.mis.service.IXCEmailService;
+import com.cn.mis.domain.entity.mis.XCEmail;
+import com.cn.mis.service.mis.IXCEmailService;
 import com.cn.mis.utils.date.DateStyle;
 import com.cn.mis.utils.date.DateUtil;
 import com.cn.mis.utils.json.JsonUtil;

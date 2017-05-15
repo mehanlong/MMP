@@ -1,6 +1,6 @@
 package com.cn.mis.domain.bean.resp;
 
-import com.cn.mis.domain.entity.RolePathUrl;
+import com.cn.mis.domain.entity.mis.RolePathUrl;
 
 import java.util.List;
 

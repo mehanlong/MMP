@@ -1,12 +1,10 @@
 package com.cn.mis.timetask;
 
-import com.cn.mis.domain.entity.QIPayment;
-import com.cn.mis.service.IQIPaymentService;
+import com.cn.mis.domain.entity.mis.QIPayment;
+import com.cn.mis.service.mis.IQIPaymentService;
 import com.sun.mail.util.MailSSLSocketFactory;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -114,7 +112,7 @@ public class PaymentTimeTask {
             prop.put("mail.smtp.ssl.socketFactory", sf);
             //
             Session session = Session.getDefaultInstance(prop, new MyAuthenricator(account, pass));
-            session.setDebug(true);
+            session.setDebug(false);
             try {
                 Transport transport = session.getTransport();
                 transport.connect(host,Integer.valueOf(port),account,pass);
@@ -160,8 +158,7 @@ public class PaymentTimeTask {
                     }
                 });
                 for(QIPayment mail:list){
-                    if(mail.getProcesscode() == null || mail.getProcesscode() == 0){
-
+                    if (mail.getRequest_type() == null||mail.getRequest_type().equals("0")){
                         MimeMessage mimeMessage = new MimeMessage(session);
                         mimeMessage.setFrom(new InternetAddress(from,"OA邮件提醒"));
                         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getEmail()));
@@ -178,6 +175,27 @@ public class PaymentTimeTask {
                         messageBodyPart.setContent(content,"text/html; charset=utf-8");
                         mainPart.addBodyPart(messageBodyPart);
 
+                        mimeMessage.setContent(mainPart);
+                        mail.setProcesstime(new Date());
+                        mimeMessage.saveChanges();
+                        transport.sendMessage(mimeMessage,mimeMessage.getRecipients(Message.RecipientType.TO));
+                        log.info("发送邮件至:"+mail.getEmail()+",邮件内容:"+content);
+                        mail.setProcesscode(1);
+                    } else if (mail.getRequest_type().equals("1")){
+                        MimeMessage mimeMessage = new MimeMessage(session);
+                        mimeMessage.setFrom(new InternetAddress(from,"OA邮件提醒"));
+                        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getEmail()));
+                        mimeMessage.setSubject("【"+mail.getRequestnamenew()+"】已审批");
+                        mimeMessage.setSentDate(new Date());
+                        mimeMessage.setHeader("mailid", mail.getRequestid()+"");
+                        Multipart mainPart = new MimeMultipart();
+                        MimeBodyPart messageBodyPart = new MimeBodyPart();//创建一个包含HTML内容的MimeBodyPart
+                        String content = "【"+mail.getRequestnamenew()+"】" +
+                                "已审批" +
+                                "<a href=\"http://mis.qdingnet.com/workflow/request/ViewRequest.jsp?requestid="+mail.getRequestid()+"\">点击链接</a>";
+
+                        messageBodyPart.setContent(content,"text/html; charset=utf-8");
+                        mainPart.addBodyPart(messageBodyPart);
                         mimeMessage.setContent(mainPart);
                         mail.setProcesstime(new Date());
                         mimeMessage.saveChanges();

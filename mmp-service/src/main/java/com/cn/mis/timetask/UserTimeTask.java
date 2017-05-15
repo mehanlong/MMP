@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import com.cn.mis.domain.bean.pojo.UserList;
 import com.cn.mis.domain.bean.pojo.UserListDetail;
-import com.cn.mis.domain.entity.User;
-import com.cn.mis.service.IUserService;
+import com.cn.mis.domain.entity.mis.User;
+import com.cn.mis.service.mis.IUserService;
 import com.cn.mis.utils.equals.EqualsUtil;
 import com.cn.mis.utils.http.HttpClientUtil;
 import com.cn.mis.utils.json.JsonUtil;

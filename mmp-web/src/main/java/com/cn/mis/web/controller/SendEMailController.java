@@ -1,12 +1,7 @@
 package com.cn.mis.web.controller;
 
-import com.cn.mis.domain.entity.QIPayment;
-import com.cn.mis.domain.entity.XCEmail;
-import com.cn.mis.service.IQIPaymentService;
-import com.cn.mis.utils.date.DateStyle;
-import com.cn.mis.utils.date.DateUtil;
-import com.cn.mis.utils.email.EMailProperties;
-import com.cn.mis.utils.email.EmailSender;
+import com.cn.mis.domain.entity.mis.QIPayment;
+import com.cn.mis.service.mis.IQIPaymentService;
 import com.sun.mail.util.MailSSLSocketFactory;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
@@ -25,7 +20,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -161,29 +155,54 @@ public class SendEMailController {
                 });
                 for(QIPayment mail:list){
                     if(mail.getProcesscode() == null || mail.getProcesscode() == 0){
+                        if (mail.getRequest_type() == null||mail.getRequest_type().equals("0")){
+                            MimeMessage mimeMessage = new MimeMessage(session);
+                            mimeMessage.setFrom(new InternetAddress(from,"OA邮件提醒"));
+                            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getEmail()));
+                            mimeMessage.setSubject("【"+mail.getContractCode()+"】【"+mail.getRequestnamenew()+"】已经支付成功");
+                            mimeMessage.setSentDate(new Date());
+                            mimeMessage.setHeader("mailid", mail.getRequestid()+"");
+                            Multipart mainPart = new MimeMultipart();
+                            MimeBodyPart messageBodyPart = new MimeBodyPart();//创建一个包含HTML内容的MimeBodyPart
+                            String content = "【"+mail.getContractCode()+"】" +
+                                    "【"+mail.getRequestnamenew()+"】" +
+                                    "已经支付成功" +
+                                    "<a href=\"http://mis.qdingnet.com/workflow/request/ViewRequest.jsp?requestid="+mail.getRequestid()+"\">点击链接</a>";
 
-                        MimeMessage mimeMessage = new MimeMessage(session);
-                        mimeMessage.setFrom(new InternetAddress(from,"OA邮件提醒"));
-                        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getEmail()));
-                        mimeMessage.setSubject("【"+mail.getContractCode()+"】【"+mail.getRequestnamenew()+"】已经支付成功");
-                        mimeMessage.setSentDate(new Date());
-                        mimeMessage.setHeader("mailid", mail.getRequestid()+"");
-                        Multipart mainPart = new MimeMultipart();
-                        MimeBodyPart messageBodyPart = new MimeBodyPart();//创建一个包含HTML内容的MimeBodyPart
-                        String content = "【"+mail.getContractCode()+"】" +
-                                "【"+mail.getRequestnamenew()+"】" +
-                                "已经支付成功" +
-                                "<a href=\"http://mis.qdingnet.com/workflow/request/ViewRequest.jsp?requestid="+mail.getRequestid()+"\">点击链接</a>";
+                            messageBodyPart.setContent(content,"text/html; charset=utf-8");
+                            mainPart.addBodyPart(messageBodyPart);
 
-                        messageBodyPart.setContent(content,"text/html; charset=utf-8");
-                        mainPart.addBodyPart(messageBodyPart);
+                            mimeMessage.setContent(mainPart);
+                            mail.setProcesstime(new Date());
+                            mimeMessage.saveChanges();
+                            transport.sendMessage(mimeMessage,mimeMessage.getRecipients(Message.RecipientType.TO));
+                            log.info("发送邮件至:"+mail.getEmail()+",邮件内容:"+content);
+                            mail.setProcesscode(1);
+                        } else if (mail.getRequest_type().equals("1")){
+                            MimeMessage mimeMessage = new MimeMessage(session);
+                            mimeMessage.setFrom(new InternetAddress(from,"OA邮件提醒"));
+                            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getEmail()));
+                            mimeMessage.setSubject("【"+mail.getContractCode()+"】【"+mail.getRequestnamenew()+"】已审批");
+                            mimeMessage.setSentDate(new Date());
+                            mimeMessage.setHeader("mailid", mail.getRequestid()+"");
+                            Multipart mainPart = new MimeMultipart();
+                            MimeBodyPart messageBodyPart = new MimeBodyPart();//创建一个包含HTML内容的MimeBodyPart
+                            String content = "【"+mail.getContractCode()+"】" +
+                                    "【"+mail.getRequestnamenew()+"】" +
+                                    "已审批" +
+                                    "<a href=\"http://mis.qdingnet.com/workflow/request/ViewRequest.jsp?requestid="+mail.getRequestid()+"\">点击链接</a>";
 
-                        mimeMessage.setContent(mainPart);
-                        mail.setProcesstime(new Date());
-                        mimeMessage.saveChanges();
-                        transport.sendMessage(mimeMessage,mimeMessage.getRecipients(Message.RecipientType.TO));
-                        log.info("发送邮件至:"+mail.getEmail()+",邮件内容:"+content);
-                        mail.setProcesscode(1);
+                            messageBodyPart.setContent(content,"text/html; charset=utf-8");
+                            mainPart.addBodyPart(messageBodyPart);
+
+                            mimeMessage.setContent(mainPart);
+                            mail.setProcesstime(new Date());
+                            mimeMessage.saveChanges();
+                            transport.sendMessage(mimeMessage,mimeMessage.getRecipients(Message.RecipientType.TO));
+                            log.info("发送邮件至:"+mail.getEmail()+",邮件内容:"+content);
+                            mail.setProcesscode(1);
+                        }
+
                     }
                 }
                 transport.close();

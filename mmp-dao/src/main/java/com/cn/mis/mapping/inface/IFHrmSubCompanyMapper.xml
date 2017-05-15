@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.inface.IFHrmSubCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.inface.IFHrmSubCompany" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="subcompanyname" property="subcompanyname" jdbcType="VARCHAR" />
+    <result column="subcompanydesc" property="subcompanydesc" jdbcType="VARCHAR" />
+    <result column="companyid" property="companyid" jdbcType="TINYINT" />
+    <result column="supsubcomid" property="supsubcomid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="showorder" property="showorder" jdbcType="INTEGER" />
+    <result column="canceled" property="canceled" jdbcType="CHAR" />
+    <result column="subcompanycode" property="subcompanycode" jdbcType="VARCHAR" />
+    <result column="outkey" property="outkey" jdbcType="VARCHAR" />
+    <result column="budgetAtuoMoveOrder" property="budgetatuomoveorder" jdbcType="INTEGER" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+    <result column="limitUsers" property="limitusers" jdbcType="INTEGER" />
+    <result column="tlevel" property="tlevel" jdbcType="INTEGER" />
+    <result column="imid" property="imid" jdbcType="INTEGER" />
+    <result column="imsyncflag" property="imsyncflag" jdbcType="INTEGER" />
+    <result column="imcreatetime" property="imcreatetime" jdbcType="TIMESTAMP" />
+    <result column="immodifytime" property="immodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.inface.IFHrmSubCompany" >
+    insert into HrmSubCompany (id, subcompanyname, subcompanydesc, 
+      companyid, supsubcomid, url, 
+      showorder, canceled, subcompanycode, 
+      outkey, budgetAtuoMoveOrder, ecology_pinyin_search, 
+      limitUsers, tlevel, imid,
+      imsyncflag, imcreatetime, immodifytime
+      )
+    values (#{id,jdbcType=INTEGER}, #{subcompanyname,jdbcType=VARCHAR}, #{subcompanydesc,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=TINYINT}, #{supsubcomid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{showorder,jdbcType=INTEGER}, #{canceled,jdbcType=CHAR}, #{subcompanycode,jdbcType=VARCHAR}, 
+      #{outkey,jdbcType=VARCHAR}, #{budgetatuomoveorder,jdbcType=INTEGER}, #{ecologyPinyinSearch,jdbcType=VARCHAR}, 
+      #{limitusers,jdbcType=INTEGER}, #{tlevel,jdbcType=INTEGER}, #{imid,jdbcType=INTEGER},
+      #{imsyncflag,jdbcType=INTEGER}, #{imcreatetime,jdbcType=DATE}, #{immodifytime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.inface.IFHrmSubCompany" >
+    insert into HrmSubCompany
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subcompanyname != null" >
+        subcompanyname,
+      </if>
+      <if test="subcompanydesc != null" >
+        subcompanydesc,
+      </if>
+      <if test="companyid != null" >
+        companyid,
+      </if>
+      <if test="supsubcomid != null" >
+        supsubcomid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="showorder != null" >
+        showorder,
+      </if>
+      <if test="canceled != null" >
+        canceled,
+      </if>
+      <if test="subcompanycode != null" >
+        subcompanycode,
+      </if>
+      <if test="outkey != null" >
+        outkey,
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        budgetAtuoMoveOrder,
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search,
+      </if>
+      <if test="limitusers != null" >
+        limitUsers,
+      </if>
+      <if test="tlevel != null" >
+        tlevel,
+      </if>
+      <if test="imid != null" >
+        imid,
+      </if>
+      <if test="imsyncflag != null" >
+        imsyncflag,
+      </if>
+      <if test="imcreatetime != null" >
+        imcreatetime,
+      </if>
+      <if test="immodifytime != null" >
+        immodifytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subcompanyname != null" >
+        #{subcompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="subcompanydesc != null" >
+        #{subcompanydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=TINYINT},
+      </if>
+      <if test="supsubcomid != null" >
+        #{supsubcomid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="showorder != null" >
+        #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        #{canceled,jdbcType=CHAR},
+      </if>
+      <if test="subcompanycode != null" >
+        #{subcompanycode,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        #{budgetatuomoveorder,jdbcType=INTEGER},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="limitusers != null" >
+        #{limitusers,jdbcType=INTEGER},
+      </if>
+      <if test="tlevel != null" >
+        #{tlevel,jdbcType=INTEGER},
+      </if>
+      <if test="imid != null" >
+        #{imid,jdbcType=INTEGER},
+      </if>
+      <if test="imsyncflag != null" >
+        #{imsyncflag,jdbcType=INTEGER},
+      </if>
+      <if test="imcreatetime != null" >
+        #{imcreatetime,jdbcType=DATE},
+      </if>
+      <if test="immodifytime != null" >
+        #{immodifytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

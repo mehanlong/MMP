@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.OFInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.OFInfo" >
+    <id column="Sequence" property="Sequence" jdbcType="INTEGER" />
+    <result column="Reason" property="Reason" jdbcType="VARCHAR" />
+    <result column="ReasonDesc" property="ReasonDesc" jdbcType="VARCHAR" />
+    <result column="LowFlight" property="LowFlight" jdbcType="VARCHAR" />
+    <result column="LowClass" property="LowClass" jdbcType="VARCHAR" />
+    <result column="LowDTime" property="LowDTime" jdbcType="VARCHAR" />
+    <result column="LowRate" property="LowRate" jdbcType="DECIMAL" />
+    <result column="LowPrice" property="LowPrice" jdbcType="DECIMAL" />
+    <result column="PreBookReason" property="PreBookReason" jdbcType="VARCHAR" />
+    <result column="PreBookReasonDesc" property="PreBookReasonDesc" jdbcType="VARCHAR" />
+    <result column="StraightType" property="StraightType" jdbcType="VARCHAR" />
+    <result column="TakeOffTime" property="TakeOffTime" jdbcType="VARCHAR" />
+    <result column="ArrivalTime" property="ArrivalTime" jdbcType="VARCHAR" />
+    <result column="DCityName" property="DCityName" jdbcType="VARCHAR" />
+    <result column="ACityName" property="ACityName" jdbcType="VARCHAR" />
+    <result column="DPortName" property="DPortName" jdbcType="VARCHAR" />
+    <result column="APortName" property="APortName" jdbcType="VARCHAR" />
+    <result column="Flight" property="Flight" jdbcType="VARCHAR" />
+    <result column="Class" property="DClass" jdbcType="VARCHAR" />
+    <result column="ClassName" property="ClassName" jdbcType="VARCHAR" />
+    <result column="SubClass" property="SubClass" jdbcType="VARCHAR" />
+    <result column="BfReturn" property="BfReturn" jdbcType="VARCHAR" />
+    <result column="CustomerID" property="CustomerID" jdbcType="VARCHAR" />
+    <result column="StandardPrice" property="StandardPrice" jdbcType="DECIMAL" />
+    <result column="PriceRate" property="PriceRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sequence, Reason, ReasonDesc, LowFlight, LowClass, LowDTime, LowRate, LowPrice, PreBookReason, 
+    PreBookReasonDesc, StraightType, TakeOffTime, ArrivalTime, DCityName, ACityName, 
+    DPortName, APortName, Flight, Class, ClassName, SubClass, BfReturn, CustomerID, StandardPrice, 
+    PriceRate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qd_OrderFlightInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qd_OrderFlightInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.OFInfo" >
+    insert into qd_OrderFlightInfo (Sequence, Reason, ReasonDesc, 
+      LowFlight, LowClass, LowDTime, 
+      LowRate, LowPrice, PreBookReason, 
+      PreBookReasonDesc, StraightType, TakeOffTime, 
+      ArrivalTime, DCityName, ACityName, 
+      DPortName, APortName, Flight, 
+      Class, ClassName, SubClass, 
+      BfReturn, CustomerID, StandardPrice, 
+      PriceRate)
+    values (#{Sequence,jdbcType=INTEGER}, #{Reason,jdbcType=VARCHAR}, #{ReasonDesc,jdbcType=VARCHAR}, 
+      #{LowFlight,jdbcType=VARCHAR}, #{LowClass,jdbcType=VARCHAR}, #{LowDTime,jdbcType=VARCHAR}, 
+      #{LowRate,jdbcType=DECIMAL}, #{LowPrice,jdbcType=DECIMAL}, #{PreBookReason,jdbcType=VARCHAR}, 
+      #{PreBookReasonDesc,jdbcType=VARCHAR}, #{StraightType,jdbcType=VARCHAR}, #{TakeOffTime,jdbcType=VARCHAR}, 
+      #{ArrivalTime,jdbcType=VARCHAR}, #{DCityName,jdbcType=VARCHAR}, #{ACityName,jdbcType=VARCHAR}, 
+      #{DPortName,jdbcType=VARCHAR}, #{APortName,jdbcType=VARCHAR}, #{Flight,jdbcType=VARCHAR}, 
+      #{DClass,jdbcType=VARCHAR}, #{ClassName,jdbcType=VARCHAR}, #{SubClass,jdbcType=VARCHAR},
+      #{BfReturn,jdbcType=VARCHAR}, #{CustomerID,jdbcType=VARCHAR}, #{StandardPrice,jdbcType=DECIMAL}, 
+      #{PriceRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.OFInfo" >
+    insert into qd_OrderFlightInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        Sequence,
+      </if>
+      <if test="Reason != null" >
+        Reason,
+      </if>
+      <if test="ReasonDesc != null" >
+        ReasonDesc,
+      </if>
+      <if test="LowFlight != null" >
+        LowFlight,
+      </if>
+      <if test="LowClass != null" >
+        LowClass,
+      </if>
+      <if test="LowDTime != null" >
+        LowDTime,
+      </if>
+      <if test="LowRate != null" >
+        LowRate,
+      </if>
+      <if test="LowPrice != null" >
+        LowPrice,
+      </if>
+      <if test="PreBookReason != null" >
+        PreBookReason,
+      </if>
+      <if test="PreBookReasonDesc != null" >
+        PreBookReasonDesc,
+      </if>
+      <if test="StraightType != null" >
+        StraightType,
+      </if>
+      <if test="TakeOffTime != null" >
+        TakeOffTime,
+      </if>
+      <if test="ArrivalTime != null" >
+        ArrivalTime,
+      </if>
+      <if test="DCityName != null" >
+        DCityName,
+      </if>
+      <if test="ACityName != null" >
+        ACityName,
+      </if>
+      <if test="DPortName != null" >
+        DPortName,
+      </if>
+      <if test="APortName != null" >
+        APortName,
+      </if>
+      <if test="Flight != null" >
+        Flight,
+      </if>
+      <if test="DClass != null" >
+        Class,
+      </if>
+      <if test="ClassName != null" >
+        ClassName,
+      </if>
+      <if test="SubClass != null" >
+        SubClass,
+      </if>
+      <if test="BfReturn != null" >
+        BfReturn,
+      </if>
+      <if test="CustomerID != null" >
+        CustomerID,
+      </if>
+      <if test="StandardPrice != null" >
+        StandardPrice,
+      </if>
+      <if test="PriceRate != null" >
+        PriceRate,
+      </if>
+      <if test="RecordID != null">
+        RecordID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        #{Sequence,jdbcType=INTEGER},
+      </if>
+      <if test="Reason != null" >
+        #{Reason,jdbcType=VARCHAR},
+      </if>
+      <if test="ReasonDesc != null" >
+        #{ReasonDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="LowFlight != null" >
+        #{LowFlight,jdbcType=VARCHAR},
+      </if>
+      <if test="LowClass != null" >
+        #{LowClass,jdbcType=VARCHAR},
+      </if>
+      <if test="LowDTime != null" >
+        #{LowDTime,jdbcType=VARCHAR},
+      </if>
+      <if test="LowRate != null" >
+        #{LowRate,jdbcType=DECIMAL},
+      </if>
+      <if test="LowPrice != null" >
+        #{LowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="PreBookReason != null" >
+        #{PreBookReason,jdbcType=VARCHAR},
+      </if>
+      <if test="PreBookReasonDesc != null" >
+        #{PreBookReasonDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="StraightType != null" >
+        #{StraightType,jdbcType=VARCHAR},
+      </if>
+      <if test="TakeOffTime != null" >
+        #{TakeOffTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ArrivalTime != null" >
+        #{ArrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="DCityName != null" >
+        #{DCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="ACityName != null" >
+        #{ACityName,jdbcType=VARCHAR},
+      </if>
+      <if test="DPortName != null" >
+        #{DPortName,jdbcType=VARCHAR},
+      </if>
+      <if test="APortName != null" >
+        #{APortName,jdbcType=VARCHAR},
+      </if>
+      <if test="Flight != null" >
+        #{Flight,jdbcType=VARCHAR},
+      </if>
+      <if test="DClass != null" >
+        #{DClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ClassName != null" >
+        #{ClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="SubClass != null" >
+        #{SubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="BfReturn != null" >
+        #{BfReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="CustomerID != null" >
+        #{CustomerID,jdbcType=VARCHAR},
+      </if>
+      <if test="StandardPrice != null" >
+        #{StandardPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="PriceRate != null" >
+        #{PriceRate,jdbcType=DECIMAL},
+      </if>
+      <if test="RecordID != null">
+        #{RecordID}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.OFInfo" >
+    update qd_OrderFlightInfo
+    <set >
+      <if test="Reason != null" >
+        Reason = #{Reason,jdbcType=VARCHAR},
+      </if>
+      <if test="ReasonDesc != null" >
+        ReasonDesc = #{ReasonDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="LowFlight != null" >
+        LowFlight = #{LowFlight,jdbcType=VARCHAR},
+      </if>
+      <if test="LowClass != null" >
+        LowClass = #{LowClass,jdbcType=VARCHAR},
+      </if>
+      <if test="LowDTime != null" >
+        LowDTime = #{LowDTime,jdbcType=VARCHAR},
+      </if>
+      <if test="LowRate != null" >
+        LowRate = #{LowRate,jdbcType=DECIMAL},
+      </if>
+      <if test="LowPrice != null" >
+        LowPrice = #{LowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="PreBookReason != null" >
+        PreBookReason = #{PreBookReason,jdbcType=VARCHAR},
+      </if>
+      <if test="PreBookReasonDesc != null" >
+        PreBookReasonDesc = #{PreBookReasonDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="StraightType != null" >
+        StraightType = #{StraightType,jdbcType=VARCHAR},
+      </if>
+      <if test="TakeOffTime != null" >
+        TakeOffTime = #{TakeOffTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ArrivalTime != null" >
+        ArrivalTime = #{ArrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="DCityName != null" >
+        DCityName = #{DCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="ACityName != null" >
+        ACityName = #{ACityName,jdbcType=VARCHAR},
+      </if>
+      <if test="DPortName != null" >
+        DPortName = #{DPortName,jdbcType=VARCHAR},
+      </if>
+      <if test="APortName != null" >
+        APortName = #{APortName,jdbcType=VARCHAR},
+      </if>
+      <if test="Flight != null" >
+        Flight = #{Flight,jdbcType=VARCHAR},
+      </if>
+      <if test="DClass != null" >
+        Class = #{DClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ClassName != null" >
+        ClassName = #{ClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="SubClass != null" >
+        SubClass = #{SubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="BfReturn != null" >
+        BfReturn = #{BfReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="CustomerID != null" >
+        CustomerID = #{CustomerID,jdbcType=VARCHAR},
+      </if>
+      <if test="StandardPrice != null" >
+        StandardPrice = #{StandardPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="PriceRate != null" >
+        PriceRate = #{PriceRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.OFInfo" >
+    update qd_OrderFlightInfo
+    set Reason = #{Reason,jdbcType=VARCHAR},
+      ReasonDesc = #{ReasonDesc,jdbcType=VARCHAR},
+      LowFlight = #{LowFlight,jdbcType=VARCHAR},
+      LowClass = #{LowClass,jdbcType=VARCHAR},
+      LowDTime = #{LowDTime,jdbcType=VARCHAR},
+      LowRate = #{LowRate,jdbcType=DECIMAL},
+      LowPrice = #{LowPrice,jdbcType=DECIMAL},
+      PreBookReason = #{PreBookReason,jdbcType=VARCHAR},
+      PreBookReasonDesc = #{PreBookReasonDesc,jdbcType=VARCHAR},
+      StraightType = #{StraightType,jdbcType=VARCHAR},
+      TakeOffTime = #{TakeOffTime,jdbcType=VARCHAR},
+      ArrivalTime = #{ArrivalTime,jdbcType=VARCHAR},
+      DCityName = #{DCityName,jdbcType=VARCHAR},
+      ACityName = #{ACityName,jdbcType=VARCHAR},
+      DPortName = #{DPortName,jdbcType=VARCHAR},
+      APortName = #{APortName,jdbcType=VARCHAR},
+      Flight = #{Flight,jdbcType=VARCHAR},
+      Class = #{DClass,jdbcType=VARCHAR},
+      ClassName = #{ClassName,jdbcType=VARCHAR},
+      SubClass = #{SubClass,jdbcType=VARCHAR},
+      BfReturn = #{BfReturn,jdbcType=VARCHAR},
+      CustomerID = #{CustomerID,jdbcType=VARCHAR},
+      StandardPrice = #{StandardPrice,jdbcType=DECIMAL},
+      PriceRate = #{PriceRate,jdbcType=DECIMAL}
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+</mapper>

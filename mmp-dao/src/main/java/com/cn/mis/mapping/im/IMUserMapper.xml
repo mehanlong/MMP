@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.im.IMUserMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.im.IMUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+    <result column="local" property="local" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="compid" property="compid" jdbcType="INTEGER" />
+    <result column="entrydate" property="entrydate" jdbcType="DATE" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="updatetype" property="updatetype" jdbcType="INTEGER" />
+    <result column="sign" property="sign" jdbcType="CHAR" />
+    <result column="power" property="power" jdbcType="INTEGER" />
+    <result column="hometel" property="hometel" jdbcType="CHAR" />
+    <result column="emergencyphone" property="emergencyphone" jdbcType="CHAR" />
+    <result column="msgsyntype" property="msgsyntype" jdbcType="CHAR" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="forbidden" property="forbidden" jdbcType="INTEGER" />
+    <result column="userorgid" property="userorgid" jdbcType="BIGINT" />
+    <result column="enname" property="enname" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="deptname" property="deptname" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="logo_update_time" property="logoUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, usercode, name, sex, birth, local, tel, phone, email, password, compid, entrydate, 
+    logo, update_time, updatetype, sign, power, hometel, emergencyphone, msgsyntype, 
+    user_type, forbidden, userorgid, enname, fax, address, postcode, deptname, REMARK, 
+    role_id, logo_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.im.IMUserKey" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+      and usercode = #{usercode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cn.mis.domain.entity.im.IMUserKey" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+      and usercode = #{usercode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.im.IMUser" >
+    insert into user (id, usercode, name, 
+      sex, birth, local, tel, 
+      phone, email, password, compid, 
+      entrydate, logo, update_time, 
+      updatetype, sign, power, 
+      hometel, emergencyphone, msgsyntype, 
+      user_type, forbidden, userorgid, 
+      enname, fax, address, 
+      postcode, deptname, REMARK, 
+      role_id, logo_update_time)
+    values (#{id,jdbcType=INTEGER}, #{usercode,jdbcType=VARCHAR}, #{name,jdbcType=CHAR}, 
+      #{sex,jdbcType=CHAR}, #{birth,jdbcType=DATE}, #{local,jdbcType=VARCHAR}, #{tel,jdbcType=CHAR}, 
+      #{phone,jdbcType=CHAR}, #{email,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{compid,jdbcType=INTEGER}, 
+      #{entrydate,jdbcType=DATE}, #{logo,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatetype,jdbcType=INTEGER}, #{sign,jdbcType=CHAR}, #{power,jdbcType=INTEGER}, 
+      #{hometel,jdbcType=CHAR}, #{emergencyphone,jdbcType=CHAR}, #{msgsyntype,jdbcType=CHAR}, 
+      #{userType,jdbcType=INTEGER}, #{forbidden,jdbcType=INTEGER}, #{userorgid,jdbcType=BIGINT}, 
+      #{enname,jdbcType=VARCHAR}, #{fax,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=INTEGER}, #{logoUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.im.IMUser" useGeneratedKeys="true" keyProperty="id">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="usercode != null" >
+        usercode,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="local != null" >
+        local,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="compid != null" >
+        compid,
+      </if>
+      <if test="entrydate != null" >
+        entrydate,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updatetype != null" >
+        updatetype,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="hometel != null" >
+        hometel,
+      </if>
+      <if test="emergencyphone != null" >
+        emergencyphone,
+      </if>
+      <if test="msgsyntype != null" >
+        msgsyntype,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="forbidden != null" >
+        forbidden,
+      </if>
+      <if test="userorgid != null" >
+        userorgid,
+      </if>
+      <if test="enname != null" >
+        enname,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="deptname != null" >
+        deptname,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="logoUpdateTime != null" >
+        logo_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="usercode != null" >
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="local != null" >
+        #{local,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="compid != null" >
+        #{compid,jdbcType=INTEGER},
+      </if>
+      <if test="entrydate != null" >
+        #{entrydate,jdbcType=DATE},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=CHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=INTEGER},
+      </if>
+      <if test="hometel != null" >
+        #{hometel,jdbcType=CHAR},
+      </if>
+      <if test="emergencyphone != null" >
+        #{emergencyphone,jdbcType=CHAR},
+      </if>
+      <if test="msgsyntype != null" >
+        #{msgsyntype,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="forbidden != null" >
+        #{forbidden,jdbcType=INTEGER},
+      </if>
+      <if test="userorgid != null" >
+        #{userorgid,jdbcType=BIGINT},
+      </if>
+      <if test="enname != null" >
+        #{enname,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="logoUpdateTime != null" >
+        #{logoUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.im.IMUser" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="local != null" >
+        local = #{local,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="compid != null" >
+        compid = #{compid,jdbcType=INTEGER},
+      </if>
+      <if test="entrydate != null" >
+        entrydate = #{entrydate,jdbcType=DATE},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        updatetype = #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=CHAR},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=INTEGER},
+      </if>
+      <if test="hometel != null" >
+        hometel = #{hometel,jdbcType=CHAR},
+      </if>
+      <if test="emergencyphone != null" >
+        emergencyphone = #{emergencyphone,jdbcType=CHAR},
+      </if>
+      <if test="msgsyntype != null" >
+        msgsyntype = #{msgsyntype,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="forbidden != null" >
+        forbidden = #{forbidden,jdbcType=INTEGER},
+      </if>
+      <if test="userorgid != null" >
+        userorgid = #{userorgid,jdbcType=BIGINT},
+      </if>
+      <if test="enname != null" >
+        enname = #{enname,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null" >
+        deptname = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="logoUpdateTime != null" >
+        logo_update_time = #{logoUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and usercode = #{usercode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.im.IMUser" >
+    update user
+    set name = #{name,jdbcType=CHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birth = #{birth,jdbcType=DATE},
+      local = #{local,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      email = #{email,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      compid = #{compid,jdbcType=INTEGER},
+      entrydate = #{entrydate,jdbcType=DATE},
+      logo = #{logo,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      updatetype = #{updatetype,jdbcType=INTEGER},
+      sign = #{sign,jdbcType=CHAR},
+      power = #{power,jdbcType=INTEGER},
+      hometel = #{hometel,jdbcType=CHAR},
+      emergencyphone = #{emergencyphone,jdbcType=CHAR},
+      msgsyntype = #{msgsyntype,jdbcType=CHAR},
+      user_type = #{userType,jdbcType=INTEGER},
+      forbidden = #{forbidden,jdbcType=INTEGER},
+      userorgid = #{userorgid,jdbcType=BIGINT},
+      enname = #{enname,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      deptname = #{deptname,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      logo_update_time = #{logoUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+      and usercode = #{usercode,jdbcType=VARCHAR}
+  </update>
+</mapper>

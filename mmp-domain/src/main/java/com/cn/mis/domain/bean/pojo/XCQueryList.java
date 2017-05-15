@@ -1,6 +1,6 @@
 package com.cn.mis.domain.bean.pojo;
 
-import com.cn.mis.domain.entity.*;
+import com.cn.mis.domain.entity.mis.*;
 import lombok.Data;
 
 /**

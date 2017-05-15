@@ -1,6 +1,6 @@
 package com.cn.mis.domain.bean.pojo;
 
-import com.cn.mis.domain.entity.Account;
+import com.cn.mis.domain.entity.mis.Account;
 
 import java.util.List;
 

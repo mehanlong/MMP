@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.UFPermanaMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.UFPermana" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="requestId" property="requestid" jdbcType="INTEGER" />
+    <result column="evaluation_object" property="evaluationObject" jdbcType="INTEGER" />
+    <result column="performance_score" property="performanceScore" jdbcType="INTEGER" />
+    <result column="performance" property="performance" jdbcType="VARCHAR" />
+    <result column="formmodeid" property="formmodeid" jdbcType="INTEGER" />
+    <result column="modedatacreater" property="modedatacreater" jdbcType="INTEGER" />
+    <result column="modedatacreatertype" property="modedatacreatertype" jdbcType="INTEGER" />
+    <result column="modedatacreatedate" property="modedatacreatedate" jdbcType="VARCHAR" />
+    <result column="modedatacreatetime" property="modedatacreatetime" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="MODEUUID" property="modeuuid" jdbcType="VARCHAR" />
+    <result column="assessor" property="assessor" jdbcType="INTEGER" />
+    <result column="evaluation_date" property="evaluationDate" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" extends="BaseResultMap" >
+    <result column="evaluation_results" property="evaluationResults" jdbcType="LONGVARCHAR" />
+    <result column="improvement_suggestion" property="improvementSuggestion" jdbcType="LONGVARCHAR" />
+    <result column="new_key_target1" property="newKeyTarget1" jdbcType="LONGVARCHAR" />
+    <result column="new_key_results1" property="newKeyResults1" jdbcType="LONGVARCHAR" />
+    <result column="new_key_target2" property="newKeyTarget2" jdbcType="LONGVARCHAR" />
+    <result column="new_key_results2" property="newKeyResults2" jdbcType="LONGVARCHAR" />
+    <result column="new_key_target3" property="newKeyTarget3" jdbcType="LONGVARCHAR" />
+    <result column="new_key_results3" property="newKeyResults3" jdbcType="LONGVARCHAR" />
+    <result column="key_target4" property="keyTarget4" jdbcType="LONGVARCHAR" />
+    <result column="new_key_results4" property="newKeyResults4" jdbcType="LONGVARCHAR" />
+    <result column="new_key_target5" property="newKeyTarget5" jdbcType="LONGVARCHAR" />
+    <result column="new_key_results5" property="newKeyResults5" jdbcType="LONGVARCHAR" />
+    <result column="employee_selfevaluation" property="employeeSelfevaluation" jdbcType="LONGVARCHAR" />
+    <result column="enclosure" property="enclosure" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, requestId, evaluation_object, performance_score, performance, formmodeid, modedatacreater, 
+    modedatacreatertype, modedatacreatedate, modedatacreatetime, department, code, MODEUUID, 
+    assessor, evaluation_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    evaluation_results, improvement_suggestion, new_key_target1, new_key_results1, new_key_target2, 
+    new_key_results2, new_key_target3, new_key_results3, key_target4, new_key_results4, 
+    new_key_target5, new_key_results5, employee_selfevaluation, enclosure
+  </sql>
+  <select id="selectByParames" resultMap="ResultMapWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" >
+    SELECT id,performance_score
+    FROM uf_performance_mana
+    WHERE 1=1
+    <if test="evaluationObject != null">
+      AND evaluation_object = #{evaluationObject}
+    </if>
+    <if test="performance != null">
+      AND performance = #{performance}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from uf_performance_mana
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uf_performance_mana
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" >
+    insert into uf_performance_mana (id, requestId, evaluation_object, 
+      performance_score, performance, formmodeid, 
+      modedatacreater, modedatacreatertype, modedatacreatedate, 
+      modedatacreatetime, department, code, 
+      MODEUUID, assessor, evaluation_date, 
+      evaluation_results, improvement_suggestion, 
+      new_key_target1, new_key_results1, 
+      new_key_target2, new_key_results2, 
+      new_key_target3, new_key_results3, 
+      key_target4, new_key_results4, new_key_target5, 
+      new_key_results5, employee_selfevaluation, 
+      enclosure)
+    values (#{id,jdbcType=INTEGER}, #{requestid,jdbcType=INTEGER}, #{evaluationObject,jdbcType=INTEGER}, 
+      #{performanceScore,jdbcType=INTEGER}, #{performance,jdbcType=VARCHAR}, #{formmodeid,jdbcType=INTEGER}, 
+      #{modedatacreater,jdbcType=INTEGER}, #{modedatacreatertype,jdbcType=INTEGER}, #{modedatacreatedate,jdbcType=VARCHAR}, 
+      #{modedatacreatetime,jdbcType=VARCHAR}, #{department,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{modeuuid,jdbcType=VARCHAR}, #{assessor,jdbcType=INTEGER}, #{evaluationDate,jdbcType=CHAR}, 
+      #{evaluationResults,jdbcType=LONGVARCHAR}, #{improvementSuggestion,jdbcType=LONGVARCHAR}, 
+      #{newKeyTarget1,jdbcType=LONGVARCHAR}, #{newKeyResults1,jdbcType=LONGVARCHAR}, 
+      #{newKeyTarget2,jdbcType=LONGVARCHAR}, #{newKeyResults2,jdbcType=LONGVARCHAR}, 
+      #{newKeyTarget3,jdbcType=LONGVARCHAR}, #{newKeyResults3,jdbcType=LONGVARCHAR}, 
+      #{keyTarget4,jdbcType=LONGVARCHAR}, #{newKeyResults4,jdbcType=LONGVARCHAR}, #{newKeyTarget5,jdbcType=LONGVARCHAR}, 
+      #{newKeyResults5,jdbcType=LONGVARCHAR}, #{employeeSelfevaluation,jdbcType=LONGVARCHAR}, 
+      #{enclosure,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" >
+    insert into uf_performance_mana
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestid != null" >
+        requestId,
+      </if>
+      <if test="evaluationObject != null" >
+        evaluation_object,
+      </if>
+      <if test="performanceScore != null" >
+        performance_score,
+      </if>
+      <if test="performance != null" >
+        performance,
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid,
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater,
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype,
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate,
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="modeuuid != null" >
+        MODEUUID,
+      </if>
+      <if test="assessor != null" >
+        assessor,
+      </if>
+      <if test="evaluationDate != null" >
+        evaluation_date,
+      </if>
+      <if test="evaluationResults != null" >
+        evaluation_results,
+      </if>
+      <if test="improvementSuggestion != null" >
+        improvement_suggestion,
+      </if>
+      <if test="newKeyTarget1 != null" >
+        new_key_target1,
+      </if>
+      <if test="newKeyResults1 != null" >
+        new_key_results1,
+      </if>
+      <if test="newKeyTarget2 != null" >
+        new_key_target2,
+      </if>
+      <if test="newKeyResults2 != null" >
+        new_key_results2,
+      </if>
+      <if test="newKeyTarget3 != null" >
+        new_key_target3,
+      </if>
+      <if test="newKeyResults3 != null" >
+        new_key_results3,
+      </if>
+      <if test="keyTarget4 != null" >
+        key_target4,
+      </if>
+      <if test="newKeyResults4 != null" >
+        new_key_results4,
+      </if>
+      <if test="newKeyTarget5 != null" >
+        new_key_target5,
+      </if>
+      <if test="newKeyResults5 != null" >
+        new_key_results5,
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        employee_selfevaluation,
+      </if>
+      <if test="enclosure != null" >
+        enclosure,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationObject != null" >
+        #{evaluationObject,jdbcType=INTEGER},
+      </if>
+      <if test="performanceScore != null" >
+        #{performanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null" >
+        #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="modeuuid != null" >
+        #{modeuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="assessor != null" >
+        #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationDate != null" >
+        #{evaluationDate,jdbcType=CHAR},
+      </if>
+      <if test="evaluationResults != null" >
+        #{evaluationResults,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="improvementSuggestion != null" >
+        #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget1 != null" >
+        #{newKeyTarget1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults1 != null" >
+        #{newKeyResults1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget2 != null" >
+        #{newKeyTarget2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults2 != null" >
+        #{newKeyResults2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget3 != null" >
+        #{newKeyTarget3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults3 != null" >
+        #{newKeyResults3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget4 != null" >
+        #{keyTarget4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults4 != null" >
+        #{newKeyResults4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget5 != null" >
+        #{newKeyTarget5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults5 != null" >
+        #{newKeyResults5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        #{employeeSelfevaluation,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        #{enclosure,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" >
+    update uf_performance_mana
+    <set >
+      <if test="requestid != null" >
+        requestId = #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationObject != null" >
+        evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      </if>
+      <if test="performanceScore != null" >
+        performance_score = #{performanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null" >
+        performance = #{performance,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid = #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="modeuuid != null" >
+        MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="assessor != null" >
+        assessor = #{assessor,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationDate != null" >
+        evaluation_date = #{evaluationDate,jdbcType=CHAR},
+      </if>
+      <if test="evaluationResults != null" >
+        evaluation_results = #{evaluationResults,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="improvementSuggestion != null" >
+        improvement_suggestion = #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget1 != null" >
+        new_key_target1 = #{newKeyTarget1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults1 != null" >
+        new_key_results1 = #{newKeyResults1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget2 != null" >
+        new_key_target2 = #{newKeyTarget2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults2 != null" >
+        new_key_results2 = #{newKeyResults2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget3 != null" >
+        new_key_target3 = #{newKeyTarget3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults3 != null" >
+        new_key_results3 = #{newKeyResults3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyTarget4 != null" >
+        key_target4 = #{keyTarget4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults4 != null" >
+        new_key_results4 = #{newKeyResults4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyTarget5 != null" >
+        new_key_target5 = #{newKeyTarget5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newKeyResults5 != null" >
+        new_key_results5 = #{newKeyResults5,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="employeeSelfevaluation != null" >
+        employee_selfevaluation = #{employeeSelfevaluation,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.mis.domain.entity.mis.UFPermanaWithBLOBs" >
+    update uf_performance_mana
+    set requestId = #{requestid,jdbcType=INTEGER},
+      evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      performance_score = #{performanceScore,jdbcType=INTEGER},
+      performance = #{performance,jdbcType=VARCHAR},
+      formmodeid = #{formmodeid,jdbcType=INTEGER},
+      modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      assessor = #{assessor,jdbcType=INTEGER},
+      evaluation_date = #{evaluationDate,jdbcType=CHAR},
+      evaluation_results = #{evaluationResults,jdbcType=LONGVARCHAR},
+      improvement_suggestion = #{improvementSuggestion,jdbcType=LONGVARCHAR},
+      new_key_target1 = #{newKeyTarget1,jdbcType=LONGVARCHAR},
+      new_key_results1 = #{newKeyResults1,jdbcType=LONGVARCHAR},
+      new_key_target2 = #{newKeyTarget2,jdbcType=LONGVARCHAR},
+      new_key_results2 = #{newKeyResults2,jdbcType=LONGVARCHAR},
+      new_key_target3 = #{newKeyTarget3,jdbcType=LONGVARCHAR},
+      new_key_results3 = #{newKeyResults3,jdbcType=LONGVARCHAR},
+      key_target4 = #{keyTarget4,jdbcType=LONGVARCHAR},
+      new_key_results4 = #{newKeyResults4,jdbcType=LONGVARCHAR},
+      new_key_target5 = #{newKeyTarget5,jdbcType=LONGVARCHAR},
+      new_key_results5 = #{newKeyResults5,jdbcType=LONGVARCHAR},
+      employee_selfevaluation = #{employeeSelfevaluation,jdbcType=LONGVARCHAR},
+      enclosure = #{enclosure,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.UFPermana" >
+    update uf_performance_mana
+    set requestId = #{requestid,jdbcType=INTEGER},
+      evaluation_object = #{evaluationObject,jdbcType=INTEGER},
+      performance_score = #{performanceScore,jdbcType=INTEGER},
+      performance = #{performance,jdbcType=VARCHAR},
+      formmodeid = #{formmodeid,jdbcType=INTEGER},
+      modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      department = #{department,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      MODEUUID = #{modeuuid,jdbcType=VARCHAR},
+      assessor = #{assessor,jdbcType=INTEGER},
+      evaluation_date = #{evaluationDate,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

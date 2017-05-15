@@ -13,13 +13,19 @@ import java.util.Properties;
  * Created by yuejia on 2017/3/16.
  */
 @Log4j
-@Component
+@Component("common")
 public class Common {
-
+    //携程
     public static String appKey;
     public static String appSecurity;
     public static String CorporationID;
     public static String Version;
+
+    //腾讯企业邮箱
+    public static String tx_corpid;
+    public static String tx_abcorpsecret;
+    public static String tx_ssocorpsecret;
+    public static String tx_recorpsecret;
 
     @PostConstruct
     private void init(){
@@ -34,10 +40,26 @@ public class Common {
             Version = propFile.getProperty("xiecheng.Version");
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
-            log.error("加载属性文件失败");
+            log.error("加载携程属性文件失败");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("加载属性文件失败");
+            log.error("加载携程属性文件失败");
+        }
+
+        try {
+            Properties propFile = new Properties();
+            InputStream instream = getClass().getResourceAsStream("/token.properties");
+            propFile.load(instream);
+            tx_corpid = propFile.getProperty("tx.crop.id");
+            tx_abcorpsecret = propFile.getProperty("tx.crop.addressbook.secret");
+            tx_ssocorpsecret = propFile.getProperty("tx.crop.sso.secret");
+            tx_recorpsecret = propFile.getProperty("tx.crop.remind.secret");
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+            log.error("加载腾讯邮箱属性文件失败");
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("加载腾讯邮箱属性文件失败");
         }
     }
 }

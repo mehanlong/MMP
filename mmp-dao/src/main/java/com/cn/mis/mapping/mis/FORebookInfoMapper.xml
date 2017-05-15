@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.FORebookInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.FORebookInfo" >
+    <id column="Sequence" property="Sequence" jdbcType="INTEGER" />
+    <result column="PassengerName" property="PassengerName" jdbcType="VARCHAR" />
+    <result column="RebookingTime" property="RebookingTime" jdbcType="VARCHAR" />
+    <result column="RebookedTime" property="RebookedTime" jdbcType="VARCHAR" />
+    <result column="RebookTakeOffTime" property="RebookTakeOffTime" jdbcType="VARCHAR" />
+    <result column="RebookArrivalTime" property="RebookArrivalTime" jdbcType="VARCHAR" />
+    <result column="SubClass" property="SubClass" jdbcType="VARCHAR" />
+    <result column="ExchangeFlight" property="ExchangeFlight" jdbcType="VARCHAR" />
+    <result column="TicketNo" property="TicketNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sequence, PassengerName, RebookingTime, RebookedTime, RebookTakeOffTime, RebookArrivalTime, 
+    SubClass, ExchangeFlight, TicketNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qd_FlightOrderRebookInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qd_FlightOrderRebookInfo
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.FORebookInfo" >
+    insert into qd_FlightOrderRebookInfo (Sequence, PassengerName, RebookingTime, 
+      RebookedTime, RebookTakeOffTime, RebookArrivalTime, 
+      SubClass, ExchangeFlight, TicketNo
+      )
+    values (#{Sequence,jdbcType=INTEGER}, #{PassengerName,jdbcType=VARCHAR}, #{RebookingTime,jdbcType=VARCHAR}, 
+      #{RebookedTime,jdbcType=VARCHAR}, #{RebookTakeOffTime,jdbcType=VARCHAR}, #{RebookArrivalTime,jdbcType=VARCHAR}, 
+      #{SubClass,jdbcType=VARCHAR}, #{ExchangeFlight,jdbcType=VARCHAR}, #{TicketNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.FORebookInfo" >
+    insert into qd_FlightOrderRebookInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        Sequence,
+      </if>
+      <if test="PassengerName != null" >
+        PassengerName,
+      </if>
+      <if test="RebookingTime != null" >
+        RebookingTime,
+      </if>
+      <if test="RebookedTime != null" >
+        RebookedTime,
+      </if>
+      <if test="RebookTakeOffTime != null" >
+        RebookTakeOffTime,
+      </if>
+      <if test="RebookArrivalTime != null" >
+        RebookArrivalTime,
+      </if>
+      <if test="SubClass != null" >
+        SubClass,
+      </if>
+      <if test="ExchangeFlight != null" >
+        ExchangeFlight,
+      </if>
+      <if test="TicketNo != null" >
+        TicketNo,
+      </if>
+      <if test="RecordID != null">
+        RecordID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="Sequence != null" >
+        #{Sequence,jdbcType=INTEGER},
+      </if>
+      <if test="PassengerName != null" >
+        #{PassengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookingTime != null" >
+        #{RebookingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookedTime != null" >
+        #{RebookedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookTakeOffTime != null" >
+        #{RebookTakeOffTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookArrivalTime != null" >
+        #{RebookArrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="SubClass != null" >
+        #{SubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ExchangeFlight != null" >
+        #{ExchangeFlight,jdbcType=VARCHAR},
+      </if>
+      <if test="TicketNo != null" >
+        #{TicketNo,jdbcType=VARCHAR},
+      </if>
+      <if test="RecordID != null">
+        #{RecordID}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.FORebookInfo" >
+    update qd_FlightOrderRebookInfo
+    <set >
+      <if test="PassengerName != null" >
+        PassengerName = #{PassengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookingTime != null" >
+        RebookingTime = #{RebookingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookedTime != null" >
+        RebookedTime = #{RebookedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookTakeOffTime != null" >
+        RebookTakeOffTime = #{RebookTakeOffTime,jdbcType=VARCHAR},
+      </if>
+      <if test="RebookArrivalTime != null" >
+        RebookArrivalTime = #{RebookArrivalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="SubClass != null" >
+        SubClass = #{SubClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ExchangeFlight != null" >
+        ExchangeFlight = #{ExchangeFlight,jdbcType=VARCHAR},
+      </if>
+      <if test="TicketNo != null" >
+        TicketNo = #{TicketNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.FORebookInfo" >
+    update qd_FlightOrderRebookInfo
+    set PassengerName = #{PassengerName,jdbcType=VARCHAR},
+      RebookingTime = #{RebookingTime,jdbcType=VARCHAR},
+      RebookedTime = #{RebookedTime,jdbcType=VARCHAR},
+      RebookTakeOffTime = #{RebookTakeOffTime,jdbcType=VARCHAR},
+      RebookArrivalTime = #{RebookArrivalTime,jdbcType=VARCHAR},
+      SubClass = #{SubClass,jdbcType=VARCHAR},
+      ExchangeFlight = #{ExchangeFlight,jdbcType=VARCHAR},
+      TicketNo = #{TicketNo,jdbcType=VARCHAR}
+    where Sequence = #{Sequence,jdbcType=INTEGER}
+  </update>
+</mapper>

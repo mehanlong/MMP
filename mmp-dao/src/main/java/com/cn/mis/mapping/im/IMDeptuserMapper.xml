@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.im.IMDeptuserMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.im.IMDeptuser" >
+    <id column="deptid" property="deptid" jdbcType="INTEGER" />
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="updatetype" property="updatetype" jdbcType="INTEGER" />
+    <result column="usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="rankid" property="rankid" jdbcType="INTEGER" />
+    <result column="proid" property="proid" jdbcType="INTEGER" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="usersort" property="usersort" jdbcType="INTEGER" />
+    <result column="deptorgid" property="deptorgid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    deptid, userid, update_time, updatetype, usercode, rankid, proid, areaid, usersort, 
+    deptorgid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cn.mis.domain.entity.im.IMDeptuserKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from deptuser
+    where deptid = #{deptid,jdbcType=INTEGER}
+      and userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cn.mis.domain.entity.im.IMDeptuserKey" >
+    delete from deptuser
+    where deptid = #{deptid,jdbcType=INTEGER}
+      and userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.im.IMDeptuser" >
+    insert into deptuser (deptid, userid, update_time, 
+      updatetype, usercode, rankid, 
+      proid, areaid, usersort, 
+      deptorgid)
+    values (#{deptid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatetype,jdbcType=INTEGER}, #{usercode,jdbcType=VARCHAR}, #{rankid,jdbcType=INTEGER}, 
+      #{proid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, #{usersort,jdbcType=INTEGER}, 
+      #{deptorgid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.im.IMDeptuser">
+    insert into deptuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptid != null" >
+        deptid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updatetype != null" >
+        updatetype,
+      </if>
+      <if test="usercode != null" >
+        usercode,
+      </if>
+      <if test="rankid != null" >
+        rankid,
+      </if>
+      <if test="proid != null" >
+        proid,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="usersort != null" >
+        usersort,
+      </if>
+      <if test="deptorgid != null" >
+        deptorgid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="usercode != null" >
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="rankid != null" >
+        #{rankid,jdbcType=INTEGER},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="usersort != null" >
+        #{usersort,jdbcType=INTEGER},
+      </if>
+      <if test="deptorgid != null" >
+        #{deptorgid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.im.IMDeptuser" >
+    update deptuser
+    <set >
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        updatetype = #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="usercode != null" >
+        usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="rankid != null" >
+        rankid = #{rankid,jdbcType=INTEGER},
+      </if>
+      <if test="proid != null" >
+        proid = #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="usersort != null" >
+        usersort = #{usersort,jdbcType=INTEGER},
+      </if>
+      <if test="deptorgid != null" >
+        deptorgid = #{deptorgid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where deptid = #{deptid,jdbcType=INTEGER}
+      and userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.im.IMDeptuser" >
+    update deptuser
+    set update_time = #{updateTime,jdbcType=TIMESTAMP},
+      updatetype = #{updatetype,jdbcType=INTEGER},
+      usercode = #{usercode,jdbcType=VARCHAR},
+      rankid = #{rankid,jdbcType=INTEGER},
+      proid = #{proid,jdbcType=INTEGER},
+      areaid = #{areaid,jdbcType=INTEGER},
+      usersort = #{usersort,jdbcType=INTEGER},
+      deptorgid = #{deptorgid,jdbcType=BIGINT}
+    where deptid = #{deptid,jdbcType=INTEGER}
+      and userid = #{userid,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateDidByUidKeySelective" parameterType="com.cn.mis.domain.entity.im.IMDeptuser">
+    update deptuser
+    <set >
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetype != null" >
+        updatetype = #{updatetype,jdbcType=INTEGER},
+      </if>
+      <if test="usercode != null" >
+        usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="rankid != null" >
+        rankid = #{rankid,jdbcType=INTEGER},
+      </if>
+      <if test="proid != null" >
+        proid = #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="usersort != null" >
+        usersort = #{usersort,jdbcType=INTEGER},
+      </if>
+      <if test="deptorgid != null" >
+        deptorgid = #{deptorgid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where deptid = #{deptid,jdbcType=INTEGER}
+    and userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

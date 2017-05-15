@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.inface.IFHrmResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.inface.IFHrmResource" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginid" property="loginid" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="CHAR" />
+    <result column="enddate" property="enddate" jdbcType="CHAR" />
+    <result column="jobtitle" property="jobtitle" jdbcType="INTEGER" />
+    <result column="seclevel" property="seclevel" jdbcType="INTEGER" />
+    <result column="departmentid" property="departmentid" jdbcType="INTEGER" />
+    <result column="subcompanyid1" property="subcompanyid1" jdbcType="INTEGER" />
+    <result column="costcenterid" property="costcenterid" jdbcType="INTEGER" />
+    <result column="managerid" property="managerid" jdbcType="INTEGER" />
+    <result column="assistantid" property="assistantid" jdbcType="INTEGER" />
+    <result column="resourceimageid" property="resourceimageid" jdbcType="INTEGER" />
+    <result column="createrid" property="createrid" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="CHAR" />
+    <result column="lastmodid" property="lastmodid" jdbcType="INTEGER" />
+    <result column="lastmoddate" property="lastmoddate" jdbcType="CHAR" />
+    <result column="lastlogindate" property="lastlogindate" jdbcType="CHAR" />
+    <result column="workcode" property="workcode" jdbcType="VARCHAR" />
+    <result column="managerstr" property="managerstr" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="probationenddate" property="probationenddate" jdbcType="CHAR" />
+    <result column="passwdchgdate" property="passwdchgdate" jdbcType="CHAR" />
+    <result column="dsporder" property="dsporder" jdbcType="DOUBLE" />
+    <result column="accounttype" property="accounttype" jdbcType="INTEGER" />
+    <result column="belongto" property="belongto" jdbcType="INTEGER" />
+    <result column="dactylogram" property="dactylogram" jdbcType="VARCHAR" />
+    <result column="assistantdactylogram" property="assistantdactylogram" jdbcType="VARCHAR" />
+    <result column="pinyinlastname" property="pinyinlastname" jdbcType="VARCHAR" />
+    <result column="mobileshowtype" property="mobileshowtype" jdbcType="INTEGER" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithIM" type="com.cn.mis.domain.entity.inface.IFHrmResourceWithIM" extends="BaseResultMap">
+    <result column="imid" property="imid" jdbcType="INTEGER" />
+    <result column="imsyncflag" property="imsyncflag" jdbcType="INTEGER" />
+    <result column="imcreatetime" property="imcreatetime" jdbcType="TIMESTAMP" />
+    <result column="immodifytime" property="immodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithTX" type="com.cn.mis.domain.entity.inface.IFHrmResourceWithTX" extends="BaseResultMap">
+    <result column="txid" property="txid" jdbcType="VARCHAR" />
+    <result column="txsyncflag" property="txsyncflag" jdbcType="INTEGER" />
+    <result column="txcreatetime" property="txcreatetime" jdbcType="TIMESTAMP" />
+    <result column="txmodifytime" property="txmodifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithCustom" type="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustom" extends="ResultMapWithIM">
+    <result column="imid" property="imid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithCustomTX" type="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustomTX" extends="ResultMapWithTX">
+    <result column="txid" property="txid" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="checkAllWithIm" resultType="com.cn.mis.domain.entity.inface.IFHrmResource">
+    SELECT id,loginid,password,lastname,
+    sex,telephone,mobile,email,
+    startdate,enddate,jobtitle,seclevel,
+    departmentid,subcompanyid1,costcenterid,
+    managerid,assistantid,resourceimageid,
+    createrid,createdate,lastmodid,
+    workcode,
+    managerstr,status,probationenddate,
+    passwdchgdate,dsporder,accounttype,
+    belongto,dactylogram,assistantdactylogram,
+    pinyinlastname,mobileshowtype,ecology_pinyin_search
+    FROM HrmResource
+  </select>
+  <select id="checkAllWithTx" resultType="com.cn.mis.domain.entity.inface.IFHrmResource">
+    SELECT id,loginid,password,lastname,
+    sex,telephone,mobile,email,
+    startdate,enddate,jobtitle,seclevel,
+    departmentid,subcompanyid1,costcenterid,
+    managerid,assistantid,resourceimageid,
+    createrid,createdate,lastmodid,
+    workcode,
+    managerstr,status,probationenddate,
+    passwdchgdate,dsporder,accounttype,
+    belongto,dactylogram,assistantdactylogram,
+    pinyinlastname,mobileshowtype,ecology_pinyin_search
+    FROM HrmResource
+  </select>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into HrmResource (id, loginid, password, 
+      lastname, sex, telephone, 
+      mobile, email, startdate, 
+      enddate, jobtitle, seclevel, 
+      departmentid, subcompanyid1, costcenterid, 
+      managerid, assistantid, resourceimageid, 
+      createrid, createdate, lastmodid, 
+      lastmoddate, lastlogindate, workcode, 
+      managerstr, status, probationenddate, 
+      passwdchgdate, dsporder, accounttype, 
+      belongto, dactylogram, assistantdactylogram, 
+      pinyinlastname, mobileshowtype, ecology_pinyin_search)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.id,jdbcType=INTEGER}, #{item.loginid,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+      #{item.lastname,jdbcType=VARCHAR}, #{item.sex,jdbcType=CHAR}, #{item.telephone,jdbcType=VARCHAR},
+      #{item.mobile,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.startdate,jdbcType=CHAR},
+      #{item.enddate,jdbcType=CHAR}, #{item.jobtitle,jdbcType=INTEGER}, #{item.seclevel,jdbcType=INTEGER},
+      #{item.departmentid,jdbcType=INTEGER}, #{item.subcompanyid1,jdbcType=INTEGER}, #{item.costcenterid,jdbcType=INTEGER},
+      #{item.managerid,jdbcType=INTEGER}, #{item.assistantid,jdbcType=INTEGER}, #{item.resourceimageid,jdbcType=INTEGER},
+      #{item.createrid,jdbcType=INTEGER}, #{item.createdate,jdbcType=CHAR}, #{item.lastmodid,jdbcType=INTEGER},
+      #{item.lastmoddate,jdbcType=CHAR}, #{item.lastlogindate,jdbcType=CHAR}, #{item.workcode,jdbcType=VARCHAR},
+      #{item.managerstr,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.probationenddate,jdbcType=CHAR},
+      #{item.passwdchgdate,jdbcType=CHAR}, #{item.dsporder,jdbcType=DOUBLE}, #{item.accounttype,jdbcType=INTEGER},
+      #{item.belongto,jdbcType=INTEGER}, #{item.dactylogram,jdbcType=VARCHAR}, #{item.assistantdactylogram,jdbcType=VARCHAR},
+      #{item.pinyinlastname,jdbcType=VARCHAR}, #{item.mobileshowtype,jdbcType=INTEGER}, #{item.ecologyPinyinSearch,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertBatchTx" parameterType="java.util.List">
+    insert into HrmResource (id, loginid, password,
+    lastname, sex, telephone,
+    mobile, email, startdate,
+    enddate, jobtitle, seclevel,
+    departmentid, subcompanyid1, costcenterid,
+    managerid, assistantid, resourceimageid,
+    createrid, createdate, lastmodid,
+    lastmoddate, lastlogindate, workcode,
+    managerstr, status, probationenddate,
+    passwdchgdate, dsporder, accounttype,
+    belongto, dactylogram, assistantdactylogram,
+    pinyinlastname, mobileshowtype, ecology_pinyin_search)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.id,jdbcType=INTEGER}, #{item.loginid,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR},
+      #{item.lastname,jdbcType=VARCHAR}, #{item.sex,jdbcType=CHAR}, #{item.telephone,jdbcType=VARCHAR},
+      #{item.mobile,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.startdate,jdbcType=CHAR},
+      #{item.enddate,jdbcType=CHAR}, #{item.jobtitle,jdbcType=INTEGER}, #{item.seclevel,jdbcType=INTEGER},
+      #{item.departmentid,jdbcType=INTEGER}, #{item.subcompanyid1,jdbcType=INTEGER}, #{item.costcenterid,jdbcType=INTEGER},
+      #{item.managerid,jdbcType=INTEGER}, #{item.assistantid,jdbcType=INTEGER}, #{item.resourceimageid,jdbcType=INTEGER},
+      #{item.createrid,jdbcType=INTEGER}, #{item.createdate,jdbcType=CHAR}, #{item.lastmodid,jdbcType=INTEGER},
+      #{item.lastmoddate,jdbcType=CHAR}, #{item.lastlogindate,jdbcType=CHAR}, #{item.workcode,jdbcType=VARCHAR},
+      #{item.managerstr,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.probationenddate,jdbcType=CHAR},
+      #{item.passwdchgdate,jdbcType=CHAR}, #{item.dsporder,jdbcType=DOUBLE}, #{item.accounttype,jdbcType=INTEGER},
+      #{item.belongto,jdbcType=INTEGER}, #{item.dactylogram,jdbcType=VARCHAR}, #{item.assistantdactylogram,jdbcType=VARCHAR},
+      #{item.pinyinlastname,jdbcType=VARCHAR}, #{item.mobileshowtype,jdbcType=INTEGER}, #{item.ecologyPinyinSearch,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <update id="updateSelBatch" parameterType="java.util.List">
+    update HrmResource
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="loginid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.loginid != null"> when id=#{item.id} then #{item.loginid} </if></foreach></trim>
+      <trim prefix="password = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.password != null"> when id=#{item.id} then #{item.password} </if></foreach></trim>
+      <trim prefix="lastname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastname != null"> when id=#{item.id} then #{item.lastname} </if></foreach></trim>
+      <trim prefix="sex = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.sex != null"> when id=#{item.id} then #{item.sex} </if></foreach></trim>
+      <trim prefix="telephone = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.telephone != null"> when id=#{item.id} then #{item.telephone} </if></foreach></trim>
+      <trim prefix="mobile = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.mobile != null"> when id=#{item.id} then #{item.mobile} </if></foreach></trim>
+      <trim prefix="email = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.email != null"> when id=#{item.id} then #{item.email} </if></foreach></trim>
+      <trim prefix="startdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.startdate != null"> when id=#{item.id} then #{item.startdate} </if></foreach></trim>
+      <trim prefix="enddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.enddate != null"> when id=#{item.id} then #{item.enddate} </if></foreach></trim>
+      <trim prefix="jobtitle = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.jobtitle != null"> when id=#{item.id} then #{item.jobtitle} </if></foreach></trim>
+      <trim prefix="seclevel = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.seclevel != null"> when id=#{item.id} then #{item.seclevel} </if></foreach></trim>
+      <trim prefix="departmentid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentid != null"> when id=#{item.id} then #{item.departmentid} </if></foreach></trim>
+      <trim prefix="subcompanyid1 = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.subcompanyid1 != null"> when id=#{item.id} then #{item.subcompanyid1} </if></foreach></trim>
+      <trim prefix="costcenterid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.costcenterid != null"> when id=#{item.id} then #{item.costcenterid} </if></foreach></trim>
+      <trim prefix="managerid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.managerid != null"> when id=#{item.id} then #{item.managerid} </if></foreach></trim>
+      <trim prefix="assistantid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.assistantid != null"> when id=#{item.id} then #{item.assistantid} </if></foreach></trim>
+      <trim prefix="resourceimageid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.resourceimageid != null"> when id=#{item.id} then #{item.resourceimageid} </if></foreach></trim>
+      <trim prefix="createrid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.createrid != null"> when id=#{item.id} then #{item.createrid} </if></foreach></trim>
+      <trim prefix="createdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.createdate != null"> when id=#{item.id} then #{item.createdate} </if></foreach></trim>
+      <trim prefix="lastmodid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastmodid != null"> when id=#{item.id} then #{item.lastmodid} </if></foreach></trim>
+      <trim prefix="lastmoddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastmoddate != null"> when id=#{item.id} then #{item.lastmoddate} </if></foreach></trim>
+      <trim prefix="lastlogindate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastlogindate != null"> when id=#{item.id} then #{item.lastlogindate} </if></foreach></trim>
+      <trim prefix="workcode = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.workcode != null"> when id=#{item.id} then #{item.workcode} </if></foreach></trim>
+      <trim prefix="managerstr = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.managerstr != null"> when id=#{item.id} then #{item.managerstr} </if></foreach></trim>
+      <trim prefix="status = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.status != null"> when id=#{item.id} then #{item.status} </if></foreach></trim>
+      <trim prefix="probationenddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.probationenddate != null"> when id=#{item.id} then #{item.probationenddate} </if></foreach></trim>
+      <trim prefix="passwdchgdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.passwdchgdate != null"> when id=#{item.id} then #{item.passwdchgdate} </if></foreach></trim>
+      <trim prefix="dsporder = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.dsporder != null"> when id=#{item.id} then #{item.dsporder} </if></foreach></trim>
+      <trim prefix="accounttype = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.accounttype != null"> when id=#{item.id} then #{item.accounttype} </if></foreach></trim>
+      <trim prefix="belongto = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.belongto != null"> when id=#{item.id} then #{item.belongto} </if></foreach></trim>
+      <trim prefix="dactylogram = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.dactylogram != null"> when id=#{item.id} then #{item.dactylogram} </if></foreach></trim>
+      <trim prefix="assistantdactylogram = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.assistantdactylogram != null"> when id=#{item.id} then #{item.assistantdactylogram} </if></foreach></trim>
+      <trim prefix="pinyinlastname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.pinyinlastname != null"> when id=#{item.id} then #{item.pinyinlastname} </if></foreach></trim>
+      <trim prefix="mobileshowtype = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.mobileshowtype != null"> when id=#{item.id} then #{item.mobileshowtype} </if></foreach></trim>
+      <trim prefix="ecology_pinyin_search = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.ecologyPinyinSearch != null"> when id=#{item.id} then #{item.ecologyPinyinSearch} </if></foreach></trim>
+      <trim prefix="imid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imid != null"> when id=#{item.id} then #{item.imid} </if></foreach></trim>
+      <trim prefix="imsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imsyncflag != null"> when id=#{item.id} then #{item.imsyncflag} </if></foreach></trim>
+      <trim prefix="imcreatetime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.imcreatetime != null"> when id=#{item.id} then #{item.imcreatetime} </if></foreach></trim>
+      <trim prefix="immodifytime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.immodifytime != null"> when id=#{item.id} then #{item.immodifytime} </if></foreach></trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item.id}
+    </foreach>
+  </update>
+  <update id="updateSelBatchTx" parameterType="java.util.List">
+    update HrmResource
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="loginid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.loginid != null"> when id=#{item.id} then #{item.loginid} </if></foreach></trim>
+      <trim prefix="password = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.password != null"> when id=#{item.id} then #{item.password} </if></foreach></trim>
+      <trim prefix="lastname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastname != null"> when id=#{item.id} then #{item.lastname} </if></foreach></trim>
+      <trim prefix="sex = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.sex != null"> when id=#{item.id} then #{item.sex} </if></foreach></trim>
+      <trim prefix="telephone = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.telephone != null"> when id=#{item.id} then #{item.telephone} </if></foreach></trim>
+      <trim prefix="mobile = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.mobile != null"> when id=#{item.id} then #{item.mobile} </if></foreach></trim>
+      <trim prefix="email = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.email != null"> when id=#{item.id} then #{item.email} </if></foreach></trim>
+      <trim prefix="startdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.startdate != null"> when id=#{item.id} then #{item.startdate} </if></foreach></trim>
+      <trim prefix="enddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.enddate != null"> when id=#{item.id} then #{item.enddate} </if></foreach></trim>
+      <trim prefix="jobtitle = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.jobtitle != null"> when id=#{item.id} then #{item.jobtitle} </if></foreach></trim>
+      <trim prefix="seclevel = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.seclevel != null"> when id=#{item.id} then #{item.seclevel} </if></foreach></trim>
+      <trim prefix="departmentid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.departmentid != null"> when id=#{item.id} then #{item.departmentid} </if></foreach></trim>
+      <trim prefix="subcompanyid1 = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.subcompanyid1 != null"> when id=#{item.id} then #{item.subcompanyid1} </if></foreach></trim>
+      <trim prefix="costcenterid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.costcenterid != null"> when id=#{item.id} then #{item.costcenterid} </if></foreach></trim>
+      <trim prefix="managerid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.managerid != null"> when id=#{item.id} then #{item.managerid} </if></foreach></trim>
+      <trim prefix="assistantid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.assistantid != null"> when id=#{item.id} then #{item.assistantid} </if></foreach></trim>
+      <trim prefix="resourceimageid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.resourceimageid != null"> when id=#{item.id} then #{item.resourceimageid} </if></foreach></trim>
+      <trim prefix="createrid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.createrid != null"> when id=#{item.id} then #{item.createrid} </if></foreach></trim>
+      <trim prefix="createdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.createdate != null"> when id=#{item.id} then #{item.createdate} </if></foreach></trim>
+      <trim prefix="lastmodid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastmodid != null"> when id=#{item.id} then #{item.lastmodid} </if></foreach></trim>
+      <trim prefix="lastmoddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastmoddate != null"> when id=#{item.id} then #{item.lastmoddate} </if></foreach></trim>
+      <trim prefix="lastlogindate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.lastlogindate != null"> when id=#{item.id} then #{item.lastlogindate} </if></foreach></trim>
+      <trim prefix="workcode = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.workcode != null"> when id=#{item.id} then #{item.workcode} </if></foreach></trim>
+      <trim prefix="managerstr = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.managerstr != null"> when id=#{item.id} then #{item.managerstr} </if></foreach></trim>
+      <trim prefix="status = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.status != null"> when id=#{item.id} then #{item.status} </if></foreach></trim>
+      <trim prefix="probationenddate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.probationenddate != null"> when id=#{item.id} then #{item.probationenddate} </if></foreach></trim>
+      <trim prefix="passwdchgdate = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.passwdchgdate != null"> when id=#{item.id} then #{item.passwdchgdate} </if></foreach></trim>
+      <trim prefix="dsporder = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.dsporder != null"> when id=#{item.id} then #{item.dsporder} </if></foreach></trim>
+      <trim prefix="accounttype = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.accounttype != null"> when id=#{item.id} then #{item.accounttype} </if></foreach></trim>
+      <trim prefix="belongto = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.belongto != null"> when id=#{item.id} then #{item.belongto} </if></foreach></trim>
+      <trim prefix="dactylogram = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.dactylogram != null"> when id=#{item.id} then #{item.dactylogram} </if></foreach></trim>
+      <trim prefix="assistantdactylogram = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.assistantdactylogram != null"> when id=#{item.id} then #{item.assistantdactylogram} </if></foreach></trim>
+      <trim prefix="pinyinlastname = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.pinyinlastname != null"> when id=#{item.id} then #{item.pinyinlastname} </if></foreach></trim>
+      <trim prefix="mobileshowtype = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.mobileshowtype != null"> when id=#{item.id} then #{item.mobileshowtype} </if></foreach></trim>
+      <trim prefix="ecology_pinyin_search = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.ecologyPinyinSearch != null"> when id=#{item.id} then #{item.ecologyPinyinSearch} </if></foreach></trim>
+      <trim prefix="txid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txid != null"> when id=#{item.id} then #{item.txid} </if></foreach></trim>
+      <trim prefix="txsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txsyncflag != null"> when id=#{item.id} then #{item.txsyncflag} </if></foreach></trim>
+      <trim prefix="txcreatetime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txcreatetime != null"> when id=#{item.id} then #{item.txcreatetime} </if></foreach></trim>
+      <trim prefix="txmodifytime = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txmodifytime != null"> when id=#{item.id} then #{item.txmodifytime} </if></foreach></trim>
+    </trim>
+    where
+    <foreach collection="list" separator="or" item="item" index="index" >
+      id=#{item.id}
+    </foreach>
+  </update>
+  <update id="updateInitBatchTx" parameterType="java.util.List">
+    update HrmResource
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="txid = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txid != null"> when email=#{item.email} then #{item.txid} </if></foreach></trim>
+      <trim prefix="txsyncflag = case" suffix="end,"> <foreach collection="list" item="item" index="index"><if test="item.txsyncflag != null"> when email=#{item.email} then #{item.txsyncflag} </if></foreach></trim>
+   </trim>
+    WHERE
+    <foreach collection="list" separator="or" item="item" index="index" >
+      email=#{item.email}
+    </foreach>
+  </update>
+  <select id="selectAllNeedInit" resultType="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustom">
+    SELECT hr.id,hr.loginid,hr.password,hr.lastname,hr.sex,hr.telephone,hr.mobile,hr.email,hr.status,hd.imid as imdid,hd.subcompanyid1,hr.seclevel,hr.dsporder
+    FROM HrmResource hr LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    WHERE (hr.imsyncflag IS NULL OR hr.imsyncflag = 0) AND hr.status IN (0,1,2,3) AND hd.imid IS NOT NULL
+  </select>
+  <select id="selectAllNeedInitTx" resultType="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustomTX">
+    SELECT hr.id,hr.loginid,hr.password,hr.lastname,hr.sex,hr.telephone,hr.mobile,hr.email,hr.status,hd.txid as txdid,hd.subcompanyid1,hr.seclevel,hr.dsporder
+    FROM HrmResource hr LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    WHERE (hr.txsyncflag IS NULL OR hr.txsyncflag = 0) AND hr.status IN (0,1,2,3) AND hd.txid IS NOT NULL
+  </select>
+  <select id="selectAllNeedUpdate" resultType="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustom">
+    SELECT hr.id,hr.imid,hr.loginid,hr.password,hr.lastname,hr.sex,hr.telephone,hr.mobile,hr.email,hr.status,hd.imid as imdid,hd.subcompanyid1
+    FROM HrmResource hr LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    WHERE hr.imsyncflag = 1 AND hr.imid IS NOT NULL
+  </select>
+  <select id="selectAllNeedUpdateTx" resultType="com.cn.mis.domain.entity.inface.IFHrmResourceWithCustomTX">
+    SELECT hr.id,hr.txid,hr.loginid,hr.password,hr.lastname,hr.sex,hr.telephone,hr.mobile,hr.email,hr.status,hd.txid as txdid,hd.subcompanyid1
+    FROM HrmResource hr LEFT JOIN HrmDepartment hd ON hr.departmentid = hd.id
+    WHERE hr.txsyncflag = 1 AND hr.txid IS NOT NULL
+  </select>
+  <update id="updateSyncFlag" parameterType="com.cn.mis.domain.entity.inface.IFHrmResourceWithIM">
+    update HrmResource
+    <trim prefix="set" suffixOverrides=",">
+      <if test="imsyncflag != null">
+        imsyncflag = #{imsyncflag},
+      </if>
+      <if test="imcreatetime != null">
+        imcreatetime = #{imcreatetime},
+      </if>
+      <if test="immodifytime != null">
+        immodifytime = #{immodifytime},
+      </if>
+      <if test="imid != null">
+        imid = #{imid},
+      </if>
+    </trim>
+    where id = #{id}
+  </update>
+  <update id="updateSyncFlagTx" parameterType="com.cn.mis.domain.entity.inface.IFHrmResourceWithTX">
+    update HrmResource
+    <trim prefix="set" suffixOverrides=",">
+      <if test="txsyncflag != null">
+        txsyncflag = #{txsyncflag},
+      </if>
+      <if test="txcreatetime != null">
+        txcreatetime = #{txcreatetime},
+      </if>
+      <if test="txmodifytime != null">
+        txmodifytime = #{txmodifytime},
+      </if>
+      <if test="txid != null">
+        txid = #{txid},
+      </if>
+    </trim>
+    where email = #{email}
+  </update>
+</mapper>

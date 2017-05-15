@@ -23,8 +23,8 @@ import javax.mail.event.TransportListener;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.cn.mis.domain.entity.XCEmail;
-import com.cn.mis.service.IXCEmailService;
+import com.cn.mis.domain.entity.mis.XCEmail;
+import com.cn.mis.service.mis.IXCEmailService;
 import com.cn.mis.utils.date.DateStyle;
 import com.cn.mis.utils.date.DateUtil;
 import org.springframework.stereotype.Component;

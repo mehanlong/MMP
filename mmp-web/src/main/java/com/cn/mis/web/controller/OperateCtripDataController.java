@@ -6,17 +6,16 @@ import com.cn.mis.domain.bean.pojo.XCQueryPojo;
 import com.cn.mis.domain.bean.req.XCAuth;
 import com.cn.mis.domain.bean.req.XCQueryReq;
 import com.cn.mis.domain.bean.resp.XCQueryResp;
-import com.cn.mis.domain.entity.*;
+import com.cn.mis.domain.entity.mis.*;
 import com.cn.mis.domain.enums.Sex;
 import com.cn.mis.domain.enums.Valid;
-import com.cn.mis.service.IHrmResourceService;
-import com.cn.mis.service.IXCEmailService;
-import com.cn.mis.service.IXCQueryServcie;
+import com.cn.mis.service.mis.IHrmResourceService;
+import com.cn.mis.service.mis.IXCEmailService;
+import com.cn.mis.service.mis.IXCQueryServcie;
 import com.cn.mis.utils.date.DateStyle;
 import com.cn.mis.utils.date.DateUtil;
 import com.cn.mis.utils.http.HttpClientUtil;
 import com.cn.mis.utils.json.JsonUtil;
-import com.cn.mis.utils.pinyin.Pinyin4jUtil;
 import com.google.gson.reflect.TypeToken;
 import corp.openapicalls.contract.Authentification;
 import corp.openapicalls.contract.employee.Authentication;
@@ -97,7 +96,9 @@ public class OperateCtripDataController {
                 authentication.setDept1("千丁互联");
                 authentication.setDept2(tmpdata.getDepartmentid()+"");
                 authentication.setDept3(tmpdata.getDepartmentname());
-                authentication.setCostCenter(tmpdata.getName());
+                if (tmpdata.getName() != null) {
+                    authentication.setCostCenter(tmpdata.getName().trim());
+                }
                 authentication.setCostCenter2("差旅费");
                 authentication.setCostCenter3(tmpdata.getLocationname());
                 authentication.setEmployeeID(tmpdata.getId()+"");

@@ -1,10 +1,10 @@
 package com.cn.mis.timetask;
 
 import com.cn.mis.common.Common;
-import com.cn.mis.domain.entity.HrmResourceWithDepartment;
+import com.cn.mis.domain.entity.mis.HrmResourceWithDepartment;
 import com.cn.mis.domain.enums.Sex;
 import com.cn.mis.domain.enums.Valid;
-import com.cn.mis.service.IHrmResourceService;
+import com.cn.mis.service.mis.IHrmResourceService;
 import corp.openapicalls.contract.employee.Authentication;
 import corp.openapicalls.contract.employee.AuthenticationInfoList;
 import corp.openapicalls.contract.employee.AuthenticationInfoListResponse;
@@ -39,9 +39,7 @@ public class XCAccountTimeTask {
     }
 
     private String MultipleEmployeeSync(){
-        if (orderSearchTicketResponse == null){
-            orderSearchTicketResponse = getEmployeeSyncTicket(Common.appKey,Common.appSecurity,Common.Version);
-        }
+        orderSearchTicketResponse = getEmployeeSyncTicket(Common.appKey,Common.appSecurity,Common.Version);
         if(orderSearchTicketResponse!=null&&orderSearchTicketResponse.getStatus()!=null&&orderSearchTicketResponse.getStatus().getSuccess()){
             authenticationListRequst.setAppkey(Common.appKey);
             authenticationListRequst.setCorporationID(Common.CorporationID);
@@ -60,7 +58,7 @@ public class XCAccountTimeTask {
                 authentication.setDept1("千丁互联");
                 authentication.setDept2(tmpdata.getDepartmentid()+"");
                 authentication.setDept3(tmpdata.getDepartmentname());
-                authentication.setCostCenter(tmpdata.getName());
+                authentication.setCostCenter(tmpdata.getName().trim());
                 authentication.setCostCenter2("差旅费");
                 authentication.setCostCenter3(tmpdata.getLocationname());
                 authentication.setEmployeeID(tmpdata.getId()+"");

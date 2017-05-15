@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.HrmSubCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.HrmSubCompany" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="subcompanyname" property="subcompanyname" jdbcType="VARCHAR" />
+    <result column="subcompanydesc" property="subcompanydesc" jdbcType="VARCHAR" />
+    <result column="companyid" property="companyid" jdbcType="TINYINT" />
+    <result column="supsubcomid" property="supsubcomid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="showorder" property="showorder" jdbcType="INTEGER" />
+    <result column="canceled" property="canceled" jdbcType="CHAR" />
+    <result column="subcompanycode" property="subcompanycode" jdbcType="VARCHAR" />
+    <result column="outkey" property="outkey" jdbcType="VARCHAR" />
+    <result column="budgetAtuoMoveOrder" property="budgetatuomoveorder" jdbcType="INTEGER" />
+    <result column="ecology_pinyin_search" property="ecologyPinyinSearch" jdbcType="VARCHAR" />
+    <result column="limitUsers" property="limitusers" jdbcType="INTEGER" />
+    <result column="tlevel" property="tlevel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, subcompanyname, subcompanydesc, companyid, supsubcomid, url, showorder, canceled, 
+    subcompanycode, outkey, budgetAtuoMoveOrder, ecology_pinyin_search, limitUsers, tlevel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from HrmSubCompany
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from HrmSubCompany
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.HrmSubCompany" >
+    insert into HrmSubCompany (id, subcompanyname, subcompanydesc, 
+      companyid, supsubcomid, url, 
+      showorder, canceled, subcompanycode, 
+      outkey, budgetAtuoMoveOrder, ecology_pinyin_search, 
+      limitUsers, tlevel)
+    values (#{id,jdbcType=INTEGER}, #{subcompanyname,jdbcType=VARCHAR}, #{subcompanydesc,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=TINYINT}, #{supsubcomid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{showorder,jdbcType=INTEGER}, #{canceled,jdbcType=CHAR}, #{subcompanycode,jdbcType=VARCHAR}, 
+      #{outkey,jdbcType=VARCHAR}, #{budgetatuomoveorder,jdbcType=INTEGER}, #{ecologyPinyinSearch,jdbcType=VARCHAR}, 
+      #{limitusers,jdbcType=INTEGER}, #{tlevel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.HrmSubCompany" >
+    insert into HrmSubCompany
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subcompanyname != null" >
+        subcompanyname,
+      </if>
+      <if test="subcompanydesc != null" >
+        subcompanydesc,
+      </if>
+      <if test="companyid != null" >
+        companyid,
+      </if>
+      <if test="supsubcomid != null" >
+        supsubcomid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="showorder != null" >
+        showorder,
+      </if>
+      <if test="canceled != null" >
+        canceled,
+      </if>
+      <if test="subcompanycode != null" >
+        subcompanycode,
+      </if>
+      <if test="outkey != null" >
+        outkey,
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        budgetAtuoMoveOrder,
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search,
+      </if>
+      <if test="limitusers != null" >
+        limitUsers,
+      </if>
+      <if test="tlevel != null" >
+        tlevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subcompanyname != null" >
+        #{subcompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="subcompanydesc != null" >
+        #{subcompanydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=TINYINT},
+      </if>
+      <if test="supsubcomid != null" >
+        #{supsubcomid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="showorder != null" >
+        #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        #{canceled,jdbcType=CHAR},
+      </if>
+      <if test="subcompanycode != null" >
+        #{subcompanycode,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        #{budgetatuomoveorder,jdbcType=INTEGER},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="limitusers != null" >
+        #{limitusers,jdbcType=INTEGER},
+      </if>
+      <if test="tlevel != null" >
+        #{tlevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.HrmSubCompany" >
+    update HrmSubCompany
+    <set >
+      <if test="subcompanyname != null" >
+        subcompanyname = #{subcompanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="subcompanydesc != null" >
+        subcompanydesc = #{subcompanydesc,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        companyid = #{companyid,jdbcType=TINYINT},
+      </if>
+      <if test="supsubcomid != null" >
+        supsubcomid = #{supsubcomid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="showorder != null" >
+        showorder = #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        canceled = #{canceled,jdbcType=CHAR},
+      </if>
+      <if test="subcompanycode != null" >
+        subcompanycode = #{subcompanycode,jdbcType=VARCHAR},
+      </if>
+      <if test="outkey != null" >
+        outkey = #{outkey,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetatuomoveorder != null" >
+        budgetAtuoMoveOrder = #{budgetatuomoveorder,jdbcType=INTEGER},
+      </if>
+      <if test="ecologyPinyinSearch != null" >
+        ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="limitusers != null" >
+        limitUsers = #{limitusers,jdbcType=INTEGER},
+      </if>
+      <if test="tlevel != null" >
+        tlevel = #{tlevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.HrmSubCompany" >
+    update HrmSubCompany
+    set subcompanyname = #{subcompanyname,jdbcType=VARCHAR},
+      subcompanydesc = #{subcompanydesc,jdbcType=VARCHAR},
+      companyid = #{companyid,jdbcType=TINYINT},
+      supsubcomid = #{supsubcomid,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      showorder = #{showorder,jdbcType=INTEGER},
+      canceled = #{canceled,jdbcType=CHAR},
+      subcompanycode = #{subcompanycode,jdbcType=VARCHAR},
+      outkey = #{outkey,jdbcType=VARCHAR},
+      budgetAtuoMoveOrder = #{budgetatuomoveorder,jdbcType=INTEGER},
+      ecology_pinyin_search = #{ecologyPinyinSearch,jdbcType=VARCHAR},
+      limitUsers = #{limitusers,jdbcType=INTEGER},
+      tlevel = #{tlevel,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
