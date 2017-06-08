@@ -23,7 +23,13 @@ import javax.mail.MessagingException;
 import javax.mail.event.TransportEvent;
 import javax.mail.event.TransportListener;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -231,6 +237,72 @@ public class TestController {
 //
 //        }
         return "success";
+
+    }
+
+    @RequestMapping("soap")
+    @ResponseBody
+    public String soap(){
+        String resp = soaptest(
+                "2009998",
+                "0",
+                "2016-06-08",
+                "0",
+                "",
+                "",
+                "",
+                "",
+                "PRC",
+                "103",
+                "",
+                "");
+        return resp;
+    }
+
+    public String soaptest(String EMPLID,String EMPL_RCD,String EFFDT,String EFFSEQ,String DEPTID,String JOBCODE,String POSITION_NBR,String SUPERVISOR_ID,String ACTION,String ACTION_REASON,String LOCATION,String COMPANY){
+        StringBuilder psresult = new StringBuilder();
+        try {
+            String xmlStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:m29=\"http://xmlns.oracle.com/Enterprise/Tools/schemas/M297221.V1\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <m29:Update__CompIntfc__QD_CI_JOB_DATA>\n" +
+                    "         <m29:KEYPROP_EMPLID>90000001</m29:KEYPROP_EMPLID>\n" +
+                    "         <m29:KEYPROP_EMPL_RCD>0</m29:KEYPROP_EMPL_RCD>\n" +
+                    "         <m29:COLL_JOB>\n" +
+                    "            <m29:KEYPROP_EFFDT>2017-05-08</m29:KEYPROP_EFFDT>\n" +
+                    "            <m29:KEYPROP_EFFSEQ>0</m29:KEYPROP_EFFSEQ>\n" +
+                    "            <m29:PROP_DEPTID>900000051</m29:PROP_DEPTID>\n" +
+                    "            <m29:PROP_JOBCODE>90003</m29:PROP_JOBCODE>\n" +
+                    "            <m29:PROP_POSITION_NBR>90000006</m29:PROP_POSITION_NBR>\n" +
+                    "            <m29:PROP_ACTION>XFR</m29:PROP_ACTION>\n" +
+                    "            <m29:PROP_LOCATION></m29:PROP_LOCATION>\n" +
+                    "            <m29:PROP_COMPANY></m29:PROP_COMPANY>\n" +
+                    "      </m29:COLL_JOB>\n" +
+                    "      </m29:Update__CompIntfc__QD_CI_JOB_DATA>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+            String urlStr = "http://10.37.253.14:8010/PSIGW/PeopleSoftServiceListeningConnector/PSFT_HR/CI_QD_CI_JOB_DATA.1.wsdl";
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setDoOutput(true);
+            con.setRequestMethod("POST");
+            con.setRequestProperty("SOAPAction", "CI_QD_CI_JOB_DATA_UP.V1");
+            con.setRequestProperty("Encoding", "UTF-8");
+            OutputStream reqStream = con.getOutputStream();
+            reqStream.write(xmlStr.getBytes());
+            InputStream resStream = con.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    resStream,"utf-8"));
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                psresult.append(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(psresult.toString());
+        String EncryStr=psresult.toString();
+        return EncryStr;
 
     }
 

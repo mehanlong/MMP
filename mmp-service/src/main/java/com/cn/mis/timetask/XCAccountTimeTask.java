@@ -44,7 +44,6 @@ public class XCAccountTimeTask {
             authenticationListRequst.setAppkey(Common.appKey);
             authenticationListRequst.setCorporationID(Common.CorporationID);
             authenticationListRequst.setTicket(orderSearchTicketResponse.getTicket());
-
             List<HrmResourceWithDepartment> list = iHrmResourceService.selectAllWithDepartment();
             List<Integer> ids = new ArrayList<>();
             List<AuthenticationInfoList> authenticationInfoLists = new ArrayList<>();
@@ -58,7 +57,9 @@ public class XCAccountTimeTask {
                 authentication.setDept1("千丁互联");
                 authentication.setDept2(tmpdata.getDepartmentid()+"");
                 authentication.setDept3(tmpdata.getDepartmentname());
-                authentication.setCostCenter(tmpdata.getName().trim());
+                if (tmpdata.getName() != null) {
+                    authentication.setCostCenter(tmpdata.getName().trim());
+                }
                 authentication.setCostCenter2("差旅费");
                 authentication.setCostCenter3(tmpdata.getLocationname());
                 authentication.setEmployeeID(tmpdata.getId()+"");

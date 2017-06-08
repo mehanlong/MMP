@@ -15,12 +15,17 @@ public class OperateProject {
 	private Timestamp updateAt;				//更新日期
 	private String ucBossId;				//新增成功后回写
 
-	private Integer access_control_install; 				//是否开通门禁
+	private Integer whether_to_open_access_control; 				//是否开通门禁
 	private Integer whether_to_open_the_newspaper_repair;   //是否开通报事报修
 	private String service_center_address;					//所在小区物业客服中心地址
-	private String gd_province;								//省
-	private String gd_city;									//市
-	private String gd_district;								//区
+	private String boss_provincial;								//省
+	private String boss_provincial_id;								//省ID
+	private String boss_region;									//市
+	private String boss_region_id;									//市ID
+	private String boss_district;								//区
+	private String boss_district_id;								//区ID
+	private String address;									//所在街道地址
+	private String service_phone;							//服务中心电话
 	
 	private String city;				//old接口
 	private Integer online_households;  //old接口

@@ -14,6 +14,7 @@
     <bean id="xcFOSettlementsJob" class="com.cn.mis.timetask.XCFlightOrderSettlementsTimeTask"/>
     <bean id="paymentJob" class="com.cn.mis.timetask.PaymentTimeTask"/>
     <bean id="syncInfaceJob" class="com.cn.mis.timetask.InfaceTimeTask"/>
+    <bean id="vendorJob" class="com.cn.mis.timetask.VendorTimeTask"/>
 
     <!-- job的配置开始 -->
     <bean id="accountJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -110,6 +111,16 @@
     <bean id="syncInfaceJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject">
             <ref bean="syncInfaceJob" />
+        </property>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+        <!--false表示等上一个任务执行完后再开启新的任务 -->
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="vendorJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="vendorJob" />
         </property>
         <property name="targetMethod">
             <value>run</value>
@@ -225,22 +236,31 @@
             <value>0 */1 * * * ?</value>
         </property>
     </bean>
+    <bean id="vendorJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="vendorJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value>
+        </property>
+    </bean>
 
     <!-- 启动触发器的配置开始 -->
     <bean name="startQuertz" lazy-init="false" autowire="no"
           class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="crontestAccount8_20JobTrigger" />
-                <ref bean="crontestAccount20_24JobTrigger" />
-                <ref bean="crontestAccount0_8JobTrigger" />
-                <ref bean="allAccountJobTrigger"/>
-                <ref bean="userJobTrigger" />
+                <!--<ref bean="crontestAccount8_20JobTrigger" />-->
+                <!--<ref bean="crontestAccount20_24JobTrigger" />-->
+                <!--<ref bean="crontestAccount0_8JobTrigger" />-->
+                <!--<ref bean="allAccountJobTrigger"/>-->
+                <!--<ref bean="userJobTrigger" />-->
                 <ref bean="syncOAJobTrigger" />
-                <ref bean="xcAccountJobTrigger"/>
-                <ref bean="xcApprovalJobTrigger"/>
-                <ref bean="xcFOSettlementsJobTrigger"/>
-                <ref bean="paymentJobTrigger"/>
+                <!--<ref bean="xcAccountJobTrigger"/>-->
+                <!--<ref bean="xcApprovalJobTrigger"/>-->
+                <!--<ref bean="xcFOSettlementsJobTrigger"/>-->
+                <!--<ref bean="paymentJobTrigger"/>-->
+                <!--<ref bean="vendorJobTrigger"/>-->
                 <!--<ref bean="syncInfaceJobTrigger"/>-->
             </list>
         </property>

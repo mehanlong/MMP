@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.UFContractAMapper" >
+    <select id="selectAllNeedInit" resultType="com.cn.mis.domain.entity.mis.UFContractAWithVendor">
+        SELECT uca.id,
+          uca.contract_code,
+          uca.contract,
+          uca.sign_date,
+          uca.contract_start_date,
+          uca.contract_end_date,
+          uca.party_b,
+          uv.vendor,
+          uv.boss_id,
+          uv.business_moble,
+          uv.vendor_email,
+          uv.person_in_charge,
+          uv.financial_contact,
+          uv.financial_moble,
+          uvd1.boss_id AS bankid,
+          uca.settlement_cycle,
+          uca.settlement_type,
+          uca.settlement_days,
+          uca.comment,
+          uca.update_flag,
+          uca.boss_contractcode,
+          uca.modedatacreater,
+          hr.lastname AS creatername
+        FROM uf_contract_a uca
+        LEFT JOIN uf_vendor uv ON uca.party_b = uv.id
+        LEFT JOIN uf_vendor_dt1 uvd1 ON uv.id = uvd1.mainid
+        LEFT JOIN HrmResource hr ON uca.modedatacreater = hr.id
+        WHERE (uca.update_flag IS NULL OR uca.update_flag = 0 OR uca.update_flag='');
+    </select>
+    <select id="selectAllNeedUpdate" resultType="com.cn.mis.domain.entity.mis.UFContractAWithVendor">
+        SELECT uca.id,
+          uca.contract_code,
+          uca.contract,
+          uca.sign_date,
+          uca.contract_start_date,
+          uca.contract_end_date,
+          uca.party_b,
+          uv.vendor,
+          uv.boss_id,
+          uv.business_moble,
+          uv.vendor_email,
+          uv.person_in_charge,
+          uv.financial_contact,
+          uv.financial_moble,
+          uvd1.boss_id AS bankid,
+          uca.settlement_cycle,
+          uca.settlement_type,
+          uca.settlement_days,
+          uca.comment,
+          uca.update_flag,
+          uca.boss_contractcode,
+          uca.modedatacreater,
+          hr.lastname AS creatername
+        FROM uf_contract_a uca
+        LEFT JOIN uf_vendor uv ON uca.party_b = uv.id
+        LEFT JOIN uf_vendor_dt1 uvd1 ON uv.id = uvd1.mainid
+        LEFT JOIN HrmResource hr ON uca.modedatacreater = hr.id
+        WHERE (uca.update_flag = 1)
+    </select>
+    <select id="selectAllNeedAdd" resultType="com.cn.mis.domain.entity.mis.UFContractAWithVendor">
+        SELECT uca.id,
+          uca.contract_code,
+          uca.contract,
+          uca.sign_date,
+          uca.contract_start_date,
+          uca.contract_end_date,
+          uca.party_b,
+          uv.vendor,
+          uv.boss_id,
+          uv.business_moble,
+          uv.vendor_email,
+          uv.person_in_charge,
+          uv.financial_contact,
+          uv.financial_moble,
+          uvd1.boss_id AS bankid,
+          uca.settlement_cycle,
+          uca.settlement_type,
+          uca.settlement_days,
+          uca.comment,
+          uca.update_flag,
+          uca.boss_contractcode,
+          uca.modedatacreater,
+          hr.lastname AS creatername
+        FROM uf_contract_a uca
+        LEFT JOIN uf_vendor uv ON uca.party_b = uv.id
+        LEFT JOIN uf_vendor_dt1 uvd1 ON uv.id = uvd1.mainid
+        LEFT JOIN HrmResource hr ON uca.modedatacreater = hr.id
+        WHERE (uca.update_flag = 3)
+    </select>
+    <update id="updateBossReturnData" parameterType="com.cn.mis.domain.entity.mis.UFContractAWithVendor">
+        UPDATE uf_contract_a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="update_flag != null">
+                update_flag = #{update_flag},
+            </if>
+            <if test="boss_contractcode != null">
+                boss_contractcode = #{boss_contractcode},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+    <select id="selectCategoryByMainIdNew" parameterType="java.lang.Integer" resultType="com.cn.mis.domain.entity.mis.UFCategoryWithContractA">
+        SELECT id, mainid, second_category, third_category, category_rate, update_flag
+        FROM uf_contract_a_dt3
+        WHERE mainid = #{mainid} AND (update_flag IS NULL OR update_flag = 0 OR update_flag = '')
+    </select>
+    <select id="selectCategoryByMainIdOld" parameterType="java.lang.Integer" resultType="com.cn.mis.domain.entity.mis.UFCategoryWithContractA">
+        SELECT id, mainid, second_category, third_category, category_rate, update_flag
+        FROM uf_contract_a_dt3
+        WHERE mainid = #{mainid}
+    </select>
+    <select id="updateCategoryReturnData" parameterType="com.cn.mis.domain.entity.mis.UFCategoryWithContractA">
+        UPDATE uf_contract_a_dt3
+        <trim prefix="set" suffixOverrides=",">
+            <if test="update_flag != null">
+                update_flag = #{update_flag},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </select>
+</mapper>

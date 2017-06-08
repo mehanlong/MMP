@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.HrmCityMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.HrmCity" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="cityname" property="cityname" jdbcType="VARCHAR" />
+    <result column="citylongitude" property="citylongitude" jdbcType="NUMERIC" />
+    <result column="citylatitude" property="citylatitude" jdbcType="NUMERIC" />
+    <result column="provinceid" property="provinceid" jdbcType="INTEGER" />
+    <result column="countryid" property="countryid" jdbcType="INTEGER" />
+    <result column="canceled" property="canceled" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT id, cityname, citylongitude, citylatitude, provinceid, countryid, canceled
+    FROM HrmCity
+    WHERE cityname = #{name}
+  </select>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.HrmCity" >
+    insert into HrmCity (id, cityname, citylongitude, 
+      citylatitude, provinceid, countryid, 
+      canceled)
+    values (#{id,jdbcType=INTEGER}, #{cityname,jdbcType=VARCHAR}, #{citylongitude,jdbcType=NUMERIC}, 
+      #{citylatitude,jdbcType=NUMERIC}, #{provinceid,jdbcType=INTEGER}, #{countryid,jdbcType=INTEGER}, 
+      #{canceled,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.HrmCity" >
+    insert into HrmCity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityname != null" >
+        cityname,
+      </if>
+      <if test="citylongitude != null" >
+        citylongitude,
+      </if>
+      <if test="citylatitude != null" >
+        citylatitude,
+      </if>
+      <if test="provinceid != null" >
+        provinceid,
+      </if>
+      <if test="countryid != null" >
+        countryid,
+      </if>
+      <if test="canceled != null" >
+        canceled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="citylongitude != null" >
+        #{citylongitude,jdbcType=NUMERIC},
+      </if>
+      <if test="citylatitude != null" >
+        #{citylatitude,jdbcType=NUMERIC},
+      </if>
+      <if test="provinceid != null" >
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="countryid != null" >
+        #{countryid,jdbcType=INTEGER},
+      </if>
+      <if test="canceled != null" >
+        #{canceled,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

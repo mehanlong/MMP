@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.mis.dao.mis.UFVendorMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.mis.domain.entity.mis.UFVendor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="requestId" property="requestid" jdbcType="INTEGER" />
+    <result column="vendor" property="vendor" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="formmodeid" property="formmodeid" jdbcType="INTEGER" />
+    <result column="modedatacreater" property="modedatacreater" jdbcType="INTEGER" />
+    <result column="modedatacreatertype" property="modedatacreatertype" jdbcType="INTEGER" />
+    <result column="modedatacreatedate" property="modedatacreatedate" jdbcType="VARCHAR" />
+    <result column="modedatacreatetime" property="modedatacreatetime" jdbcType="VARCHAR" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="whether_the_margin" property="whetherTheMargin" jdbcType="INTEGER" />
+    <result column="margin_amount" property="marginAmount" jdbcType="DECIMAL" />
+    <result column="validity_start_date" property="validityStartDate" jdbcType="CHAR" />
+    <result column="validity_end_date" property="validityEndDate" jdbcType="CHAR" />
+    <result column="person_in_charge" property="personInCharge" jdbcType="VARCHAR" />
+    <result column="property_corp_id" property="propertyCorpId" jdbcType="VARCHAR" />
+    <result column="is_use" property="isUse" jdbcType="INTEGER" />
+    <result column="create_requestid" property="createRequestid" jdbcType="INTEGER" />
+    <result column="update_requestid" property="updateRequestid" jdbcType="INTEGER" />
+    <result column="stop_requestid" property="stopRequestid" jdbcType="INTEGER" />
+    <result column="business_moble" property="businessMoble" jdbcType="VARCHAR" />
+    <result column="financial_contact" property="financialContact" jdbcType="VARCHAR" />
+    <result column="financial_moble" property="financialMoble" jdbcType="VARCHAR" />
+    <result column="aftersales_contact" property="aftersalesContact" jdbcType="VARCHAR" />
+    <result column="aftersales_moble" property="aftersalesMoble" jdbcType="VARCHAR" />
+    <result column="our_contact" property="ourContact" jdbcType="INTEGER" />
+    <result column="our_moble" property="ourMoble" jdbcType="VARCHAR" />
+    <result column="boss_flag" property="bossFlag" jdbcType="INTEGER" />
+    <result column="boss_id" property="bossId" jdbcType="BIGINT" />
+    <result column="vendor_email" property="vendorEmail" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="vendor_type" property="vendorType" jdbcType="VARCHAR" />
+    <result column="vendor_attr" property="vendorAttr" jdbcType="INTEGER" />
+    <result column="legal_person_cardid" property="legalPersonCardid" jdbcType="VARCHAR" />
+    <result column="bd_email" property="bdEmail" jdbcType="VARCHAR" />
+    <result column="financial_email" property="financialEmail" jdbcType="VARCHAR" />
+    <result column="aftersales_email" property="aftersalesEmail" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="vendor_comment" property="vendorComment" jdbcType="LONGVARCHAR" />
+    <result column="photo" property="photo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithHrmResource" type="com.cn.mis.domain.entity.mis.UFVendorWithResource" extends="BaseResultMap">
+    <result column="our_contract_name" property="our_contract_name" jdbcType="VARCHAR" />
+    <result column="creater_name" property="creater_name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, requestId, vendor, type, legal_person, formmodeid, modedatacreater, modedatacreatertype,
+    modedatacreatedate, modedatacreatetime, isdelete, whether_the_margin, margin_amount,
+    validity_start_date, validity_end_date, person_in_charge, property_corp_id, is_use,
+    create_requestid, update_requestid, stop_requestid, business_moble, financial_contact,
+    financial_moble, aftersales_contact, aftersales_moble, our_contact, our_moble, boss_flag,
+    boss_id, vendor_email, short_name, vendor_type, vendor_attr, legal_person_cardid,
+    bd_email, financial_email, aftersales_email, address, vendor_comment, photo
+  </sql>
+  <select id="selectAllNeedInit" resultMap="ResultMapWithHrmResource">
+    SELECT uv.id, requestId, vendor, type, legal_person, formmodeid, modedatacreater, modedatacreatertype,
+    modedatacreatedate, modedatacreatetime, isdelete, whether_the_margin, margin_amount,
+    validity_start_date, validity_end_date, person_in_charge, property_corp_id, is_use,
+    create_requestid, update_requestid, stop_requestid, business_moble, financial_contact,
+    financial_moble, aftersales_contact, aftersales_moble, our_contact, our_moble, boss_flag,
+    boss_id, vendor_email, short_name, vendor_type, vendor_attr, legal_person_cardid,
+    hr.email AS bd_email, financial_email, aftersales_email, address, vendor_comment, photo, hr.lastname AS our_contract_name, hr2.lastname AS creater_name
+    FROM uf_vendor uv
+      LEFT JOIN HrmResource hr ON uv.our_contact = hr.id
+      LEFT JOIN HrmResource hr2 ON uv.modedatacreater = hr2.id
+    --WHERE (uv.boss_flag = 0 OR uv.boss_flag IS NULL OR uv.boss_flag='') AND uv.boss_id IS NULL
+  </select>
+  <select id="selectAllNeedUpdate" resultMap="ResultMapWithHrmResource">
+    SELECT uv.id, requestId, vendor, type, legal_person, formmodeid, modedatacreater, modedatacreatertype,
+    modedatacreatedate, modedatacreatetime, isdelete, whether_the_margin, margin_amount,
+    validity_start_date, validity_end_date, person_in_charge, property_corp_id, is_use,
+    create_requestid, update_requestid, stop_requestid, business_moble, financial_contact,
+    financial_moble, aftersales_contact, aftersales_moble, our_contact, our_moble, boss_flag,
+    boss_id, vendor_email, short_name, vendor_type, vendor_attr, legal_person_cardid,
+    bd_email, financial_email, aftersales_email, address, vendor_comment, photo, hr.lastname AS our_contract_name,
+    hr2.lastname AS creater_name
+    FROM uf_vendor uv
+      LEFT JOIN HrmResource hr ON uv.our_contact = hr.id
+      LEFT JOIN HrmResource hr2 ON uv.modedatacreater = hr.id
+    WHERE boss_flag = 1 AND boss_id IS NOT NULL
+  </select>
+  <update id="updateBossReturnData" parameterType="com.cn.mis.domain.entity.mis.UFVendorWithResource">
+    UPDATE uf_vendor
+    <trim prefix="set" suffixOverrides=",">
+      <if test="bossFlag != null">
+        boss_flag = #{bossFlag},
+      </if>
+      <if test="bossId != null">
+        boss_id = #{bossId},
+      </if>
+    </trim>
+    WHERE id = #{id}
+  </update>
+  <select id="SelImageFiledPhoto" resultType="com.cn.mis.domain.entity.mis.ImageFiled" parameterType="java.util.List">
+    select imagefileid,imagefilename,imagefiletype,filerealpath
+    from imagefile
+    where imagefileid in (select docid from docimagefile where docid in (
+      <foreach collection="list" item="item" index="index" separator="," >
+        #{item}
+      </foreach>
+    )) AND imagefiletype LIKE '%image%'
+  </select>
+  <select id="SelImageFiledComment" resultType="com.cn.mis.domain.entity.mis.ImageFiled" parameterType="java.util.List">
+    select imagefileid,imagefilename,imagefiletype,filerealpath
+    from imagefile
+    where imagefileid in (
+    <foreach collection="list" item="item" index="index" separator="," >
+      #{item}
+    </foreach>
+    )
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from uf_vendor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uf_vendor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.mis.domain.entity.mis.UFVendor" >
+    insert into uf_vendor (id, requestId, vendor, 
+      type, legal_person, formmodeid, 
+      modedatacreater, modedatacreatertype, modedatacreatedate, 
+      modedatacreatetime, isdelete, whether_the_margin, 
+      margin_amount, validity_start_date, validity_end_date, 
+      person_in_charge, property_corp_id, is_use, 
+      create_requestid, update_requestid, stop_requestid, 
+      business_moble, financial_contact, financial_moble, 
+      aftersales_contact, aftersales_moble, our_contact, 
+      our_moble, boss_flag)
+    values (#{id,jdbcType=INTEGER}, #{requestid,jdbcType=INTEGER}, #{vendor,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{legalPerson,jdbcType=VARCHAR}, #{formmodeid,jdbcType=INTEGER}, 
+      #{modedatacreater,jdbcType=INTEGER}, #{modedatacreatertype,jdbcType=INTEGER}, #{modedatacreatedate,jdbcType=VARCHAR}, 
+      #{modedatacreatetime,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}, #{whetherTheMargin,jdbcType=INTEGER}, 
+      #{marginAmount,jdbcType=DECIMAL}, #{validityStartDate,jdbcType=CHAR}, #{validityEndDate,jdbcType=CHAR}, 
+      #{personInCharge,jdbcType=VARCHAR}, #{propertyCorpId,jdbcType=VARCHAR}, #{isUse,jdbcType=INTEGER}, 
+      #{createRequestid,jdbcType=INTEGER}, #{updateRequestid,jdbcType=INTEGER}, #{stopRequestid,jdbcType=INTEGER}, 
+      #{businessMoble,jdbcType=VARCHAR}, #{financialContact,jdbcType=VARCHAR}, #{financialMoble,jdbcType=VARCHAR}, 
+      #{aftersalesContact,jdbcType=VARCHAR}, #{aftersalesMoble,jdbcType=VARCHAR}, #{ourContact,jdbcType=INTEGER}, 
+      #{ourMoble,jdbcType=VARCHAR}, #{bossFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.mis.domain.entity.mis.UFVendor" >
+    insert into uf_vendor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestid != null" >
+        requestId,
+      </if>
+      <if test="vendor != null" >
+        vendor,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid,
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater,
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype,
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate,
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="whetherTheMargin != null" >
+        whether_the_margin,
+      </if>
+      <if test="marginAmount != null" >
+        margin_amount,
+      </if>
+      <if test="validityStartDate != null" >
+        validity_start_date,
+      </if>
+      <if test="validityEndDate != null" >
+        validity_end_date,
+      </if>
+      <if test="personInCharge != null" >
+        person_in_charge,
+      </if>
+      <if test="propertyCorpId != null" >
+        property_corp_id,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="createRequestid != null" >
+        create_requestid,
+      </if>
+      <if test="updateRequestid != null" >
+        update_requestid,
+      </if>
+      <if test="stopRequestid != null" >
+        stop_requestid,
+      </if>
+      <if test="businessMoble != null" >
+        business_moble,
+      </if>
+      <if test="financialContact != null" >
+        financial_contact,
+      </if>
+      <if test="financialMoble != null" >
+        financial_moble,
+      </if>
+      <if test="aftersalesContact != null" >
+        aftersales_contact,
+      </if>
+      <if test="aftersalesMoble != null" >
+        aftersales_moble,
+      </if>
+      <if test="ourContact != null" >
+        our_contact,
+      </if>
+      <if test="ourMoble != null" >
+        our_moble,
+      </if>
+      <if test="bossFlag != null" >
+        boss_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="vendor != null" >
+        #{vendor,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="whetherTheMargin != null" >
+        #{whetherTheMargin,jdbcType=INTEGER},
+      </if>
+      <if test="marginAmount != null" >
+        #{marginAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="validityStartDate != null" >
+        #{validityStartDate,jdbcType=CHAR},
+      </if>
+      <if test="validityEndDate != null" >
+        #{validityEndDate,jdbcType=CHAR},
+      </if>
+      <if test="personInCharge != null" >
+        #{personInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCorpId != null" >
+        #{propertyCorpId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="createRequestid != null" >
+        #{createRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="updateRequestid != null" >
+        #{updateRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="stopRequestid != null" >
+        #{stopRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="businessMoble != null" >
+        #{businessMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="financialContact != null" >
+        #{financialContact,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoble != null" >
+        #{financialMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="aftersalesContact != null" >
+        #{aftersalesContact,jdbcType=VARCHAR},
+      </if>
+      <if test="aftersalesMoble != null" >
+        #{aftersalesMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="ourContact != null" >
+        #{ourContact,jdbcType=INTEGER},
+      </if>
+      <if test="ourMoble != null" >
+        #{ourMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="bossFlag != null" >
+        #{bossFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.mis.domain.entity.mis.UFVendor" >
+    update uf_vendor
+    <set >
+      <if test="requestid != null" >
+        requestId = #{requestid,jdbcType=INTEGER},
+      </if>
+      <if test="vendor != null" >
+        vendor = #{vendor,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="formmodeid != null" >
+        formmodeid = #{formmodeid,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreater != null" >
+        modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatertype != null" >
+        modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      </if>
+      <if test="modedatacreatedate != null" >
+        modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="modedatacreatetime != null" >
+        modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="whetherTheMargin != null" >
+        whether_the_margin = #{whetherTheMargin,jdbcType=INTEGER},
+      </if>
+      <if test="marginAmount != null" >
+        margin_amount = #{marginAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="validityStartDate != null" >
+        validity_start_date = #{validityStartDate,jdbcType=CHAR},
+      </if>
+      <if test="validityEndDate != null" >
+        validity_end_date = #{validityEndDate,jdbcType=CHAR},
+      </if>
+      <if test="personInCharge != null" >
+        person_in_charge = #{personInCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCorpId != null" >
+        property_corp_id = #{propertyCorpId,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="createRequestid != null" >
+        create_requestid = #{createRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="updateRequestid != null" >
+        update_requestid = #{updateRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="stopRequestid != null" >
+        stop_requestid = #{stopRequestid,jdbcType=INTEGER},
+      </if>
+      <if test="businessMoble != null" >
+        business_moble = #{businessMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="financialContact != null" >
+        financial_contact = #{financialContact,jdbcType=VARCHAR},
+      </if>
+      <if test="financialMoble != null" >
+        financial_moble = #{financialMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="aftersalesContact != null" >
+        aftersales_contact = #{aftersalesContact,jdbcType=VARCHAR},
+      </if>
+      <if test="aftersalesMoble != null" >
+        aftersales_moble = #{aftersalesMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="ourContact != null" >
+        our_contact = #{ourContact,jdbcType=INTEGER},
+      </if>
+      <if test="ourMoble != null" >
+        our_moble = #{ourMoble,jdbcType=VARCHAR},
+      </if>
+      <if test="bossFlag != null" >
+        boss_flag = #{bossFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.mis.domain.entity.mis.UFVendor" >
+    update uf_vendor
+    set requestId = #{requestid,jdbcType=INTEGER},
+      vendor = #{vendor,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      formmodeid = #{formmodeid,jdbcType=INTEGER},
+      modedatacreater = #{modedatacreater,jdbcType=INTEGER},
+      modedatacreatertype = #{modedatacreatertype,jdbcType=INTEGER},
+      modedatacreatedate = #{modedatacreatedate,jdbcType=VARCHAR},
+      modedatacreatetime = #{modedatacreatetime,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      whether_the_margin = #{whetherTheMargin,jdbcType=INTEGER},
+      margin_amount = #{marginAmount,jdbcType=DECIMAL},
+      validity_start_date = #{validityStartDate,jdbcType=CHAR},
+      validity_end_date = #{validityEndDate,jdbcType=CHAR},
+      person_in_charge = #{personInCharge,jdbcType=VARCHAR},
+      property_corp_id = #{propertyCorpId,jdbcType=VARCHAR},
+      is_use = #{isUse,jdbcType=INTEGER},
+      create_requestid = #{createRequestid,jdbcType=INTEGER},
+      update_requestid = #{updateRequestid,jdbcType=INTEGER},
+      stop_requestid = #{stopRequestid,jdbcType=INTEGER},
+      business_moble = #{businessMoble,jdbcType=VARCHAR},
+      financial_contact = #{financialContact,jdbcType=VARCHAR},
+      financial_moble = #{financialMoble,jdbcType=VARCHAR},
+      aftersales_contact = #{aftersalesContact,jdbcType=VARCHAR},
+      aftersales_moble = #{aftersalesMoble,jdbcType=VARCHAR},
+      our_contact = #{ourContact,jdbcType=INTEGER},
+      our_moble = #{ourMoble,jdbcType=VARCHAR},
+      boss_flag = #{bossFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

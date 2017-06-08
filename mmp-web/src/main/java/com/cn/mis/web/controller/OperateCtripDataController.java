@@ -66,14 +66,11 @@ public class OperateCtripDataController {
     @RequestMapping("/testMES")
     @ResponseBody
     private String MultipleEmployeeSync(){
-        if (orderSearchTicketResponse == null){
-            orderSearchTicketResponse = getEmployeeSyncTicket(Common.appKey,Common.appSecurity,Common.Version);
-        }
+        orderSearchTicketResponse = getEmployeeSyncTicket(Common.appKey,Common.appSecurity,Common.Version);
         if(orderSearchTicketResponse!=null&&orderSearchTicketResponse.getStatus()!=null&&orderSearchTicketResponse.getStatus().getSuccess()){
             authenticationListRequst.setAppkey(Common.appKey);
             authenticationListRequst.setCorporationID(Common.CorporationID);
             authenticationListRequst.setTicket(orderSearchTicketResponse.getTicket());
-
             List<HrmResourceWithDepartment> list = iHrmResourceService.selectAllWithDepartment();
             List<Integer> ids = new ArrayList<>();
             List<AuthenticationInfoList> authenticationInfoLists = new ArrayList<>();
@@ -84,15 +81,6 @@ public class OperateCtripDataController {
                 Authentication authentication = new Authentication();
                 String tmpName = tmpdata.getLastname().replaceAll("[0-9]*","").replaceAll("\\(*\\)*","").replaceAll("[\\uff08]", "").replaceAll("[\\uff09]","").replaceAll("[\\u5b9e][\\u4e60][\\u751f]","");
                 authentication.setName(tmpName);
-
-//                String pinyin = Pinyin4jUtil.converterToSpell(tmpName);
-//                String[] duoyin = pinyin.split(",");
-//                if (duoyin.length>1){
-//                    authentication.setName_Pinyin(duoyin[0]);
-//                } else {
-//                    authentication.setName_Pinyin(pinyin);
-//                }
-
                 authentication.setDept1("千丁互联");
                 authentication.setDept2(tmpdata.getDepartmentid()+"");
                 authentication.setDept3(tmpdata.getDepartmentname());
@@ -129,7 +117,6 @@ public class OperateCtripDataController {
                 }
             }
         }
-
         return "success";
     }
 

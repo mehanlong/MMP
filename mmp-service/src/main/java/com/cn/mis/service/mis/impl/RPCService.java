@@ -3,6 +3,7 @@ package com.cn.mis.service.mis.impl;
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.qding.brick.remote.biz.IBizRemoteService;
 import com.qding.brick.remote.biz.RegionRemote;
+import com.qding.brick.remote.contract.mis.MISContractRemote;
 import com.qding.brick.struts.request.BizRemoteRequest;
 import com.qding.brick.struts.response.BizRemoteResponse;
 import com.qding.brick.struts.response.RegionResponse;
@@ -27,10 +28,13 @@ import java.util.Properties;
 public class RPCService {
     private String propertyInfo_rpc_url="";
     private String regionremote_url="";
+    private String miscontract_rpc_url="";
 
     private IBizRemoteService iBizRemoteService;
 
     private RegionRemote regionRemote;
+
+    private MISContractRemote misContractRemote;
 
     @PostConstruct
     public void init(){
@@ -44,10 +48,12 @@ public class RPCService {
             propFile.load(instream);
             propertyInfo_rpc_url = propFile.getProperty("propertyInfo.rpc.url");
             regionremote_url = propFile.getProperty("regionremote.url");
+            miscontract_rpc_url = propFile.getProperty("miscontract.rpc.url");
 //            factory.setHessian2Reply(false);
 //            factory.setHessian2Request(false);
             iBizRemoteService = (IBizRemoteService) factory.create(IBizRemoteService.class, propertyInfo_rpc_url);
             regionRemote = (RegionRemote) factory.create(RegionRemote.class,regionremote_url);
+            misContractRemote = (MISContractRemote) factory.create(MISContractRemote.class,miscontract_rpc_url);
         }catch (MalformedURLException e){
             log.error("[BrickRPCService init error]" + e);
         } catch (IOException e) {
@@ -64,7 +70,11 @@ public class RPCService {
         return iBizRemoteService.insert(request);
     }
 
-    public BizRemoteResponse updateBase(BizRemoteRequest request) { return iBizRemoteService.updateProjectBaseData(request);}
+    public BizRemoteResponse updateProjectBaseData(BizRemoteRequest request) { return iBizRemoteService.updateProjectBaseData(request);}
+
+    public BizRemoteResponse updateProjectConnect(BizRemoteRequest request) {
+        return iBizRemoteService.updateProjectConnect(request);
+    }
 
     public RegionResponse getRegionByName(String s){
         return regionRemote.getRegionByName(s);

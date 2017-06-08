@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import com.cn.mis.dao.mis.OperateProjectMapper;
 import com.cn.mis.domain.entity.mis.OperateProject;
+import com.cn.mis.domain.entity.mis.OperateProjectConnect;
 import com.cn.mis.service.mis.IOperateProjectService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,21 @@ public class OperateProjectServiceImpl implements IOperateProjectService {
 	@Override
 	public int returnWriteUpdateFlag0ByCommunity(OperateProject record) {
 		return operateProjectMapper.returnWriteUpdateFlag0ByCommunity(record);
+	}
+
+	@Override
+	public List<OperateProjectConnect> SelectSerivceCenterAddressInit() {
+		return operateProjectMapper.SelectSerivceCenterAddressInit();
+	}
+
+	@Override
+	public List<OperateProjectConnect> SelectSerivceCenterAddressUpdate() {
+		return operateProjectMapper.SelectSerivceCenterAddressUpdate();
+	}
+
+	@Override
+	public int returnWriteBossIdByConnect(OperateProjectConnect record) {
+		return operateProjectMapper.returnWriteBossIdByConnect(record);
 	}
 
 	@Override

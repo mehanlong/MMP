@@ -235,6 +235,18 @@ public class OperateTXEmailController {
         }
         return JsonUtil.toJson(list);
     }
+    @RequestMapping("/updateDep/{id}/{parentid}/{name}")
+    @ResponseBody
+    private String UpdateDep(@PathVariable long id,@PathVariable long parentid,@PathVariable String name){
+        TXEmailDeptReq req = new TXEmailDeptReq();
+        req.setId(id);
+        req.setName(name);
+        req.setParentid(parentid);
+        String resp = HttpClientUtil.sendPostSSLRequest("https://api.exmail.qq.com/cgi-bin/department/update?access_token="+getToken().getAccess_token(),JsonUtil.toJson(req));
+        TXEmailDeptResp txEmailResp = (TXEmailDeptResp) JsonUtil.fromJson(new TypeToken<TXEmailDeptResp>(){}.getType(),resp);
+        log.info("【INFACE->TX】更新【部门】:【"+ JsonUtil.toJson(resp)+"】");
+        return "【INFACE->TX】更新【部门】:【"+ JsonUtil.toJson(resp)+"】";
+    }
 
 
 
